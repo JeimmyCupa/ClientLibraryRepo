@@ -53,6 +53,7 @@ public class LoginPanel extends JPanel {
 		user.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		user.setBackground(WindowMain.colorSecond);
 		user.setBorder(new MatteBorder(0, 0, 2, 0, WindowMain.colorLight));
+		user.addMouseListener(this.mousePressed());
 		panelLogin.add(user);
 		
 		password = new JPasswordField();
@@ -62,6 +63,7 @@ public class LoginPanel extends JPanel {
 		password.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		password.setForeground(WindowMain.colorWhite);
 		password.setBackground(WindowMain.colorSecond);
+		password.addMouseListener(this.mousePressed());
 		panelLogin.add(password);
 	
 		
@@ -101,7 +103,6 @@ public class LoginPanel extends JPanel {
 		
 		add(panelLogin);
 	}
-	
 	//GETTERS AND SETTERS
 	public JTextField getUser() {
 		return user;
@@ -116,6 +117,17 @@ public class LoginPanel extends JPanel {
 		this.password = password;
 	}
 	//Metodos para obtener los objetos de la Clase MouseAdapter
+	public MouseAdapter mousePressed() {
+		return new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if(e.getSource().equals(user))
+					txtUserMousePressed(e);
+				else if(e.getSource().equals(user))
+					txtPassMousePressed(e);
+			}
+		};
+	}
 	public MouseAdapter mouseEntered() {
 		return new MouseAdapter() {
 			@Override
@@ -148,5 +160,26 @@ public class LoginPanel extends JPanel {
 		}else if(btnEvent.equals(btnLogin)) {
 			btnLogin.setBackground(WindowMain.colorFirst);;
 		}	
+	}
+	
+	private void txtUserMousePressed(MouseEvent e) {
+		if(user.getText().equals("Usuario")) {
+			user.setText("");
+			user.setForeground(WindowMain.colorWhite);
+		}
+		if(String.valueOf(password.getPassword()).isEmpty()) {
+			password.setText("*********");
+			password.setForeground(WindowMain.colorLight);
+		}
+	}
+	private void txtPassMousePressed(MouseEvent e) {
+		if(String.valueOf(password.getPassword()).equals("*********")) {
+			user.setText("");
+			user.setForeground(WindowMain.colorWhite);
+		}
+		if(user.getText().isEmpty()) {
+			password.setText("Usuario");
+			password.setForeground(WindowMain.colorLight);
+		}
 	}
 }

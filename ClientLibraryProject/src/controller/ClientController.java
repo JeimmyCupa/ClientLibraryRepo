@@ -20,6 +20,21 @@ public class ClientController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String event = e.getActionCommand();
 		switch(event) {
+		case "LOGIN":
+			window.initComponentsUser();//Prueba
+			break;
+		case "SHOWPROFILE":
+			break;
+		case "SEARCHBOOKS":
+			window.initSearchBooks();
+			break;
+		case "REGISTER":
+			break;
+		case "MYBOOKS":
+			break;
+			
+		case "SINGOUT":
+			break;
 		case "EXIT":
 			window.dispose();
 			break;

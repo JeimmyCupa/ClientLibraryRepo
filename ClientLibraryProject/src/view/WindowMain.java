@@ -30,6 +30,7 @@ public class WindowMain extends JFrame {
 	
 	private LoginPanel loginPanel;
 	private MenuPanel menu;
+	private SearchBookPanel searchBookPanel;
 	private ActionListener listener;
 	
 	private int xMouse, yMouse;//atributos para controlar el desplazamiento de la ventana
@@ -47,6 +48,8 @@ public class WindowMain extends JFrame {
 		setContentPane(contentPane);
 		this.listener = listener;
 		initComponents();
+		//initLoginPanel();
+		initComponentsUser();
 	}
 	//Metodo para inciar componentes generales de la GUI(Cabecera y un panel para el contenido en contentPane)
 	public void initComponents() {
@@ -69,6 +72,8 @@ public class WindowMain extends JFrame {
 		btnExit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnExit.addActionListener(listener);
 		btnExit.setActionCommand("EXIT");
+		btnExit.addMouseListener(this.mouseEntered());
+		btnExit.addMouseListener(this.mouseExited());
 		header.add(btnExit);
 		getContentPane().add(header);
 		
@@ -76,40 +81,48 @@ public class WindowMain extends JFrame {
 		contentData.setBounds(0,43,1200,637);
 		contentPane.add(contentData);
 		contentData.setLayout(null);
-		
-		initComponentsUser();//Prueba
-		
 	}
 	//Metodo para iniciar componente del Login
 	public void initLoginPanel() {
 		loginPanel = new LoginPanel(listener);
 		loginPanel.setSize(1200, 635);
 		loginPanel.setLocation(0, 43);
-		showPanel(contentPane, loginPanel);
+		showPanel(contentData, loginPanel);
 	}
-	//Metodo que inicia la interfaz de usuario (Menu y un panel lateral para el contenido)
+	/**Metodo que inicia la interfaz de usuario (Menu y un panel lateral para el contenido)
+	*Este metodo se debe llamar siempre el login sea exitoso.
+	*/
 	public void initComponentsUser() {
-		
 		dataPanel = new JPanel();//Panel que se actualiza de acuerdo a la opcion del menu selecionada
 		dataPanel.setBounds(286,1,914,635);
-		contentData.add(dataPanel);
 		dataPanel.setLayout(null);
+		contentData.add(dataPanel);
 		
 		menuPanel = new JPanel();
 		menuPanel.setSize(285,636);
+		menuPanel.setLayout(null);
 		contentData.add(menuPanel);
 		
 		menu = new MenuPanel(listener);
 		menu.setSize(285, 636);
 		menu.setLocation(0, 0);
 		showPanel(menuPanel,menu);
+		
+		initSearchBooks();
+		
+	}
+	//Metodo para pintar el panel SearchBooks(){
+	public void initSearchBooks() {
+		searchBookPanel = new SearchBookPanel(listener);
+		searchBookPanel.setLocation(0,0);
+		dataPanel.add(searchBookPanel);
+		showPanel(dataPanel,searchBookPanel);
 	}
 	/*Metodo encargado de repintar un panel, recibe como parametro el panel en donde se quiere
 	 * pintar un segundo panel.
 	*/
 	public void showPanel(JPanel contentPanel,JPanel panel) {
 		contentPanel.removeAll();
-		menuPanel.setLayout(null);
 		contentPanel.add(panel);
 		contentPanel.revalidate();
 		contentPanel.repaint();
@@ -136,6 +149,36 @@ public class WindowMain extends JFrame {
 			}
 		};
 	}
+	public MouseAdapter mouseEntered() {
+		return new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnMouseEntered(e);//Llama el metodo creado en la clase para cambiar el color al pasar sobre el boton.
+			}
+		};
+	}
+	public MouseAdapter mouseExited() {
+		return new MouseAdapter() {
+			@Override 
+			public void mouseExited(MouseEvent event) {
+				btnMouseExited(event);//Llama al metodo de la clase MenuPanel para volver al color original del boton.
+			}
+		};
+	}
+	//Metodos para manejar el efecto Hover del boton exit
+		private void btnMouseEntered(MouseEvent event) {
+			JButton btnEvent = (JButton)event.getSource(); 
+			if(btnEvent.equals(btnExit)) {
+				btnExit.setBackground(WindowMain.colorFirst);
+				btnExit.setForeground(WindowMain.colorWhite);
+			}
+		}
+		private void btnMouseExited(MouseEvent event) {
+			JButton btnEvent = (JButton)event.getSource(); 
+			if(btnEvent.equals(btnExit)) {
+				btnExit.setBackground(WindowMain.colorSecond);
+			}
+		}
 	/*Metodo que retorna un objeto MouseMotionListener necesario para agregar al panel eventos de tipo MousePressed*/
 	public MouseMotionListener panelMouseDragged() {
 		return new MouseMotionAdapter() {
