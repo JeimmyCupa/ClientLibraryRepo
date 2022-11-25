@@ -10,6 +10,7 @@ public class ClientController implements ActionListener{
 	public ClientController() {
 		window = new WindowMain(this);
 		window.setVisible(true);
+		System.out.println("Funciono");
 	}
 	
 	public static void main(String[] args) {
