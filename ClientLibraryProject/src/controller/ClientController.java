@@ -11,6 +11,7 @@ public class ClientController implements ActionListener{
 		window = new WindowMain(this);
 		window.setVisible(true);
 		System.out.println("Funciono");
+		System.out.println("Funciono v2 | Ahora Siuuuuu");
 	}
 	
 	public static void main(String[] args) {
