@@ -12,6 +12,7 @@ public class ClientController implements ActionListener{
 		window.setVisible(true);
 		System.out.println("Funciono");
 		System.out.println("Funciono v2 | Ahora Siuuuuu");
+		System.out.println("Funciono v3 | Ahora Siuuuuuuuuuuuuuuuuu");
 	}
 	
 	public static void main(String[] args) {
