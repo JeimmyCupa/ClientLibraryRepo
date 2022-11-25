@@ -19,9 +19,10 @@ import java.awt.event.MouseEvent;
 
 public class Item extends JPanel {
 	private JLabel frontPage,lblID,lblTitle,lblAuthor,lblYear;
-	public Item(String id,String title,String author, String year, String image,ActionListener listener) {
+	public Item(String id,String title,String author, String year, String image,MouseAdapter mouseclicked) {
 		addMouseListener(this.mouseEntered());
 		addMouseListener(this.mouseExited());
+		addMouseListener(mouseclicked);
 		lblID = new JLabel(id);
 		setBackground(WindowMain.colorWhite);
 		setBorder(new MatteBorder(1,1,1,1,WindowMain.colorGray));
@@ -36,6 +37,7 @@ public class Item extends JPanel {
 		frontPage.setIcon(new ImageIcon(image));
 		//frontPage.setBorder(new MatteBorder(5,5,5,5));
 		frontPage.setBackground(WindowMain.colorWhite);
+		frontPage.addMouseListener(mouseclicked);
 		add(frontPage,c);//Se añade el elemento junto con la ubicacion establecida en el objeto GridBagConstraints 
 		GridBagConstraints c1 = new GridBagConstraints();
 		c1.gridx = 0;
@@ -47,6 +49,7 @@ public class Item extends JPanel {
 		lblTitle.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		lblTitle.setForeground(WindowMain.colorFirst);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitle.addMouseListener(mouseclicked);
 		add(lblTitle,c1);
 		
 		GridBagConstraints c2 = new GridBagConstraints();
@@ -90,14 +93,13 @@ public class Item extends JPanel {
 		};
 	}
 	//Metodos para manejar el efecto Hover
-		private void btnMouseEntered(MouseEvent event) {
-			setBackground(WindowMain.colorLight);
-			setBorder(new MatteBorder(2,2,2,2,WindowMain.colorFirst));
-		}
-		private void btnMouseExited(MouseEvent event) {
-			setBackground(WindowMain.colorWhite);
-			setBorder(new MatteBorder(1,1,1,1,WindowMain.colorGray));
-		}
-	
+	private void btnMouseEntered(MouseEvent event) {
+		setBackground(WindowMain.colorLight);
+		setBorder(new MatteBorder(2,2,2,2,WindowMain.colorFirst));
+	}
+	private void btnMouseExited(MouseEvent event) {
+		setBackground(WindowMain.colorWhite);
+		setBorder(new MatteBorder(1,1,1,1,WindowMain.colorGray));
+	}
 
 }

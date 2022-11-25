@@ -47,7 +47,7 @@ public class LoginPanel extends JPanel {
 		panelLogin.add(lblTitle);
 		
 		user = new JTextField();
-		user.setText("User");
+		user.setText("Usuario");
 		user.setBounds(247,249,365,37);
 		user.setForeground(WindowMain.colorWhite);
 		user.setFont(new Font("Segoe UI", Font.PLAIN, 20));
@@ -57,7 +57,7 @@ public class LoginPanel extends JPanel {
 		panelLogin.add(user);
 		
 		password = new JPasswordField();
-		password.setText("Usuario");
+		password.setText("*********");
 		password.setBorder(new MatteBorder(0, 0, 2, 0, WindowMain.colorLight));
 		password.setBounds(247,321,365,37);
 		password.setFont(new Font("Segoe UI", Font.PLAIN, 20));
@@ -93,7 +93,7 @@ public class LoginPanel extends JPanel {
 		btnRegister.setHorizontalAlignment(SwingConstants.CENTER);
 		btnRegister.setBounds(342, 525, 166, 27);
 		btnRegister.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		btnRegister.setForeground(WindowMain.colorWhite);
+		btnRegister.setForeground(WindowMain.colorFirst);
 		btnRegister.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnRegister.addActionListener(listener);
 		btnRegister.setActionCommand("REGISTER");
@@ -123,7 +123,7 @@ public class LoginPanel extends JPanel {
 			public void mousePressed(MouseEvent e) {
 				if(e.getSource().equals(user))
 					txtUserMousePressed(e);
-				else if(e.getSource().equals(user))
+				else if(e.getSource().equals(password))
 					txtPassMousePressed(e);
 			}
 		};

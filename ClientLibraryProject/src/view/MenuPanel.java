@@ -69,7 +69,7 @@ public class MenuPanel extends JPanel {
 		btnSingOut.setIcon(new ImageIcon("data\\icons\\iconSingOut.png"));
 		btnSingOut.setBounds(0, 302, 285, 53);
 		btnSingOut.addActionListener(listener);
-		btnSingOut.setActionCommand("SEARCHBOOKS");
+		btnSingOut.setActionCommand("SINGOUT");
         btnSingOut.addMouseListener(this.mouseEntered());
         btnSingOut.addMouseListener(this.mouseExited());
 		add(btnSingOut);

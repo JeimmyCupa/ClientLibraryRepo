@@ -3,6 +3,9 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
+import javax.swing.text.IconView;
+
 import view.WindowMain;
 
 public class ClientController implements ActionListener{
@@ -10,6 +13,7 @@ public class ClientController implements ActionListener{
 	public ClientController() {
 		window = new WindowMain(this);
 		window.setVisible(true);
+		
 	}
 	
 	public static void main(String[] args) {
@@ -23,20 +27,31 @@ public class ClientController implements ActionListener{
 		case "LOGIN":
 			window.initComponentsUser();//Prueba
 			break;
+		case "CREATEACCOUNT":
+			break;
+		case "REGISTER":
+			window.initRegisterPanel();
+			break;
 		case "SHOWPROFILE":
 			break;
 		case "SEARCHBOOKS":
 			window.initSearchBooks();
 			break;
-		case "REGISTER":
+		case "RENTBOOK":
 			break;
 		case "MYBOOKS":
 			break;
-			
 		case "SINGOUT":
+			window.initLoginPanel();
+			break;
+		case "BACK":
+			window.initLoginPanel();
 			break;
 		case "EXIT":
 			window.dispose();
+			break;
+		case "MIN":
+			
 			break;
 		}
 		
