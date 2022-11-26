@@ -13,6 +13,7 @@ public class ClientController implements ActionListener{
 	public ClientController() {
 		window = new WindowMain(this);
 		window.setVisible(true);
+		
 	}
 	
 	public static void main(String[] args) {
