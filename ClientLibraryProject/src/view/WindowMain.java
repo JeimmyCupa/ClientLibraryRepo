@@ -25,13 +25,11 @@ public class WindowMain extends JFrame {
 	private JPanel contentPane;//Panel principal de la ventana
 	private JPanel contentData,header,menuPanel,dataPanel;//Paneles para dividir el contenido en la ventana
 	private JButton btnExit,btnMin;
-	
 	private LoginPanel loginPanel;
 	private RegisterPanel registerPanel;
 	private MenuPanel menu;
 	private SearchBookPanel searchBookPanel;
 	private ActionListener listener;
-	
 	private int xMouse, yMouse;//atributos para controlar el desplazamiento de la ventana
 	
 	public WindowMain(ActionListener listener) {
