@@ -16,7 +16,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Insets;
 
 public class WindowMain extends JFrame {
-	public final static Color colorFirst = new Color(22,44,64);
+	//public final static Color colorFirst = new Color(22,44,64);
+	public final static Color colorFirst = new Color(65,121,99);
 	public final static Color colorSecond = new Color(242,202,80);//217,95,95
 	public final static Color colorDark = new Color(64,64,64);
 	public final static Color colorGray = new Color(128,128,128);
