@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
 
@@ -15,17 +16,20 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Insets;
 
-public class WindowMain extends JFrame {
-	//public final static Color colorFirst = new Color(22,44,64);
-	public final static Color colorFirst = new Color(65,121,99);
-	public final static Color colorSecond = new Color(242,202,80);//217,95,95
-	public final static Color colorDark = new Color(64,64,64);
-	public final static Color colorGray = new Color(128,128,128);
-	public final static Color colorLight = new Color(230,230,230);
-	public final static Color colorWhite = new Color(255,255,255);
-	private JPanel contentPane;//Panel principal de la ventana
+public class MainWindow extends JFrame implements MouseListener{
+	public final static Color mainColor = new Color(46,55,100);
+    public final static Color whiteColor = new Color(235,236,240);
+    public final static Color strongBlack = new Color(14,29,38);
+    public final static Color strongGray = new Color(38,38,38);
+    public final static Color gray = new Color(89,89,89);
+    public final static Color lightGray = new Color(166,166,166);
+    public final static Color beige = new Color(242,242,199);
+    public final static Color hoverColor = new Color(74,87,120);
+	
+    private JPanel contentPane;//Panel principal de la ventana
 	private JPanel contentData,header,menuPanel,dataPanel;//Paneles para dividir el contenido en la ventana
 	private JButton btnExit,btnMin;
+	
 	private LoginPanel loginPanel;
 	private RegisterPanel registerPanel;
 	private MenuPanel menu;
@@ -33,9 +37,9 @@ public class WindowMain extends JFrame {
 	private ActionListener listener;
 	private int xMouse, yMouse;//atributos para controlar el desplazamiento de la ventana
 	
-	public WindowMain(ActionListener listener) {
+	public MainWindow(ActionListener listener) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setUndecorated(true);
+		//setUndecorated(true);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		
@@ -45,6 +49,8 @@ public class WindowMain extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		this.listener = listener;
+		
+		menu = new MenuPanel(listener, this);
 		initComponents();
 		initLoginPanel();
 	}
@@ -54,23 +60,22 @@ public class WindowMain extends JFrame {
 		header = new JPanel();
 		header.setBounds(0, 0, 1200, 45);
 		header.setLayout(null);
-		header.setBackground(colorWhite);
+		header.setBackground(whiteColor);
 		header.addMouseMotionListener(this.panelMouseDragged());
 		header.addMouseListener(this.panelMousePressed());
 		
 		btnExit = new JButton();
 		btnExit.setText("X");
 		btnExit.setFont(new Font("Segoe UI", Font.PLAIN, 30));
-		btnExit.setForeground(colorFirst);
-		btnExit.setBackground(colorSecond);
+		btnExit.setForeground(whiteColor);
+		btnExit.setBackground(mainColor);
 		btnExit.setBounds(1157,0,43,43);
 		btnExit.setBorderPainted(false);
 		btnExit.setMargin(new Insets(1, 1, 1, 1));;
 		btnExit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnExit.addActionListener(listener);
 		btnExit.setActionCommand("EXIT");
-		btnExit.addMouseListener(this.mouseEntered());
-		btnExit.addMouseListener(this.mouseExited());
+		btnExit.addMouseListener(this);
 		header.add(btnExit);
 		getContentPane().add(header);
 		
@@ -92,7 +97,7 @@ public class WindowMain extends JFrame {
 	}
 	//Metodo para iniciar componente del Login
 	public void initLoginPanel() {
-		loginPanel = new LoginPanel(listener);
+		loginPanel = new LoginPanel(listener,this);
 		loginPanel.setSize(1200, 635);
 		loginPanel.setLocation(0, 0);
 		showPanel(contentData, loginPanel);
@@ -101,7 +106,7 @@ public class WindowMain extends JFrame {
 	 * Metodo para iniciar panel de registro de nuevo usuario
 	 */
 	public void initRegisterPanel() {
-		registerPanel = new RegisterPanel(listener);
+		registerPanel = new RegisterPanel(listener,this);
 		showPanel(contentData, registerPanel);
 	}
 	/**Metodo que inicia la interfaz de usuario (Menu y un panel lateral para el contenido)
@@ -111,6 +116,7 @@ public class WindowMain extends JFrame {
 		dataPanel = new JPanel();//Panel que se actualiza de acuerdo a la opcion del menu selecionada
 		dataPanel.setBounds(286,1,914,635);
 		dataPanel.setLayout(null);
+		showPanel(contentData,dataPanel);
 		contentData.add(dataPanel);
 		
 		menuPanel = new JPanel();
@@ -118,7 +124,7 @@ public class WindowMain extends JFrame {
 		menuPanel.setLayout(null);
 		contentData.add(menuPanel);
 		
-		menu = new MenuPanel(listener);
+		menu = new MenuPanel(listener,this);
 		menu.setSize(285, 636);
 		menu.setLocation(0, 0);
 		showPanel(menuPanel,menu);
@@ -142,6 +148,10 @@ public class WindowMain extends JFrame {
 		contentPanel.revalidate();
 		contentPanel.repaint();
 	}
+
+	public String obtainUser() {
+		return loginPanel.getUser();
+	}
 	
 	//Metodos para el desplazamiento de la ventana
 	@SuppressWarnings("unchecked")
@@ -164,36 +174,7 @@ public class WindowMain extends JFrame {
 			}
 		};
 	}
-	public MouseAdapter mouseEntered() {
-		return new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnMouseEntered(e);//Llama el metodo creado en la clase para cambiar el color al pasar sobre el boton.
-			}
-		};
-	}
-	public MouseAdapter mouseExited() {
-		return new MouseAdapter() {
-			@Override 
-			public void mouseExited(MouseEvent event) {
-				btnMouseExited(event);//Llama al metodo de la clase MenuPanel para volver al color original del boton.
-			}
-		};
-	}
-	//Metodos para manejar el efecto Hover del boton exit
-		private void btnMouseEntered(MouseEvent event) {
-			JButton btnEvent = (JButton)event.getSource(); 
-			if(btnEvent.equals(btnExit)) {
-				btnExit.setBackground(WindowMain.colorFirst);
-				btnExit.setForeground(WindowMain.colorWhite);
-			}
-		}
-		private void btnMouseExited(MouseEvent event) {
-			JButton btnEvent = (JButton)event.getSource(); 
-			if(btnEvent.equals(btnExit)) {
-				btnExit.setBackground(WindowMain.colorSecond);
-			}
-		}
+	
 	/*Metodo que retorna un objeto MouseMotionListener necesario para agregar al panel eventos de tipo MousePressed*/
 	public MouseMotionListener panelMouseDragged() {
 		return new MouseMotionAdapter() {
@@ -202,4 +183,72 @@ public class WindowMain extends JFrame {
 			}
 		};
 	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		JButton btnChangeColor = new JButton();
+		if(e.getSource().equals(btnExit)) {
+			btnExit.setBackground(hoverColor);
+		}else if(e.getSource().equals(loginPanel.getBtnLogin())) {
+			loginPanel.getBtnLogin().setBackground(hoverColor);
+		}else if(e.getSource().equals(loginPanel.getBtnRegister())) {
+			loginPanel.getBtnRegister().setForeground(mainColor);
+		}
+		else if(e.getSource().equals(menu.getBtnProfile())) {
+			btnChangeColor = menu.getBtnProfile();
+		}else if(e.getSource().equals(menu.getBtnSearchBooks())) {
+			btnChangeColor =menu.getBtnSearchBooks();
+		}else if(e.getSource().equals(menu.getBtnMyBooks())) {
+			btnChangeColor = menu.getBtnMyBooks();
+		}else if(e.getSource().equals(menu.getBtnSingOut())) {
+			btnChangeColor = menu.getBtnSingOut();
+		}else if(e.getSource().equals(registerPanel.getBtnCreateAccount())) {
+			btnChangeColor = registerPanel.getBtnCreateAccount();
+		}else if(e.getSource().equals(registerPanel.getBtnBack())) {
+			btnChangeColor = registerPanel.getBtnBack();
+		}
+		btnChangeColor.setBackground(hoverColor);
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		JButton btnChangeColor = new JButton();
+		
+		if(e.getSource().equals(btnExit)) {
+			btnChangeColor = btnExit;
+		}else if(e.getSource().equals(loginPanel.getBtnLogin())) {
+			btnChangeColor = loginPanel.getBtnLogin();
+		}else if(e.getSource().equals(loginPanel.getBtnRegister())) {
+			loginPanel.getBtnRegister().setForeground(gray);
+		}else if(e.getSource().equals(menu.getBtnProfile())) {
+			btnChangeColor = menu.getBtnProfile();
+		}else if(e.getSource().equals(menu.getBtnSearchBooks())) {
+			btnChangeColor =menu.getBtnSearchBooks();
+		}else if(e.getSource().equals(menu.getBtnMyBooks())) {
+			btnChangeColor = menu.getBtnMyBooks();
+		}else if(e.getSource().equals(menu.getBtnSingOut())) {
+			btnChangeColor = menu.getBtnSingOut();
+		}else if(e.getSource().equals(registerPanel.getBtnCreateAccount())) {
+			btnChangeColor = registerPanel.getBtnCreateAccount();
+			
+		}else if(e.getSource().equals(registerPanel.getBtnBack())) {
+			btnChangeColor = registerPanel.getBtnBack();
+		}
+		btnChangeColor.setBackground(mainColor);
+	}
+	
 }

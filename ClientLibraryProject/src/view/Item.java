@@ -16,16 +16,17 @@ import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class Item extends JPanel {
 	private JLabel frontPage,lblID,lblTitle,lblAuthor,lblYear;
-	public Item(String id,String title,String author, String year, String image,MouseAdapter mouseclicked) {
+	public Item(String id,String title,String author, String year, String image,MouseListener mouseListener) {
 		addMouseListener(this.mouseEntered());
 		addMouseListener(this.mouseExited());
-		addMouseListener(mouseclicked);
+		//saddMouseListener(mouseclicked);
 		lblID = new JLabel(id);
-		setBackground(WindowMain.colorWhite);
-		setBorder(new MatteBorder(1,1,1,1,WindowMain.colorGray));
+		setBackground(MainWindow.whiteColor);
+		setBorder(new MatteBorder(1,1,1,1,MainWindow.lightGray));
 		setLayout(new GridBagLayout());
 		
 		GridBagConstraints c = new GridBagConstraints();//GridBagLayout constraints es la clase que define las restricciones para un componente de GridBagLayout.
@@ -36,8 +37,8 @@ public class Item extends JPanel {
 		frontPage = new JLabel();
 		frontPage.setIcon(new ImageIcon(image));
 		//frontPage.setBorder(new MatteBorder(5,5,5,5));
-		frontPage.setBackground(WindowMain.colorWhite);
-		frontPage.addMouseListener(mouseclicked);
+		frontPage.setBackground(MainWindow.whiteColor);
+		frontPage.addMouseListener(mouseListener);
 		add(frontPage,c);//Se añade el elemento junto con la ubicacion establecida en el objeto GridBagConstraints 
 		GridBagConstraints c1 = new GridBagConstraints();
 		c1.gridx = 0;
@@ -47,9 +48,9 @@ public class Item extends JPanel {
 		lblTitle = new JLabel(title);
 		lblTitle.setText(title);
 		lblTitle.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		lblTitle.setForeground(WindowMain.colorFirst);
+		lblTitle.setForeground(MainWindow.mainColor);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitle.addMouseListener(mouseclicked);
+		//lblTitle.addMouseListener(mouseclicked);
 		add(lblTitle,c1);
 		
 		GridBagConstraints c2 = new GridBagConstraints();
@@ -60,7 +61,7 @@ public class Item extends JPanel {
 		lblAuthor = new JLabel();
 		lblAuthor.setText(author);
 		lblAuthor.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		lblAuthor.setForeground(WindowMain.colorFirst);
+		lblAuthor.setForeground(MainWindow.mainColor);
 		lblAuthor.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblAuthor,c2);
 		
@@ -71,35 +72,36 @@ public class Item extends JPanel {
 		lblYear = new JLabel();
 		lblYear.setText(year);
 		lblYear.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		lblYear.setForeground(WindowMain.colorFirst);
+		lblYear.setForeground(MainWindow.mainColor);
 		lblYear.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblYear,c3);
 	}
+	
 	//Metodos efecto hover
-	private MouseAdapter mouseEntered() {
-		return new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnMouseEntered(e);
+			private MouseAdapter mouseEntered() {
+				return new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						btnMouseEntered(e);
+					}
+				};
 			}
-		};
-	}
-	private MouseAdapter mouseExited() {
-		return new MouseAdapter() {
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btnMouseExited(e);
+			private MouseAdapter mouseExited() {
+				return new MouseAdapter() {
+					@Override
+					public void mouseExited(MouseEvent e) {
+						btnMouseExited(e);
+					}
+				};
 			}
-		};
-	}
-	//Metodos para manejar el efecto Hover
-	private void btnMouseEntered(MouseEvent event) {
-		setBackground(WindowMain.colorLight);
-		setBorder(new MatteBorder(2,2,2,2,WindowMain.colorFirst));
-	}
-	private void btnMouseExited(MouseEvent event) {
-		setBackground(WindowMain.colorWhite);
-		setBorder(new MatteBorder(1,1,1,1,WindowMain.colorGray));
-	}
+			//Metodos para manejar el efecto Hover
+				private void btnMouseEntered(MouseEvent event) {
+					setBackground(MainWindow.beige);
+					setBorder(new MatteBorder(2,2,2,2,MainWindow.mainColor));
+				}
+				private void btnMouseExited(MouseEvent event) {
+					setBackground(MainWindow.whiteColor);
+					setBorder(new MatteBorder(1,1,1,1,MainWindow.gray));
+				}
 
 }

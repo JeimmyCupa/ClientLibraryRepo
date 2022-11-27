@@ -4,17 +4,16 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 public class BooksPanel extends JPanel {
 	private ArrayList<Item> items;
-	private ActionListener listener;
 	public BooksPanel(ActionListener listener) {
-		this.listener = listener;
 		setSize(855, 440);
-		setBackground(WindowMain.colorWhite);
+		setBackground(MainWindow.whiteColor);
 		items = new ArrayList<Item>();
 		GridLayout layout = new GridLayout();//Layout tipo Grid con estructura de matriz
 		layout.setColumns(3);
@@ -31,29 +30,29 @@ public class BooksPanel extends JPanel {
 				layout.setRows(layout.getRows()+1);
 				count = 0;
 			}
-			Item item = new Item(i+"A","Titulo"+i,"Autor"+i,"Año"+i,"data/icons/iconUser.png",mouseClicked());
-			//item.addMouseListener(null);
+			Item item = new Item(i+"A","Titulo"+i,"Autor"+i,"Año"+i,"data/icons/iconUser.png",mouseClicked(listener));
+			
 			items.add(item);
 			add(item);
 			count++;
 		}
 	}
-	private MouseAdapter mouseClicked() {
+	private MouseAdapter mouseClicked(ActionListener listener) {
 		return new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				btnMouseClicked(e);
+				btnMouseClicked(e,listener);
 			}
 		};
 	}
 	/**
-	 * De acuerso con el id del libro que este en el panel que genero el evento se  
+	 * De acuerdo con el id del libro que este en el panel que genero el evento se  
 	 * @param event
 	 */
-	private void btnMouseClicked(MouseEvent event) {
+	private void btnMouseClicked(MouseEvent event,ActionListener listener) {
 		JPanel item = (JPanel)event.getSource();
-		RentedBookDialog bookdialog = new RentedBookDialog(true, listener,item);
-		bookdialog.setVisible(true);
+		//RentedBookDialog bookdialog = new RentedBookDialog(true, listener,item);
+		//bookdialog.setVisible(true);
 	}
 
 }

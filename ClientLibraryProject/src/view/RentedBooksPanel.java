@@ -12,7 +12,7 @@ public class RentedBooksPanel extends JPanel {
 
 	public RentedBooksPanel(ActionListener listener) {
 		setSize(914,635);
-		setBackground(WindowMain.colorWhite);
+		setBackground(MainWindow.whiteColor);
 		setLayout(null);
 		
 		JPanel panel = new JPanel();

@@ -6,14 +6,13 @@ import java.awt.event.ActionListener;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
 import javax.swing.text.IconView;
 
-import view.WindowMain;
+import view.MainWindow;
 
 public class ClientController implements ActionListener{
-	private WindowMain window;
+	private MainWindow window;
 	public ClientController() {
-		window = new WindowMain(this);
+		window = new MainWindow(this);
 		window.setVisible(true);
-		System.out.println("Funciona");
 	}
 	
 	public static void main(String[] args) {
@@ -25,6 +24,7 @@ public class ClientController implements ActionListener{
 		String event = e.getActionCommand();
 		switch(event) {
 		case "LOGIN":
+			String user = window.obtainUser();
 			window.initComponentsUser();//Prueba
 			break;
 		case "CREATEACCOUNT":
@@ -50,9 +50,7 @@ public class ClientController implements ActionListener{
 		case "EXIT":
 			window.dispose();
 			break;
-		case "MIN":
-			
-			break;
+		
 		}
 		
 	}
