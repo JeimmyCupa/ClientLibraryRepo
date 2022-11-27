@@ -9,11 +9,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Book;
+
 import java.awt.Insets;
 
 public class MainWindow extends JFrame implements MouseListener{
@@ -26,6 +30,7 @@ public class MainWindow extends JFrame implements MouseListener{
     public final static Color beige = new Color(242,242,199);
     public final static Color hoverColor = new Color(74,87,120);
 	
+    private ArrayList<Book> bookSet;
     private JPanel contentPane;//Panel principal de la ventana
 	private JPanel contentData,header,menuPanel,dataPanel;//Paneles para dividir el contenido en la ventana
 	private JButton btnExit,btnMin;
@@ -37,7 +42,7 @@ public class MainWindow extends JFrame implements MouseListener{
 	private ActionListener listener;
 	private int xMouse, yMouse;//atributos para controlar el desplazamiento de la ventana
 	
-	public MainWindow(ActionListener listener) {
+	public MainWindow(ActionListener listener,ArrayList<Book> bookSet) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setUndecorated(true);
 		setLocationRelativeTo(null);
@@ -49,7 +54,7 @@ public class MainWindow extends JFrame implements MouseListener{
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		this.listener = listener;
-		
+		this.bookSet = bookSet;
 		menu = new MenuPanel(listener, this);
 		initComponents();
 		initLoginPanel();
@@ -129,12 +134,11 @@ public class MainWindow extends JFrame implements MouseListener{
 		menu.setLocation(0, 0);
 		showPanel(menuPanel,menu);
 		
-		initSearchBooks();
-		
+		initSearchBooks(this.bookSet);
 	}
 	//Metodo para pintar el panel SearchBooks(){
-	public void initSearchBooks() {
-		searchBookPanel = new SearchBookPanel(listener);
+	public void initSearchBooks(ArrayList<Book> bookSet) {
+		searchBookPanel = new SearchBookPanel(listener,bookSet);
 		searchBookPanel.setLocation(0,0);
 		dataPanel.add(searchBookPanel);
 		showPanel(dataPanel,searchBookPanel);

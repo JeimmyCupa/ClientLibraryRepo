@@ -126,12 +126,7 @@ public class RentedBooks extends JPanel {
 		updateTable(textField.getText());
     }
 	
-	public void initQueryPanel(/*ActionListener listener*/) {
-		
-	}
-	public void initBooksPanel(/*ActionListener listener*/) {
-		
-	}
+	
 	
 	public static void main(String[] args) {
 		/**ArrayList<Person> personSet = new ArrayList<>();

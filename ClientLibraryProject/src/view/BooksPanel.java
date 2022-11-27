@@ -9,9 +9,11 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import model.Book;
+
 public class BooksPanel extends JPanel {
 	private ArrayList<Item> items;
-	public BooksPanel(ActionListener listener) {
+	public BooksPanel(ActionListener listener,ArrayList<Book> bookSet) {
 		setSize(855, 440);
 		setBackground(MainWindow.whiteColor);
 		items = new ArrayList<Item>();
@@ -19,18 +21,18 @@ public class BooksPanel extends JPanel {
 		layout.setColumns(3);
 		layout.setHgap(13);//Establece la separacion entre columnas
 		layout.setVgap(13);//Establece la separacion entre filas;
-		filBooksPanel(layout,listener);
+		filBooksPanel(layout,listener,bookSet);
 		setLayout(layout);
 	}
 
-	private void filBooksPanel(GridLayout layout,ActionListener listener) {
+	private void filBooksPanel(GridLayout layout,ActionListener listener,ArrayList<Book> bookSet) {
 		int count= 0; //Se encarga de controlar el numero de elementos por fila
-		for(int i = 0;i<20;i++) {//Numero de items a crear
+		for(int i = 0;i<bookSet.size();i++) {//Numero de items a crear
 			if(count == layout.getColumns()) {
 				layout.setRows(layout.getRows()+1);
 				count = 0;
 			}
-			Item item = new Item(i+"A","Titulo"+i,"Autor"+i,"Año"+i,"data/icons/iconUser.png",mouseClicked(listener));
+			Item item = new Item(bookSet.get(i).getBookID(),bookSet.get(i).getTitle(),bookSet.get(i).getAuthor(),bookSet.get(i).getDepartureYear(),"data/icons/iconUser.png",mouseClicked(listener));
 			
 			items.add(item);
 			add(item);
