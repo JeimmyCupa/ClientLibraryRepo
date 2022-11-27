@@ -24,16 +24,23 @@ public class Item extends JPanel {
 		addMouseListener(this.mouseEntered());
 		addMouseListener(this.mouseExited());
 		//saddMouseListener(mouseclicked);
-		lblID = new JLabel(id);
 		setBackground(MainWindow.whiteColor);
 		setBorder(new MatteBorder(1,1,1,1,MainWindow.lightGray));
 		setLayout(new GridBagLayout());
 		
+
 		GridBagConstraints c = new GridBagConstraints();//GridBagLayout constraints es la clase que define las restricciones para un componente de GridBagLayout.
 		c.gridx = 0;
 		c.gridy = 0;
 		c.insets = new Insets(5,5,5,5);//Establece el espacio entre componentes
-	
+		
+		lblID = new JLabel(id);
+		lblID.setText(id);
+		lblID.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+		lblID.setForeground(MainWindow.mainColor);
+		lblID.setHorizontalAlignment(SwingConstants.CENTER);
+		add(lblID,c);
+		
 		frontPage = new JLabel();
 		frontPage.setIcon(new ImageIcon(image));
 		//frontPage.setBorder(new MatteBorder(5,5,5,5));

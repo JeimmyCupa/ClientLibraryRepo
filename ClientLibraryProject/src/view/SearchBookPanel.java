@@ -12,7 +12,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 import javax.swing.JTextField;
 import model.Book;
-import tabletest.Person;
 
 public class SearchBookPanel extends JPanel {
 
@@ -25,6 +24,7 @@ public class SearchBookPanel extends JPanel {
 		this.listener = listener;
 		this.bookSet = bookSet;
 		setSize(914,635);
+		setLocation(0,0);
 		setBackground(Color.green);
 		setLayout(null);
 		initQueryPanel();
@@ -100,17 +100,21 @@ public class SearchBookPanel extends JPanel {
 		queryPanel.add(lblYear);
 	}
 	private void initBooksPanel(ArrayList<Book> bookSet) {
+		removeAll();
 		booksPanel = new BooksPanel(listener,bookSet);
 		booksPanel.setBounds(31, 231, 855, 374);
-		setLocation(286,1);
 		
 		JScrollPane scrollPane = new JScrollPane(booksPanel);
 		scrollPane.setBounds(31, 231, 855, 374);
 		add(scrollPane);
+		
+		revalidate();
+		repaint();
 	}
 	//Metodo para el filtro con eventos de teclado busqueda de libros por titulo
 	private void textFieldKeyReleased(java.awt.event.KeyEvent evt) {
-		update(this.title.getText());
+		System.out.println("Titulo"+title.getText());
+		update(title.getText());
     }
 	private void update(String searchText) {
 		ArrayList<Book> auxBookSet = this.searchBooks(bookSet,searchText );
@@ -142,5 +146,4 @@ public class SearchBookPanel extends JPanel {
 		}
 		return booksFound;
 	}
-	
 }

@@ -65,7 +65,7 @@ public class ClientController implements ActionListener{
 			aux += i;
 			bookSet.add(new Book(i+"",String.valueOf(aux),i,"",""));
 		}
-		bookSet.add(new Book(21+"","7",3,"",""));
+		bookSet.add(new Book(21+"","B",3,"",""));
 		return bookSet;
 	}
 }
