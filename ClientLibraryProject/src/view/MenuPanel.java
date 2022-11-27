@@ -27,7 +27,7 @@ public class MenuPanel extends JPanel {
 		initComponents(actionListener,mouseListener);
 	}
 	//Metodo que inicializa todos los botones del menu
-	public void initComponents(ActionListener listener,MouseListener mouseListener) {
+	private void initComponents(ActionListener listener,MouseListener mouseListener) {
 		btnProfile = new JButton();
 		propertiesBtn(btnProfile);
 		btnProfile.setText("Mi perfil");
@@ -69,7 +69,7 @@ public class MenuPanel extends JPanel {
         btnSingOut.addMouseListener(mouseListener);
 		add(btnSingOut);
 	}
-	public void propertiesBtn(JButton buttonToApply) {
+	private void propertiesBtn(JButton buttonToApply) {
 		buttonToApply.setIconTextGap(6);
         buttonToApply.setMargin(new Insets(2, 30, 2, 4));
         buttonToApply.setHorizontalTextPosition(SwingConstants.RIGHT);

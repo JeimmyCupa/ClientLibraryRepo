@@ -27,7 +27,7 @@ public class LoginPanel extends JPanel {
 		setSize(1200, 635);
 		initComponents(actionListener,mouseListener);
 	}
-	public void initComponents(ActionListener actionListener,MouseListener mouseListener) {
+	private void initComponents(ActionListener actionListener,MouseListener mouseListener) {
 		setLayout(null);
 		panelImage = new JPanel();
 		panelImage.setBounds(0, 0, 452, 635);

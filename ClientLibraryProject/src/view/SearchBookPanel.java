@@ -23,7 +23,7 @@ public class SearchBookPanel extends JPanel {
 		initBooksPanel(listener);
 	}
 	
-	public void initQueryPanel(ActionListener listener) {
+	private void initQueryPanel(ActionListener listener) {
 		queryPanel = new JPanel();
 		queryPanel.setBounds(31, 11, 857, 173);
 		queryPanel.setLayout(null);
@@ -86,7 +86,7 @@ public class SearchBookPanel extends JPanel {
 		lblYear.setHorizontalTextPosition(SwingConstants.RIGHT);
 		queryPanel.add(lblYear);
 	}
-	public void initBooksPanel(ActionListener listener) {
+	private void initBooksPanel(ActionListener listener) {
 		booksPanel = new BooksPanel(listener);
 		booksPanel.setBounds(31, 231, 855, 374);
 		setLocation(286,1);
