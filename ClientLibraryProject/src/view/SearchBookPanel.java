@@ -32,7 +32,7 @@ public class SearchBookPanel extends JPanel {
 		lblTitle.setText("Sistema de B\u00FAsqueda de Libros");
 		lblTitle.setBounds(148, 11, 487, 40);
 		lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		lblTitle.setForeground(MainWindow.strongBlack);
+		lblTitle.setForeground(MainWindow.mainColor);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		queryPanel.add(lblTitle);
 

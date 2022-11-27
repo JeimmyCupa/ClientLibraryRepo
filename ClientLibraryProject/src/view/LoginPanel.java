@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -43,7 +42,7 @@ public class LoginPanel extends JPanel {
 		//Componentes del panelLogin
 		JLabel lblTitle = new JLabel("Login");
 		lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		lblTitle.setForeground(MainWindow.strongBlack);
+		lblTitle.setForeground(MainWindow.mainColor);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setBounds(328,93,200,50);
 		panelLogin.add(lblTitle);
