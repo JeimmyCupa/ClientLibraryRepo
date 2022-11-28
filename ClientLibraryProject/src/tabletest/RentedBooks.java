@@ -130,28 +130,4 @@ public class RentedBooks extends JPanel {
 	private void textFieldKeyReleased(java.awt.event.KeyEvent evt) {
 		updateTable(txtIngreseElNombre.getText());
     }
-	
-	
-	
-	public static void main(String[] args) {
-		/**ArrayList<Person> personSet = new ArrayList<>();
-		personSet.add(new Person("Pedro", "Arnoldo", 1));
-		personSet.add(new Person("Luis", "Arnoldo", 2));
-		personSet.add(new Person("Carlos", "Arnoldo", 3));
-		personSet.add(new Person("Mariana", "Arnoldo", 4));
-		personSet.add(new Person("Veronica", "Arnoldo", 5));
-		personSet.add(new Person("Jeimmy", "Arnoldo", 6));
-		personSet.add(new Person("El Brayan", "Arnoldo", 7));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Laura", "Arnoldo", 8));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Veranio", "Arnoldo", 8));
-		RentedBooks rented = new RentedBooks(personSet);
-		ArrayList<Person> personsFound = rented.searchPersons(personSet, "");
-		System.out.println(personsFound.size());
-		System.out.println("Comparando Caracteres: " + "v".compareToIgnoreCase("V"));
-		for (int i = 0; i < personsFound.size(); i++) {
-			System.out.println(personsFound.get(i).getName() + " | " + personsFound.get(i).getId());
-		}**/
-	}
 }
