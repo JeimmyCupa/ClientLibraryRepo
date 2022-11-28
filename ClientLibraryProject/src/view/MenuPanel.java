@@ -23,7 +23,7 @@ public class MenuPanel extends JPanel {
 	public MenuPanel(ActionListener actionListener,MouseListener mouseListener) {
 		setSize(285, 636);
 		setLayout(null);
-		setBackground(MainWindow.mainColor);
+		setBackground(MainWindow.MAINCOLOR);
 		initComponents(actionListener,mouseListener);
 	}
 	//Metodo que inicializa todos los botones del menu
@@ -51,11 +51,11 @@ public class MenuPanel extends JPanel {
 
         btnMyBooks = new JButton();
         propertiesBtn(btnMyBooks);
-        btnMyBooks.setText("Mis libros");
+        btnMyBooks.setText("Mis libros rentados");
         btnMyBooks.setIcon(new ImageIcon("data\\icons\\iconBook.png"));
         btnMyBooks.setBounds(0, 247, 285, 53);
         btnMyBooks.addActionListener(listener);
-        btnMyBooks.setActionCommand("SEARCHBOOKS");
+        btnMyBooks.setActionCommand("RENTBOOK");
         btnMyBooks.addMouseListener(mouseListener);
         add(btnMyBooks);
 		
@@ -73,11 +73,11 @@ public class MenuPanel extends JPanel {
 		buttonToApply.setIconTextGap(6);
         buttonToApply.setMargin(new Insets(2, 30, 2, 4));
         buttonToApply.setHorizontalTextPosition(SwingConstants.RIGHT);
-        buttonToApply.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.lightGray));
+        buttonToApply.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
         buttonToApply.setForeground(Color.white);
         buttonToApply.setFont(new Font("Segoe UI", Font.BOLD, 20));
         buttonToApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        buttonToApply.setBackground(MainWindow.mainColor);
+        buttonToApply.setBackground(MainWindow.MAINCOLOR);
 	}
 	public JButton getBtnProfile() {
 		return btnProfile;

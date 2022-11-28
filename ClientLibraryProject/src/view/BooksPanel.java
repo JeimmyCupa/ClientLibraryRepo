@@ -15,7 +15,7 @@ public class BooksPanel extends JPanel {
 	private ArrayList<Item> items;
 	public BooksPanel(ActionListener listener,MouseListener mouseListener,ArrayList<Book> bookSet) {
 		setSize(855, 440);
-		setBackground(MainWindow.whiteColor);
+		setBackground(MainWindow.WHITECOLOR);
 		items = new ArrayList<Item>();
 		GridLayout layout = new GridLayout();//Layout tipo Grid con estructura de matriz
 		layout.setColumns(3);

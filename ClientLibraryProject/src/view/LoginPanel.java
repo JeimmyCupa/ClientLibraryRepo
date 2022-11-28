@@ -31,18 +31,18 @@ public class LoginPanel extends JPanel {
 		setLayout(null);
 		panelImage = new JPanel();
 		panelImage.setBounds(0, 0, 452, 635);
-		panelImage.setBackground(MainWindow.mainColor);
+		panelImage.setBackground(MainWindow.MAINCOLOR);
 		add(panelImage);
 		
 		panelLogin = new JPanel();
 		panelLogin.setLayout(null);
 		panelLogin.setBounds(452, 0, 748, 635);
-		panelLogin.setBackground(MainWindow.whiteColor);
+		panelLogin.setBackground(MainWindow.WHITECOLOR);
 		
 		//Componentes del panelLogin
 		JLabel lblTitle = new JLabel("Login");
 		lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		lblTitle.setForeground(MainWindow.mainColor);
+		lblTitle.setForeground(MainWindow.MAINCOLOR);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setBounds(255,75,200,50);
 		panelLogin.add(lblTitle);
@@ -50,20 +50,20 @@ public class LoginPanel extends JPanel {
 		user = new JTextField();
 		user.setText("Usuario");
 		user.setBounds(173,233,365,37);
-		user.setForeground(MainWindow.strongBlack);
+		user.setForeground(MainWindow.STRONGBLACK);
 		user.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		user.setBackground(MainWindow.whiteColor);
-		user.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.lightGray));
+		user.setBackground(MainWindow.WHITECOLOR);
+		user.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
 		user.addMouseListener(this.mousePressed());
 		panelLogin.add(user);
 		
 		password = new JPasswordField();
 		password.setText("*********");
-		password.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.lightGray));
+		password.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
 		password.setBounds(173,305,365,37);
 		password.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		password.setForeground(MainWindow.strongBlack);
-		password.setBackground(MainWindow.whiteColor);
+		password.setForeground(MainWindow.STRONGBLACK);
+		password.setBackground(MainWindow.WHITECOLOR);
 		password.addMouseListener(this.mousePressed());
 		panelLogin.add(password);
 	
@@ -71,8 +71,8 @@ public class LoginPanel extends JPanel {
 		btnLogin = new JButton("Ingresar");
 		btnLogin.setBorder(null);
 		btnLogin.setBounds(173, 438, 365, 42);
-		btnLogin.setBackground(MainWindow.mainColor);
-		btnLogin.setForeground(MainWindow.whiteColor);
+		btnLogin.setBackground(MainWindow.MAINCOLOR);
+		btnLogin.setForeground(MainWindow.WHITECOLOR);
 		btnLogin.setFont(new Font("Segoe UI", Font.BOLD, 23));
 		btnLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnLogin.addActionListener(actionListener);
@@ -91,11 +91,11 @@ public class LoginPanel extends JPanel {
 		
 		btnRegister = new JButton("Registrarse");
 		btnRegister.setHorizontalAlignment(SwingConstants.CENTER);
-		btnRegister.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.whiteColor));
+		btnRegister.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.WHITECOLOR));
 		btnRegister.setBounds(268, 509, 166, 27);
 		btnRegister.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		btnRegister.setForeground(MainWindow.gray);
-		btnRegister.setBackground(MainWindow.whiteColor);
+		btnRegister.setForeground(MainWindow.GRAY);
+		btnRegister.setBackground(MainWindow.WHITECOLOR);
 		btnRegister.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnRegister.addActionListener(actionListener);
 		btnRegister.setActionCommand("REGISTER");
@@ -143,22 +143,22 @@ public class LoginPanel extends JPanel {
 	private void txtUserMousePressed(java.awt.event.MouseEvent e) {
 		if(user.getText().equals("Usuario")) {
 			user.setText("");
-			user.setForeground(MainWindow.strongGray);
+			user.setForeground(MainWindow.STRONGGRAY);
 		}
 		if(String.valueOf(password.getPassword()).isEmpty()) {
 			password.setText("*********");
-			password.setForeground(MainWindow.gray);
+			password.setForeground(MainWindow.GRAY);
 		}
 	}
 	private void txtPassMousePressed(java.awt.event.MouseEvent e) {
 		
 		if(String.valueOf(password.getPassword()).equals("*********")) {
 			password.setText("");
-			password.setForeground(MainWindow.gray);
+			password.setForeground(MainWindow.GRAY);
 		}
 		if(user.getText().isEmpty()) {
 			user.setText("Usuario");
-			user.setForeground(MainWindow.strongGray);
+			user.setForeground(MainWindow.STRONGGRAY);
 		}
 	}
 	

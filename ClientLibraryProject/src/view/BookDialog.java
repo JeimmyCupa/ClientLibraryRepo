@@ -37,7 +37,7 @@ public class BookDialog extends JDialog {
 		initComponents(mouseListener);
 		btnRentBook = new JButton("Rentar");
 		btnRentBook.setAlignmentX(CENTER_ALIGNMENT);
-		btnRentBook.setBackground(MainWindow.mainColor);
+		btnRentBook.setBackground(MainWindow.MAINCOLOR);
 		btnRentBook.addActionListener(actionListener);
 		btnRentBook.setActionCommand("RENTBOOK");
 		btnRentBook.addMouseListener(mouseListener);
@@ -45,7 +45,7 @@ public class BookDialog extends JDialog {
 		
 		btnCancel = new JButton("Cancelar");
 		btnCancel.setAlignmentX(CENTER_ALIGNMENT);
-		btnCancel.setBackground(MainWindow.mainColor);
+		btnCancel.setBackground(MainWindow.MAINCOLOR);
 		btnCancel.addActionListener(actionListener);
 		btnCancel.setActionCommand("CANCELAR");
 		btnCancel.addMouseListener(mouseListener);
@@ -61,15 +61,15 @@ public class BookDialog extends JDialog {
 		header = new JPanel();
 		header.setBounds(0, 0, 1200, 45);
 		header.setLayout(null);
-		header.setBackground(MainWindow.whiteColor);
+		header.setBackground(MainWindow.WHITECOLOR);
 		//header.addMouseMotionListener(mouseListener);
 		header.setAlignmentX(TOP_ALIGNMENT);
 		
 		btnExit = new JButton();
 		btnExit.setText("X");
 		btnExit.setFont(new Font("Segoe UI", Font.PLAIN, 30));
-		btnExit.setForeground(MainWindow.whiteColor);
-		btnExit.setBackground(MainWindow.mainColor);
+		btnExit.setForeground(MainWindow.WHITECOLOR);
+		btnExit.setBackground(MainWindow.MAINCOLOR);
 		btnExit.setBounds(1157,0,43,43);
 		btnExit.setBorderPainted(false);
 		btnExit.setMargin(new Insets(1, 1, 1, 1));;

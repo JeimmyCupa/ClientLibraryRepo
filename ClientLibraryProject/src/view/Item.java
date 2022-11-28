@@ -24,8 +24,8 @@ public class Item extends JPanel {
 		addMouseListener(this.mouseEntered());
 		addMouseListener(this.mouseExited());
 		addMouseListener(mouseListener);
-		setBackground(MainWindow.whiteColor);
-		setBorder(new MatteBorder(1,1,1,1,MainWindow.lightGray));
+		setBackground(MainWindow.WHITECOLOR);
+		setBorder(new MatteBorder(1,1,1,1,MainWindow.LIGHTGRAY));
 		setLayout(new GridBagLayout());
 		
 		
@@ -38,7 +38,7 @@ public class Item extends JPanel {
 		frontPage = new JLabel();
 		frontPage.setIcon(new ImageIcon(image));
 		//frontPage.setBorder(new MatteBorder(5,5,5,5));
-		frontPage.setBackground(MainWindow.whiteColor);
+		frontPage.setBackground(MainWindow.WHITECOLOR);
 		frontPage.addMouseListener(mouseListener);
 		add(frontPage,c);//Se añade el elemento junto con la ubicacion establecida en el objeto GridBagConstraints 
 		
@@ -49,7 +49,7 @@ public class Item extends JPanel {
 		lblID = new JLabel(id);
 		lblID.setText(id);
 		lblID.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		lblID.setForeground(MainWindow.mainColor);
+		lblID.setForeground(MainWindow.MAINCOLOR);
 		lblID.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblID,c1);
 		
@@ -61,7 +61,7 @@ public class Item extends JPanel {
 		lblTitle = new JLabel(title);
 		lblTitle.setText(title);
 		lblTitle.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-		lblTitle.setForeground(MainWindow.mainColor);
+		lblTitle.setForeground(MainWindow.MAINCOLOR);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		//lblTitle.addMouseListener(mouseclicked);
 		add(lblTitle,c2);
@@ -74,7 +74,7 @@ public class Item extends JPanel {
 		lblAuthor = new JLabel();
 		lblAuthor.setText(author);
 		lblAuthor.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		lblAuthor.setForeground(MainWindow.mainColor);
+		lblAuthor.setForeground(MainWindow.MAINCOLOR);
 		lblAuthor.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblAuthor,c3);
 		
@@ -85,7 +85,7 @@ public class Item extends JPanel {
 		lblYear = new JLabel();
 		lblYear.setText(year);
 		lblYear.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		lblYear.setForeground(MainWindow.mainColor);
+		lblYear.setForeground(MainWindow.MAINCOLOR);
 		lblYear.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblYear,c4);
 	}
@@ -109,12 +109,12 @@ public class Item extends JPanel {
 			}
 			//Metodos para manejar el efecto Hover
 				private void btnMouseEntered(MouseEvent event) {
-					setBackground(MainWindow.beige);
-					setBorder(new MatteBorder(1,1,1,1,MainWindow.mainColor));
+					setBackground(MainWindow.BEIGE);
+					setBorder(new MatteBorder(1,1,1,1,MainWindow.MAINCOLOR));
 				}
 				private void btnMouseExited(MouseEvent event) {
-					setBackground(MainWindow.whiteColor);
-					setBorder(new MatteBorder(1,1,1,1,MainWindow.gray));
+					setBackground(MainWindow.WHITECOLOR);
+					setBorder(new MatteBorder(1,1,1,1,MainWindow.GRAY));
 				}
 
 }

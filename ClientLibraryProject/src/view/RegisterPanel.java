@@ -38,18 +38,18 @@ public class RegisterPanel extends JPanel {
 		setLayout(null);
 		panelImage = new JPanel();
 		panelImage.setBounds(0, 0, 452, 635);
-		panelImage.setBackground(MainWindow.mainColor);
+		panelImage.setBackground(MainWindow.MAINCOLOR);
 		add(panelImage);
 		
 		panelLogin = new JPanel();
 		panelLogin.setLayout(null);
 		panelLogin.setBounds(452, 0, 748, 635);
-		panelLogin.setBackground(MainWindow.whiteColor);
+		panelLogin.setBackground(MainWindow.WHITECOLOR);
 		
 		//Componentes del panelRegistro
 		JLabel lblTitle = new JLabel("Registro al sistema");
 		lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 30));
-		lblTitle.setForeground(MainWindow.strongBlack);
+		lblTitle.setForeground(MainWindow.STRONGBLACK);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setBounds(257,61,317,50);
 		panelLogin.add(lblTitle);
@@ -57,46 +57,46 @@ public class RegisterPanel extends JPanel {
 		//Panel con informacion del usuario y contraseña a crear
 		JPanel credentialsData = new JPanel();
 		credentialsData.setBounds(103, 360, 609, 235);
-		credentialsData.setBackground(MainWindow.whiteColor);
+		credentialsData.setBackground(MainWindow.WHITECOLOR);
 		panelLogin.add(credentialsData);
 		credentialsData.setLayout(null);
 		
 		JLabel lblUser = new JLabel("Usuario");
 		lblUser.setBounds(23, 37, 77, 18);
-		lblUser.setForeground(MainWindow.mainColor);
+		lblUser.setForeground(MainWindow.MAINCOLOR);
 		lblUser.setFont(new Font("Segoe UI", Font.PLAIN, 19));
-		lblUser.setBackground(MainWindow.whiteColor);
+		lblUser.setBackground(MainWindow.WHITECOLOR);
 		credentialsData.add(lblUser);
 		
 		user = new JTextField();
 		user.setBounds(142, 22, 365, 33);
-		user.setForeground(MainWindow.strongBlack);
+		user.setForeground(MainWindow.STRONGBLACK);
 		user.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		user.setBackground(MainWindow.whiteColor);
-		user.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.lightGray));
+		user.setBackground(MainWindow.WHITECOLOR);
+		user.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
 		credentialsData.add(user);
 		
 		JLabel lblPassword = new JLabel("Contraseña");
 		lblPassword.setBounds(20, 85, 103, 18);
-		lblPassword.setForeground(MainWindow.mainColor);
+		lblPassword.setForeground(MainWindow.MAINCOLOR);
 		lblPassword.setFont(new Font("Segoe UI", Font.PLAIN, 19));
-		lblPassword.setBackground(MainWindow.whiteColor);
+		lblPassword.setBackground(MainWindow.WHITECOLOR);
 		credentialsData.add(lblPassword);
 		
 		password = new JPasswordField();
 		password.setBounds(142, 66, 365, 37);
-		password.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.lightGray));
+		password.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
 		password.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		password.setForeground(MainWindow.strongBlack);
-		password.setBackground(MainWindow.whiteColor);
+		password.setForeground(MainWindow.STRONGBLACK);
+		password.setBackground(MainWindow.WHITECOLOR);
 		credentialsData.add(password);
 			
 		btnCreateAccount = new JButton("Crear cuenta");
 		btnCreateAccount.setBounds(118, 182, 365, 42);
 		credentialsData.add(btnCreateAccount);
 		btnCreateAccount.setBorder(null);
-		btnCreateAccount.setBackground(MainWindow.mainColor);
-		btnCreateAccount.setForeground(MainWindow.whiteColor);
+		btnCreateAccount.setBackground(MainWindow.MAINCOLOR);
+		btnCreateAccount.setForeground(MainWindow.WHITECOLOR);
 		btnCreateAccount.setFont(new Font("Segoe UI", Font.BOLD, 23));
 		btnCreateAccount.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnCreateAccount.addActionListener(listener);
@@ -104,9 +104,9 @@ public class RegisterPanel extends JPanel {
 		btnCreateAccount.addMouseListener(mouseListener);
 		
 		lblCrearCredenciales = new JLabel("Crear credenciales");
-		lblCrearCredenciales.setForeground(MainWindow.mainColor);
+		lblCrearCredenciales.setForeground(MainWindow.MAINCOLOR);
 		lblCrearCredenciales.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		lblCrearCredenciales.setBackground(MainWindow.whiteColor);
+		lblCrearCredenciales.setBackground(MainWindow.WHITECOLOR);
 		lblCrearCredenciales.setBounds(0, 0, 165, 18);
 		credentialsData.add(lblCrearCredenciales);
 		
@@ -114,7 +114,7 @@ public class RegisterPanel extends JPanel {
 		btnBack.setIcon(new ImageIcon("data\\icons\\iconBack.png"));
 		btnBack.setFont(new Font("Segoe UI", Font.BOLD, 23));
 		btnBack.setBorder(null);
-		btnBack.setBackground(MainWindow.mainColor);
+		btnBack.setBackground(MainWindow.MAINCOLOR);
 		btnBack.addActionListener(listener);
 		btnBack.setActionCommand("BACK");
 		btnBack.addMouseListener(mouseListener);
@@ -127,67 +127,67 @@ public class RegisterPanel extends JPanel {
 		JPanel personalData = new JPanel();
 		personalData.setBorder(new TitledBorder(null, "Datos personales", TitledBorder.LEADING, TitledBorder.TOP, null, Color.WHITE));
 		personalData.setBounds(103, 130, 609, 219);
-		personalData.setBackground(MainWindow.mainColor);
+		personalData.setBackground(MainWindow.MAINCOLOR);
 		panelLogin.add(personalData);
 		personalData.setLayout(null);
 		
 		name = new JTextField();
 		name.setBounds(118, 62, 357, 29);
 		personalData.add(name);
-		name.setForeground(MainWindow.whiteColor);
+		name.setForeground(MainWindow.WHITECOLOR);
 		name.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		name.setBackground(MainWindow.mainColor);
-		name.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.lightGray));
+		name.setBackground(MainWindow.MAINCOLOR);
+		name.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
 		
 		JLabel lblName = new JLabel("Nombre");
 		lblName.setBounds(10, 71, 77, 18);
-		lblName.setForeground(MainWindow.whiteColor);
+		lblName.setForeground(MainWindow.WHITECOLOR);
 		lblName.setFont(new Font("Segoe UI", Font.PLAIN, 19));
-		lblName.setBackground(MainWindow.mainColor);
+		lblName.setBackground(MainWindow.MAINCOLOR);
 		personalData.add(lblName);
 	
 		id = new JTextField();
-		id.setForeground(MainWindow.whiteColor);
+		id.setForeground(MainWindow.WHITECOLOR);
 		id.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		id.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.lightGray));
-		id.setBackground(MainWindow.mainColor);
+		id.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
+		id.setBackground(MainWindow.MAINCOLOR);
 		id.setBounds(118, 11, 357, 29);
 		personalData.add(id);
 		
 		lastName = new JTextField();
 		lastName.setForeground(Color.WHITE);
 		lastName.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		lastName.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.lightGray));
-		lastName.setBackground(MainWindow.mainColor);
+		lastName.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
+		lastName.setBackground(MainWindow.MAINCOLOR);
 		lastName.setBounds(118, 113, 357, 29);
 		personalData.add(lastName);
 		
 		email = new JTextField();
-		email.setForeground(MainWindow.whiteColor);
+		email.setForeground(MainWindow.WHITECOLOR);
 		email.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		email.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.lightGray));
-		email.setBackground(MainWindow.mainColor);
+		email.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
+		email.setBackground(MainWindow.MAINCOLOR);
 		email.setBounds(118, 163, 357, 29);
 		personalData.add(email);
 		
 		lblId = new JLabel("ID");
-		lblId.setForeground(MainWindow.whiteColor);
+		lblId.setForeground(MainWindow.WHITECOLOR);
 		lblId.setFont(new Font("Segoe UI", Font.PLAIN, 19));
-		lblId.setBackground(MainWindow.mainColor);
+		lblId.setBackground(MainWindow.MAINCOLOR);
 		lblId.setBounds(10, 22, 77, 18);
 		personalData.add(lblId);
 		
 		lblLastName = new JLabel("Apellido");
-		lblLastName.setForeground(MainWindow.whiteColor);
+		lblLastName.setForeground(MainWindow.WHITECOLOR);
 		lblLastName.setFont(new Font("Segoe UI", Font.PLAIN, 19));
-		lblLastName.setBackground(MainWindow.mainColor);
+		lblLastName.setBackground(MainWindow.MAINCOLOR);
 		lblLastName.setBounds(10, 124, 98, 18);
 		personalData.add(lblLastName);
 		
 		lblEmail = new JLabel("Correo");
-		lblEmail.setForeground(MainWindow.whiteColor);
+		lblEmail.setForeground(MainWindow.WHITECOLOR);
 		lblEmail.setFont(new Font("Segoe UI", Font.PLAIN, 19));
-		lblEmail.setBackground(MainWindow.mainColor);
+		lblEmail.setBackground(MainWindow.MAINCOLOR);
 		lblEmail.setBounds(10, 174, 98, 18);
 		personalData.add(lblEmail);
 		
