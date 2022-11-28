@@ -57,27 +57,38 @@ public class RegisterPanel extends JPanel {
 		//Panel con informacion del usuario y contraseña a crear
 		JPanel credentialsData = new JPanel();
 		credentialsData.setBounds(103, 360, 609, 235);
-		credentialsData.setBackground(MainWindow.beige);
+		credentialsData.setBackground(MainWindow.whiteColor);
 		panelLogin.add(credentialsData);
 		credentialsData.setLayout(null);
 		
+		JLabel lblUser = new JLabel("Usuario");
+		lblUser.setBounds(23, 37, 77, 18);
+		lblUser.setForeground(MainWindow.mainColor);
+		lblUser.setFont(new Font("Segoe UI", Font.PLAIN, 19));
+		lblUser.setBackground(MainWindow.whiteColor);
+		credentialsData.add(lblUser);
+		
 		user = new JTextField();
-		user.setBounds(118, 22, 365, 33);
-		user.setText("Usuario");
+		user.setBounds(142, 22, 365, 33);
 		user.setForeground(MainWindow.strongBlack);
 		user.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		user.setBackground(MainWindow.whiteColor);
 		user.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.lightGray));
 		credentialsData.add(user);
 		
+		JLabel lblPassword = new JLabel("Contraseña");
+		lblPassword.setBounds(20, 85, 103, 18);
+		lblPassword.setForeground(MainWindow.mainColor);
+		lblPassword.setFont(new Font("Segoe UI", Font.PLAIN, 19));
+		lblPassword.setBackground(MainWindow.whiteColor);
+		credentialsData.add(lblPassword);
+		
 		password = new JPasswordField();
-		password.setBounds(118, 66, 365, 37);
-		password.setText("*********");
+		password.setBounds(142, 66, 365, 37);
 		password.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.lightGray));
 		password.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		password.setForeground(MainWindow.strongBlack);
 		password.setBackground(MainWindow.whiteColor);
-		//password.addMouseListener(this.mousePressed());
 		credentialsData.add(password);
 			
 		btnCreateAccount = new JButton("Crear cuenta");
@@ -93,7 +104,7 @@ public class RegisterPanel extends JPanel {
 		btnCreateAccount.addMouseListener(mouseListener);
 		
 		lblCrearCredenciales = new JLabel("Crear credenciales");
-		lblCrearCredenciales.setForeground(Color.WHITE);
+		lblCrearCredenciales.setForeground(MainWindow.mainColor);
 		lblCrearCredenciales.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		lblCrearCredenciales.setBackground(MainWindow.whiteColor);
 		lblCrearCredenciales.setBounds(0, 0, 165, 18);
@@ -207,6 +218,4 @@ public class RegisterPanel extends JPanel {
 	public JButton getBtnCreateAccount() {
 		return btnCreateAccount;
 	}
-	
-	
 }
