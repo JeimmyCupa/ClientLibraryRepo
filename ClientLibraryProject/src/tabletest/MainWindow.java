@@ -8,6 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import model.Book;
+import model.CopyBook;
+
 public class MainWindow extends JFrame {
 
 	private JPanel contentPane;
@@ -17,38 +20,18 @@ public class MainWindow extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		ArrayList<Person> personSet = new ArrayList<>();
-		personSet.add(new Person("Pedro", "Arnoldo", 1));
-		personSet.add(new Person("Luis", "Arnoldo", 2));
-		personSet.add(new Person("Carlos", "Arnoldo", 3));
-		personSet.add(new Person("Mariana", "Arnoldo", 4));
-		personSet.add(new Person("Veronica", "Arnoldo", 5));
-		personSet.add(new Person("Jeimmy", "Arnoldo", 6));
-		personSet.add(new Person("El Brayan", "Arnoldo", 7));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Veronica", "Arnoldo", 5));
-		personSet.add(new Person("Jeimmy", "Arnoldo", 6));
-		personSet.add(new Person("El Brayan", "Arnoldo", 7));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Laura", "Arnoldo", 8));
-		personSet.add(new Person("Los Oscares", "Arnoldo", 8));
-		personSet.add(new Person("Veranio", "Arnoldo", 8));
+		ArrayList<CopyBook> bookSet = new ArrayList<>();
+		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("100 Años de soledad", 2, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("Principal", 3, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("A donde vas", 5, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("No se que mas poner", 6, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005")));
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainWindow frame = new MainWindow(personSet);
+					MainWindow frame = new MainWindow(bookSet);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,7 +43,7 @@ public class MainWindow extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainWindow(ArrayList<Person> personSet) {
+	public MainWindow(ArrayList<CopyBook> personSet) {
 		rentedBooks = new RentedBooks(personSet);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(914,635);

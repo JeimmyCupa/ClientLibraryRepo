@@ -63,9 +63,9 @@ public class ClientController implements ActionListener{
 		char aux = 65;
 		for(int i = 0; i <= 20;i++) {
 			aux += i;
-			bookSet.add(new Book(i+"",String.valueOf(aux),i,"",""));
+			bookSet.add(new Book(i+"",2,i,"",""));
 		}
-		bookSet.add(new Book(21+"","B",3,"",""));
+		bookSet.add(new Book(21+"",3,3,"",""));
 		return bookSet;
 	}
 }

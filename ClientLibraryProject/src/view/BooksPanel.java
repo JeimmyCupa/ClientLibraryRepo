@@ -32,7 +32,7 @@ public class BooksPanel extends JPanel {
 				layout.setRows(layout.getRows()+1);
 				count = 0;
 			}
-			Item item = new Item(bookSet.get(i).getBookID(),bookSet.get(i).getTitle(),bookSet.get(i).getAuthor(),bookSet.get(i).getDepartureYear(),"data/icons/iconUser.png",mouseClicked(listener));
+			Item item = new Item(String.valueOf(bookSet.get(i).getBookID()),bookSet.get(i).getTitle(),bookSet.get(i).getAuthor(),bookSet.get(i).getDepartureYear(),"data/icons/iconUser.png",mouseClicked(listener));
 			
 			items.add(item);
 			add(item);
