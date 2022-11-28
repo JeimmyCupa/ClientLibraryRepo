@@ -2,12 +2,12 @@ package model;
 
 public class Book {
 	private String title;
-	private String bookID;
+	private int bookID;
 	private int quantity;
 	private String author;
 	private String departureYear;
 	
-	public Book(String title, String bookID, int quantity, String author, String departureYear) {
+	public Book(String title, int bookID, int quantity, String author, String departureYear) {
 		super();
 		this.title = title;
 		this.bookID = bookID;
@@ -21,10 +21,10 @@ public class Book {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getBookID() {
+	public int getBookID() {
 		return bookID;
 	}
-	public void setBookID(String bookID) {
+	public void setBookID(int bookID) {
 		this.bookID = bookID;
 	}
 	public int getQuantity() {

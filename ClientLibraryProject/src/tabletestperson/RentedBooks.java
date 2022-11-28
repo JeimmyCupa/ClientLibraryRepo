@@ -1,20 +1,28 @@
-package tabletest;
+package tabletestperson;
 
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.EventQueue;
+import javax.swing.JTextPane;
 import javax.swing.JTable;
-import model.CopyBook;
 
 public class RentedBooks extends JPanel {
-	private ArrayList<CopyBook> bookSet;
+	private JPanel queryPanel;
+	private ArrayList<Person> personSet;
 	public final static Color mainColor = new Color(46,55,100);
 	public final static Color whiteColor = new Color(235,236,240);//217,95,95
 	public final static Color strongBlack = new Color(14,29,38);
@@ -23,16 +31,15 @@ public class RentedBooks extends JPanel {
 	public final static Color lightGray = new Color(166,166,166);
 	public final static Color beige = new Color(242,242,199);
 	public final static Color hoverColor = new Color(74,87,120);
-	public final static Color tableBackground = new Color(222,224,229);
 	private JTable table;
-	private JTextField txtIngreseElNombre;
+	private JTextField textField;
 	
-	public RentedBooks(ArrayList<CopyBook> bookSet) {
+	public RentedBooks(ArrayList<Person> personSet) {
 		setBorder(new LineBorder(Color.BLACK));
 		setSize(914,635);
 		setBackground(whiteColor);
 		setLayout(null);
-		this.bookSet = bookSet;
+		this.personSet = personSet;
 		initComponents();
 	}
 	
@@ -44,67 +51,55 @@ public class RentedBooks extends JPanel {
 		add(title_1);
 		
 		
-		table = new JTable(showBooks(bookSet));
+		table = new JTable(showPersons(personSet));
 		table.setBounds(85, 249, 717, 334);
 		table.setGridColor(mainColor);
-		table.setBackground(beige);
-		table.setForeground(strongBlack);
 		table.setEnabled(false);
 		add(table);
 		
 		JScrollPane tableScroll = new JScrollPane(table);
 		tableScroll.setBorder(new MatteBorder(2, 2, 2, 2, mainColor));
-		tableScroll.setBounds(97, 213, 717, 334);
+		tableScroll.setBounds(90, 214, 717, 334);
 		tableScroll.setVisible(true);
 		add(tableScroll);
 		
-		txtIngreseElNombre = new JTextField();
-		txtIngreseElNombre.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 16));
-		txtIngreseElNombre.setText("INGRESE EL NOMBRE DE UN LIBRO");
-		txtIngreseElNombre.setBorder(new MatteBorder(1, 1, 1, 1, mainColor));
-		txtIngreseElNombre.setBackground(beige);
-		txtIngreseElNombre.setForeground(strongBlack);
-		txtIngreseElNombre.setBounds(231, 149, 532, 34);
-		txtIngreseElNombre.setColumns(10);
-		add(txtIngreseElNombre);
-		
-		JLabel title_1_1 = new JLabel("Buscar:");
-		title_1_1.setForeground(new Color(46, 55, 100));
-		title_1_1.setFont(new Font("SansSerif", Font.BOLD, 23));
-		title_1_1.setBounds(129, 145, 92, 39);
-		add(title_1_1);
-		txtIngreseElNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+		textField = new JTextField();
+		textField.setBorder(new MatteBorder(1, 1, 1, 1, mainColor));
+		textField.setBackground(whiteColor);
+		textField.setBounds(191, 136, 532, 47);
+		textField.setColumns(10);
+		add(textField);
+		textField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 textFieldKeyReleased(evt);
             }
         });
 	}
 	
-	private DefaultTableModel showBooks(ArrayList<CopyBook> bookSet) {
-		String[] columns = {"Titulo", "ID", "Autor", "Año"};
-		String[] registers = new String[4];
+	private DefaultTableModel showPersons(ArrayList<Person> personSet) {
+		String[] columns = {"Nombre", "Apellido", "ID"};
+		String[] registers = new String[3];
 		DefaultTableModel model = new DefaultTableModel(null, columns);
-		for (int i = 0; i < bookSet.size(); i++) {
-			registers[0] = bookSet.get(i).getRentedBook().getTitle();
-			registers[1] = String.valueOf(bookSet.get(i).getRentedBook().getBookID());
-			registers[2] = bookSet.get(i).getRentedBook().getAuthor();
-			registers[3] = bookSet.get(i).getRentedBook().getDepartureYear();
+		for (int i = 0; i < personSet.size(); i++) {
+			registers[0] = personSet.get(i).getName();
+			registers[1] = personSet.get(i).getLastName();
+			registers[2] = String.valueOf(personSet.get(i).getId());
 			model.addRow(registers);
 		}
 		
 		return model;
 	}
 	
-	public ArrayList<CopyBook> searchPersons(ArrayList<CopyBook> bookSet, String searchText){
-		ArrayList<CopyBook> booksFound = new ArrayList<>();
+	public ArrayList<Person> searchPersons(ArrayList<Person> personSet, String searchText){
+		ArrayList<Person> personsFound = new ArrayList<>();
 		char[] textChars = searchText.toCharArray();
 		if(textChars.length != 0) {
-			for (int i = 0; i < bookSet.size(); i++) {
-				String bookTitle = bookSet.get(i).getRentedBook().getTitle();
+			for (int i = 0; i < personSet.size(); i++) {
+				String personName = personSet.get(i).getName();
 				boolean areEquals = true;
 				for (int j = 0; j < textChars.length && areEquals; j++) {
-					if(bookTitle.length() >= textChars.length) {
-						String actChar = String.valueOf(bookTitle.charAt(j));
+					if(personName.length() >= textChars.length) {
+						String actChar = String.valueOf(personName.charAt(j));
 						if(actChar.compareToIgnoreCase(String.valueOf(textChars[j])) != 0) {
 							areEquals = false; 
 						}
@@ -113,22 +108,22 @@ public class RentedBooks extends JPanel {
 					}
 				}
 				if (areEquals) {
-					booksFound.add(bookSet.get(i));
+					personsFound.add(personSet.get(i));
 				}
 			}			
 		}else {
-			return bookSet;
+			return personSet;
 		}
-		return booksFound;
+		return personsFound;
 	}
 	
 	private void updateTable(String searchText) {
-		DefaultTableModel model = showBooks(searchPersons(bookSet, searchText));
+		DefaultTableModel model = showPersons(searchPersons(personSet, searchText));
 		table.setModel(model);
 	}
 	
 	private void textFieldKeyReleased(java.awt.event.KeyEvent evt) {
-		updateTable(txtIngreseElNombre.getText());
+		updateTable(textField.getText());
     }
 	
 	
