@@ -17,6 +17,7 @@ public class SearchBookPanel extends JPanel {
 
 	private JPanel queryPanel;
 	private BooksPanel booksPanel;
+	private JPanel contentQueryPanel, contentBookPanel;
 	private JTextField title,author,year;
 	private ArrayList<Book> bookSet;
 	private ActionListener listener;
@@ -27,13 +28,25 @@ public class SearchBookPanel extends JPanel {
 		setLocation(0,0);
 		setBackground(Color.green);
 		setLayout(null);
-		initQueryPanel();
-		initBooksPanel(this.bookSet);
+		initComponents();
 	}
-	
+	private void initComponents() {
+		contentQueryPanel = new JPanel();
+		contentQueryPanel.setLayout(null);
+		contentQueryPanel.setBounds(31, 11, 857, 173);
+		add(contentQueryPanel);
+		
+		contentBookPanel = new JPanel();
+		contentBookPanel.setLayout(null);
+		contentBookPanel.setBounds(31, 231, 855, 374);
+		add(contentBookPanel);
+		
+		initQueryPanel();
+		initBooksPanel(bookSet);
+	}
 	private void initQueryPanel() {
 		queryPanel = new JPanel();
-		queryPanel.setBounds(31, 11, 857, 173);
+		queryPanel.setBounds(0, 0, 857, 173);
 		queryPanel.setLayout(null);
 		
 		JLabel lblTitle = new JLabel();
@@ -44,7 +57,7 @@ public class SearchBookPanel extends JPanel {
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		queryPanel.add(lblTitle);
 
-		add(queryPanel);
+	
 		
 		title = new JTextField();
 		title.setColumns(10);
@@ -98,18 +111,32 @@ public class SearchBookPanel extends JPanel {
 		lblYear.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		lblYear.setHorizontalTextPosition(SwingConstants.RIGHT);
 		queryPanel.add(lblYear);
+		
+		showPanel(contentQueryPanel, queryPanel);
 	}
 	private void initBooksPanel(ArrayList<Book> bookSet) {
-		removeAll();
+		
 		booksPanel = new BooksPanel(listener,bookSet);
-		booksPanel.setBounds(31, 231, 855, 374);
+		booksPanel.setBounds(0,0, 855, 374);
 		
 		JScrollPane scrollPane = new JScrollPane(booksPanel);
-		scrollPane.setBounds(31, 231, 855, 374);
-		add(scrollPane);
+		scrollPane.setBounds(0,0, 855, 374);
+		//contentBookPanel.add(scrollPane);
+		showPanel(contentBookPanel, scrollPane);
+		//showPanel(contentBookPanel, booksPanel);
 		
-		revalidate();
-		repaint();
+	}
+	public void showPanel(JPanel contentPanel,JScrollPane scroll) {
+		contentPanel.removeAll();
+		contentPanel.add(scroll);
+		contentPanel.revalidate();
+		contentPanel.repaint();
+	}
+	public void showPanel(JPanel contentPanel,JPanel panel) {
+		contentPanel.removeAll();
+		contentPanel.add(panel);
+		contentPanel.revalidate();
+		contentPanel.repaint();
 	}
 	//Metodo para el filtro con eventos de teclado busqueda de libros por titulo
 	private void textFieldKeyReleased(java.awt.event.KeyEvent evt) {

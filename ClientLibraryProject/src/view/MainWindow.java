@@ -189,7 +189,6 @@ public class MainWindow extends JFrame implements MouseListener{
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 	@Override
@@ -254,5 +253,4 @@ public class MainWindow extends JFrame implements MouseListener{
 		}
 		btnChangeColor.setBackground(mainColor);
 	}
-	
 }
