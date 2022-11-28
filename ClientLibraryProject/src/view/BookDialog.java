@@ -13,24 +13,24 @@ import java.awt.event.MouseListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class RentedBookDialog extends JDialog {
+public class BookDialog extends JDialog {
 	private JPanel header,bookPanel;
-	private JButton btnRentBook,btnExit,btnMin;
+	private JButton btnRentBook,btnExit,btnMin,btnCancel;
 	private int xMouse,yMouse;
 	/**
-	 * Metodo constructor del dailogo para mostrar el libro con el boton de rentar.
+	 * Metodo constructor del dialogo para mostrar el libro con el boton de rentar.
 	 * @param frame Indica la ventana padre del dialogo
 	 * @param mode
 	 * @param listener Recibe un objeto ActionListener de ClientController
 	 * @param item Recibe como parámetro un objeto Item, que hereda de JPanel, del libro a mostrar
 	 */
-	public RentedBookDialog(boolean mode,ActionListener actionListener,MouseListener mouseListener, JPanel item) {
-		//super(frame,mode);
+	public BookDialog(boolean mode,JFrame frame,ActionListener actionListener,MouseListener mouseListener, JPanel item) {
+		super(frame,mode);
 		this.bookPanel = item;
 		setSize(300,350);
-		setUndecorated(true);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setLayout(new BoxLayout(getContentPane(),BoxLayout.X_AXIS));
@@ -43,10 +43,19 @@ public class RentedBookDialog extends JDialog {
 		btnRentBook.addMouseListener(mouseListener);
 		btnRentBook.setAlignmentX(BOTTOM_ALIGNMENT);
 		
+		btnCancel = new JButton("Cancelar");
+		btnCancel.setAlignmentX(CENTER_ALIGNMENT);
+		btnCancel.setBackground(MainWindow.mainColor);
+		btnCancel.addActionListener(actionListener);
+		btnCancel.setActionCommand("CANCELAR");
+		btnCancel.addMouseListener(mouseListener);
+		btnCancel.setAlignmentX(BOTTOM_ALIGNMENT);
+		
 		bookPanel.setAlignmentX(CENTER_ALIGNMENT);
 		getContentPane().add(header);
 		getContentPane().add(bookPanel);
 		getContentPane().add(btnRentBook);
+		getContentPane().add(btnCancel);
 	}
 	public void initComponents(MouseListener mouseListener) {
 		header = new JPanel();

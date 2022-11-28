@@ -23,7 +23,7 @@ public class Item extends JPanel {
 	public Item(String id,String title,String author, String year, String image,MouseListener mouseListener) {
 		addMouseListener(this.mouseEntered());
 		addMouseListener(this.mouseExited());
-		//addMouseListener();
+		addMouseListener(mouseListener);
 		setBackground(MainWindow.whiteColor);
 		setBorder(new MatteBorder(1,1,1,1,MainWindow.lightGray));
 		setLayout(new GridBagLayout());

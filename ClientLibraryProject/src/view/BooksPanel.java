@@ -13,7 +13,7 @@ import model.Book;
 
 public class BooksPanel extends JPanel {
 	private ArrayList<Item> items;
-	public BooksPanel(ActionListener listener,ArrayList<Book> bookSet) {
+	public BooksPanel(ActionListener listener,MouseListener mouseListener,ArrayList<Book> bookSet) {
 		setSize(855, 440);
 		setBackground(MainWindow.whiteColor);
 		items = new ArrayList<Item>();
@@ -21,18 +21,18 @@ public class BooksPanel extends JPanel {
 		layout.setColumns(3);
 		layout.setHgap(13);//Establece la separacion entre columnas
 		layout.setVgap(13);//Establece la separacion entre filas;
-		filBooksPanel(layout,listener,bookSet);
+		filBooksPanel(layout,listener,mouseListener,bookSet);
 		setLayout(layout);
 	}
 
-	private void filBooksPanel(GridLayout layout,ActionListener listener,ArrayList<Book> bookSet) {
+	private void filBooksPanel(GridLayout layout,ActionListener listener,MouseListener mouseListener,ArrayList<Book> bookSet) {
 		int count= 0; //Se encarga de controlar el numero de elementos por fila
 		for(int i = 0;i<bookSet.size();i++) {//Numero de items a crear
 			if(count == layout.getColumns()) {
 				layout.setRows(layout.getRows()+1);
 				count = 0;
 			}
-			Item item = new Item(String.valueOf(bookSet.get(i).getBookID()),bookSet.get(i).getTitle(),bookSet.get(i).getAuthor(),bookSet.get(i).getDepartureYear(),"data/icons/iconUser.png",mouseClicked(listener));
+			Item item = new Item(String.valueOf(bookSet.get(i).getBookID()),bookSet.get(i).getTitle(),bookSet.get(i).getAuthor(),bookSet.get(i).getDepartureYear(),"data/icons/iconUser.png",mouseListener);
 			
 			items.add(item);
 			add(item);

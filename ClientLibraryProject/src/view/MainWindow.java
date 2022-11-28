@@ -39,6 +39,7 @@ public class MainWindow extends JFrame implements MouseListener{
 	private RegisterPanel registerPanel;
 	private MenuPanel menu;
 	private SearchBookPanel searchBookPanel;
+	private BookDialog bookDialog;
 	private ActionListener listener;
 	private int xMouse, yMouse;//atributos para controlar el desplazamiento de la ventana
 	
@@ -57,6 +58,7 @@ public class MainWindow extends JFrame implements MouseListener{
 		this.bookSet = bookSet;
 		menu = new MenuPanel(listener, this);
 		initComponents();
+		initRegisterPanel();
 		initLoginPanel();
 	}
 	//Metodo para inciar componentes generales de la GUI(Cabecera y un panel para el contenido en contentPane)
@@ -138,7 +140,7 @@ public class MainWindow extends JFrame implements MouseListener{
 	}
 	//Metodo para pintar el panel SearchBooks(){
 	public void initSearchBooks(ArrayList<Book> bookSet) {
-		searchBookPanel = new SearchBookPanel(listener,bookSet);
+		searchBookPanel = new SearchBookPanel(listener,this,bookSet);
 		searchBookPanel.setLocation(0,0);
 		dataPanel.add(searchBookPanel);
 		showPanel(dataPanel,searchBookPanel);
@@ -152,7 +154,10 @@ public class MainWindow extends JFrame implements MouseListener{
 		contentPanel.revalidate();
 		contentPanel.repaint();
 	}
-
+	public void closeDialog() {
+		bookDialog.dispose();
+	}
+	//Metodos para obtener datos del usuario
 	public String obtainUser() {
 		return loginPanel.getUser();
 	}
@@ -189,6 +194,12 @@ public class MainWindow extends JFrame implements MouseListener{
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		JPanel item = (JPanel)e.getSource();
+		item.setEnabled(false);
+		bookDialog = new BookDialog(true, this, listener, this,(Item)item);
+		bookDialog.setVisible(true);
+		//this.setEnabled(false);
+		
 		
 	}
 	@Override
