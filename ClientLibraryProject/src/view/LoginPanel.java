@@ -48,23 +48,49 @@ public class LoginPanel extends JPanel {
 		panelLogin.add(lblTitle);
 		
 		user = new JTextField();
+		user.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if(user.getText().equals("Usuario")) {
+					user.setText("");
+					user.setForeground(MainWindow.strongGray);
+				}
+				if(String.valueOf(password.getPassword()).isEmpty()) {
+					password.setText("*********");
+					password.setForeground(MainWindow.gray);
+				}
+			}
+		});
 		user.setText("Usuario");
 		user.setBounds(173,233,365,37);
 		user.setForeground(MainWindow.strongBlack);
 		user.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		user.setBackground(MainWindow.whiteColor);
 		user.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.lightGray));
-		user.addMouseListener(this.mousePressed());
+		//user.addMouseListener(this.mousePressed());
 		panelLogin.add(user);
 		
 		password = new JPasswordField();
+		password.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if(String.valueOf(password.getPassword()).equals("*********")) {
+					user.setText("");
+					user.setForeground(MainWindow.strongGray);
+				}
+				if(user.getText().isEmpty()) {
+					password.setText("Usuario");
+					password.setForeground(MainWindow.gray);
+				}
+			}
+		});
 		password.setText("*********");
 		password.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.lightGray));
 		password.setBounds(173,305,365,37);
 		password.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		password.setForeground(MainWindow.strongBlack);
 		password.setBackground(MainWindow.whiteColor);
-		password.addMouseListener(this.mousePressed());
+		//password.addMouseListener(this.mousePressed());
 		panelLogin.add(password);
 	
 		
@@ -125,6 +151,7 @@ public class LoginPanel extends JPanel {
 	public JButton getBtnRegister() {
 		return btnRegister;
 	}
+	/*
 	//Metodos para obtener los objetos de la Clase MouseAdapter
 	public MouseAdapter mousePressed() {
 		return new MouseAdapter() {
@@ -139,24 +166,25 @@ public class LoginPanel extends JPanel {
 	}
 
 	
-	private void txtUserMousePressed(MouseEvent e) {
+	private void txtUserMousePressed(java.awt.event.MouseEvent e) {
 		if(user.getText().equals("Usuario")) {
 			user.setText("");
 			user.setForeground(MainWindow.strongGray);
 		}
 		if(String.valueOf(password.getPassword()).isEmpty()) {
 			password.setText("*********");
-			password.setForeground(MainWindow.strongGray);
+			password.setForeground(MainWindow.gray);
 		}
 	}
-	private void txtPassMousePressed(MouseEvent e) {
+	private void txtPassMousePressed(java.awt.event.MouseEvent e) {
 		if(String.valueOf(password.getPassword()).equals("*********")) {
 			user.setText("");
 			user.setForeground(MainWindow.strongGray);
 		}
 		if(user.getText().isEmpty()) {
 			password.setText("Usuario");
-			password.setForeground(MainWindow.strongGray);
+			password.setForeground(MainWindow.gray);
 		}
 	}
+	*/
 }
