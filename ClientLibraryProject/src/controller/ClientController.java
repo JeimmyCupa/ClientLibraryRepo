@@ -41,8 +41,12 @@ public class ClientController implements ActionListener{
 			window.initSearchBooks(this.obtainBookSet());
 			break;
 		case "RENTBOOK":
+			window.setEnabled(true);
 			break;
 		case "MYBOOKS":
+			break;
+		case "CANCELAR":
+			window.closeDialog();
 			break;
 		case "SINGOUT":
 			window.initLoginPanel();

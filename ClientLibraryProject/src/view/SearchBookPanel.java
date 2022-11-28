@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -21,8 +22,10 @@ public class SearchBookPanel extends JPanel {
 	private JTextField title,author,year;
 	private ArrayList<Book> bookSet;
 	private ActionListener listener;
-	public SearchBookPanel(ActionListener listener,ArrayList<Book> bookSet) {
+	private MouseListener mouseListener;
+	public SearchBookPanel(ActionListener listener,MouseListener mouseListener,ArrayList<Book> bookSet) {
 		this.listener = listener;
+		this.mouseListener = mouseListener;
 		this.bookSet = bookSet;
 		setSize(914,635);
 		setLocation(0,0);
@@ -116,14 +119,12 @@ public class SearchBookPanel extends JPanel {
 	}
 	private void initBooksPanel(ArrayList<Book> bookSet) {
 		
-		booksPanel = new BooksPanel(listener,bookSet);
+		booksPanel = new BooksPanel(listener,mouseListener,bookSet);
 		booksPanel.setBounds(0,0, 855, 374);
 		
 		JScrollPane scrollPane = new JScrollPane(booksPanel);
 		scrollPane.setBounds(0,0, 855, 374);
-		//contentBookPanel.add(scrollPane);
 		showPanel(contentBookPanel, scrollPane);
-		//showPanel(contentBookPanel, booksPanel);
 		
 	}
 	public void showPanel(JPanel contentPanel,JScrollPane scroll) {

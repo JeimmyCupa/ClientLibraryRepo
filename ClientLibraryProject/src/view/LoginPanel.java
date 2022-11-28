@@ -44,12 +44,12 @@ public class LoginPanel extends JPanel {
 		lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		lblTitle.setForeground(MainWindow.mainColor);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitle.setBounds(328,93,200,50);
+		lblTitle.setBounds(255,75,200,50);
 		panelLogin.add(lblTitle);
 		
 		user = new JTextField();
 		user.setText("Usuario");
-		user.setBounds(247,249,365,37);
+		user.setBounds(173,233,365,37);
 		user.setForeground(MainWindow.strongBlack);
 		user.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		user.setBackground(MainWindow.whiteColor);
@@ -60,7 +60,7 @@ public class LoginPanel extends JPanel {
 		password = new JPasswordField();
 		password.setText("*********");
 		password.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.lightGray));
-		password.setBounds(247,321,365,37);
+		password.setBounds(173,305,365,37);
 		password.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		password.setForeground(MainWindow.strongBlack);
 		password.setBackground(MainWindow.whiteColor);
@@ -70,7 +70,7 @@ public class LoginPanel extends JPanel {
 		
 		btnLogin = new JButton("Ingresar");
 		btnLogin.setBorder(null);
-		btnLogin.setBounds(247, 454, 365, 42);
+		btnLogin.setBounds(173, 438, 365, 42);
 		btnLogin.setBackground(MainWindow.mainColor);
 		btnLogin.setForeground(MainWindow.whiteColor);
 		btnLogin.setFont(new Font("Segoe UI", Font.BOLD, 23));
@@ -92,7 +92,7 @@ public class LoginPanel extends JPanel {
 		btnRegister = new JButton("Registrarse");
 		btnRegister.setHorizontalAlignment(SwingConstants.CENTER);
 		btnRegister.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.whiteColor));
-		btnRegister.setBounds(342, 525, 166, 27);
+		btnRegister.setBounds(268, 509, 166, 27);
 		btnRegister.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		btnRegister.setForeground(MainWindow.gray);
 		btnRegister.setBackground(MainWindow.whiteColor);
