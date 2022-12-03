@@ -14,7 +14,7 @@ import view.MainWindow;
 public class ClientController implements ActionListener{
 	private MainWindow window;
 	public ClientController() {
-		System.out.println("Prueba");
+		System.out.println("Prueba final");
 		window = new MainWindow(this,obtainBookSet());
 		window.setVisible(true);
 	}
