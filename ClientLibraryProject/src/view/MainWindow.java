@@ -201,8 +201,9 @@ public class MainWindow extends JFrame implements MouseListener{
 		if(e.getSource().getClass().equals(Item.class)) {
 			JPanel item = (JPanel)e.getSource();
 			item.setEnabled(false);
-			bookDialog = new BookDialog(true, this, listener, this,(Item)item);
+			bookDialog = new BookDialog(true, this, listener,(Item)item);
 			bookDialog.setVisible(true);
+			//Como cerrar
 		}
 		
 	}
