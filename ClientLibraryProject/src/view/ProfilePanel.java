@@ -24,35 +24,35 @@ public class ProfilePanel extends JPanel {
 	}
 
 	public void initComponents(String strUserName, String strUserAge, String strUserEmail, String strUserID) {
-		JLabel title_1 = new JLabel("Mi Perfil");
-		title_1.setFont(new Font("SansSerif", Font.BOLD, 38));
-		title_1.setForeground(MainWindow.MAINCOLOR);
-		title_1.setBounds(362, 47, 159, 49);
-		add(title_1);
+		JLabel title = new JLabel("Mi Perfil");
+		title.setFont(new Font("SansSerif", Font.BOLD, 38));
+		title.setForeground(MainWindow.MAINCOLOR);
+		title.setBounds(362, 47, 159, 49);
+		add(title);
 		
-		JLabel title_1_1 = new JLabel("Nombre");
-		title_1_1.setForeground(new Color(46, 55, 100));
-		title_1_1.setFont(new Font("SansSerif", Font.PLAIN, 32));
-		title_1_1.setBounds(159, 151, 159, 49);
-		add(title_1_1);
+		JLabel userNameLabel = new JLabel("Nombre");
+		userNameLabel.setForeground(new Color(46, 55, 100));
+		userNameLabel.setFont(new Font("SansSerif", Font.PLAIN, 32));
+		userNameLabel.setBounds(159, 151, 159, 49);
+		add(userNameLabel);
 		
-		JLabel title_1_2 = new JLabel("Correo Electronico");
-		title_1_2.setForeground(new Color(46, 55, 100));
-		title_1_2.setFont(new Font("SansSerif", Font.PLAIN, 32));
-		title_1_2.setBounds(537, 151, 399, 49);
-		add(title_1_2);
+		JLabel userEmailLabel = new JLabel("Correo Electronico");
+		userEmailLabel.setForeground(new Color(46, 55, 100));
+		userEmailLabel.setFont(new Font("SansSerif", Font.PLAIN, 32));
+		userEmailLabel.setBounds(537, 151, 399, 49);
+		add(userEmailLabel);
 		
-		JLabel title_1_1_1 = new JLabel("Edad");
-		title_1_1_1.setForeground(new Color(46, 55, 100));
-		title_1_1_1.setFont(new Font("SansSerif", Font.PLAIN, 32));
-		title_1_1_1.setBounds(177, 349, 159, 49);
-		add(title_1_1_1);
+		JLabel userAgeLabel = new JLabel("Edad");
+		userAgeLabel.setForeground(new Color(46, 55, 100));
+		userAgeLabel.setFont(new Font("SansSerif", Font.PLAIN, 32));
+		userAgeLabel.setBounds(177, 349, 159, 49);
+		add(userAgeLabel);
 		
-		JLabel title_1_1_2 = new JLabel("ID");
-		title_1_1_2.setForeground(new Color(46, 55, 100));
-		title_1_1_2.setFont(new Font("SansSerif", Font.PLAIN, 32));
-		title_1_1_2.setBounds(660, 349, 159, 49);
-		add(title_1_1_2);
+		JLabel userIDLabel = new JLabel("ID");
+		userIDLabel.setForeground(new Color(46, 55, 100));
+		userIDLabel.setFont(new Font("SansSerif", Font.PLAIN, 32));
+		userIDLabel.setBounds(660, 349, 159, 49);
+		add(userIDLabel);
 		
 		userName = new JLabel();
 		userName.setText(strUserName);
