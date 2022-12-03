@@ -83,6 +83,7 @@ public class Item extends JPanel {
 		lblYear.setForeground(MainWindow.MAINCOLOR);
 		lblYear.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblYear,c4);
+		
 	}
 	//Setters y getters
 	public Icon obtainFrontPage() {
