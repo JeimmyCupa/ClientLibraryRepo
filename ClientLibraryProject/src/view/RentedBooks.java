@@ -54,7 +54,7 @@ public class RentedBooks extends JPanel {
 		add(tableScroll);
 		
 		txtTitle = new JTextField();
-		txtTitle.setFont(new Font("SansSerif", Font.BOLD , 16));
+		txtTitle.setFont(new Font("SansSerif", Font.BOLD, 16));
 		txtTitle.setText("Ingrese el titulo del libro");
 		txtTitle.setBorder(new MatteBorder(1, 1, 1, 1, MainWindow.MAINCOLOR));
 		txtTitle.setBackground(MainWindow.BEIGE);
@@ -119,8 +119,6 @@ public class RentedBooks extends JPanel {
 			registers[3] = bookSet.get(i).getRentedBook().getDepartureYear();
 			model.addRow(registers);
 		}
-		
-		
 		return model;
 	}
 	
