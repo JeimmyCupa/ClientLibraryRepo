@@ -11,13 +11,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
+
+import model.Book;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Item extends JPanel {
-	private JLabel frontPage,lblID,lblTitle,lblAuthor,lblYear;
-	public Item(String id,String title,String author, String year, String urlImage,MouseListener mouseListener) {
+	private Book book;
+	public Item(Book book,MouseListener mouseListener) {
+		this.book= book;
 		addMouseListener(this.mouseEntered());
 		addMouseListener(this.mouseExited());
 		addMouseListener(mouseListener);
@@ -30,8 +34,9 @@ public class Item extends JPanel {
 		c.gridy = 0;
 		c.insets = new Insets(5,5,5,5);//Establece el espacio entre componentes
 		
-		frontPage = new JLabel();
-		frontPage.setIcon(new ImageIcon(urlImage));
+		JLabel frontPage = new JLabel();
+		frontPage.setIcon(new ImageIcon(book.getPathImage()));
+		
 		//frontPage.setBorder(new MatteBorder(5,5,5,5));
 		frontPage.setBackground(MainWindow.WHITECOLOR);
 		frontPage.addMouseListener(mouseListener);
@@ -41,8 +46,8 @@ public class Item extends JPanel {
 		c1.gridx = 0;
 		c1.gridy = 1;
 		c1.insets = new Insets(5,5,5,5);
-		lblID = new JLabel(id);
-		lblID.setText(id);
+		JLabel lblID = new JLabel();
+		lblID.setText(String.valueOf(book.getBookID()));
 		lblID.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		lblID.setForeground(MainWindow.MAINCOLOR);
 		lblID.setHorizontalAlignment(SwingConstants.CENTER);
@@ -53,8 +58,8 @@ public class Item extends JPanel {
 		c2.gridy = 2;
 		c2.insets = new Insets(5,5,5,5);
 		
-		lblTitle = new JLabel(title);
-		lblTitle.setText(title);
+		JLabel lblTitle = new JLabel();
+		lblTitle.setText(book.getTitle());
 		lblTitle.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		lblTitle.setForeground(MainWindow.MAINCOLOR);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -66,8 +71,8 @@ public class Item extends JPanel {
 		c3.gridy = 3;
 		c3.insets = new Insets(5,5,5,5);
 		
-		lblAuthor = new JLabel();
-		lblAuthor.setText(author);
+		JLabel lblAuthor = new JLabel();
+		lblAuthor.setText(book.getAuthor());
 		lblAuthor.setFont(new Font("Segoe UI", Font.BOLD, 18));
 		lblAuthor.setForeground(MainWindow.MAINCOLOR);
 		lblAuthor.setHorizontalAlignment(SwingConstants.CENTER);
@@ -77,33 +82,17 @@ public class Item extends JPanel {
 		c4.gridx = 0;
 		c4.gridy = 4;
 		c4.insets = new Insets(5,5,5,5);
-		lblYear = new JLabel();
-		lblYear.setText(year);
+		JLabel lblYear = new JLabel();
+		lblYear.setText(book.getDepartureYear());
 		lblYear.setFont(new Font("Segoe UI", Font.BOLD, 18));
 		lblYear.setForeground(MainWindow.MAINCOLOR);
 		lblYear.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblYear,c4);
-		
-		
+
 	}
 	//Setters y getters
-	public Icon obtainFrontPage() {
-		return frontPage.getIcon();
-	}
-
-	public String obtainID() {
-		return lblID.getText();
-	}
-
-	public String obtainTitle() {
-		return lblTitle.getText();
-	}
-
-	public String obtainAuthor() {
-		return lblAuthor.getText();
-	}
-	public String getLblYear() {
-		return lblYear.getText();
+	public Book obtainBook() {
+		return this.book;
 	}
 	//Metodos efecto hover
 	private MouseAdapter mouseEntered() {

@@ -65,44 +65,53 @@ public class ClientController implements ActionListener{
 	}
 	private ArrayList<CopyBook> obtainRentedBooks(){
 		ArrayList<CopyBook> bookSet = new ArrayList<>();
-		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("100 Años de soledad", 2, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("Principal", 3, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("A donde vas", 5, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("No se que mas poner", 6, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("100 Años de soledad", 2, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("Principal", 3, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("A donde vas", 5, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("No se que mas poner", 6, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("100 Años de soledad", 2, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("Principal", 3, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("A donde vas", 5, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("No se que mas poner", 6, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("100 Años de soledad", 2, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("Principal", 3, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("A donde vas", 5, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("No se que mas poner", 6, 19, "Pepito", "2005")));
-		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005", "", ""), 1));
+		bookSet.add(new CopyBook(new Book("100 Años de soledad", 2, 19, "Pepito", "2005", "", ""), 2));
+		bookSet.add(new CopyBook(new Book("Principal", 3, 19, "Pepito", "2005", "", ""), 3));
+		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005", "", ""), 4));
+		bookSet.add(new CopyBook(new Book("A donde vas", 5, 19, "Pepito", "2005", "", ""), 5));
+		bookSet.add(new CopyBook(new Book("No se que mas poner", 6, 19, "Pepito", "2005", "", ""), 6));
+		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005", "", ""), 7));
+		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005", "", ""), 1));
+		bookSet.add(new CopyBook(new Book("100 Años de soledad", 2, 19, "Pepito", "2005", "", ""), 2));
+		bookSet.add(new CopyBook(new Book("Principal", 3, 19, "Pepito", "2005", "", ""), 3));
+		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005", "", ""), 4));
+		bookSet.add(new CopyBook(new Book("A donde vas", 5, 19, "Pepito", "2005", "", ""), 5));
+		bookSet.add(new CopyBook(new Book("No se que mas poner", 6, 19, "Pepito", "2005", "", ""), 6));
+		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005", "", ""), 7));
+		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005", "", ""), 1));
+		bookSet.add(new CopyBook(new Book("100 Años de soledad", 2, 19, "Pepito", "2005", "", ""), 2));
+		bookSet.add(new CopyBook(new Book("Principal", 3, 19, "Pepito", "2005", "", ""), 3));
+		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005", "", ""), 4));
+		bookSet.add(new CopyBook(new Book("A donde vas", 5, 19, "Pepito", "2005", "", ""), 5));
+		bookSet.add(new CopyBook(new Book("No se que mas poner", 6, 19, "Pepito", "2005", "", ""), 6));
+		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005", "", ""), 7));
 		return bookSet;
 	}
 	private ArrayList<Book> obtainBookSet() {
 		ArrayList<Book> bookSet = new ArrayList<Book>();
-		char aux = 65;
-		for(int i = 0; i <= 20;i++) {
-			aux += i;
-			bookSet.add(new Book(i+"",2,i,"",""));
-		}
-		bookSet.add(new Book(21+"",3,3,"",""));
+		bookSet.add(new Book("Principito", 1, 19, "Pepito", "2005", "", ""));
+		bookSet.add(new Book("100 Años de soledad", 2, 19, "Ana", "2010", "", ""));
+		bookSet.add(new Book("Principal", 3, 19, "Pepito", "2005", "", ""));
+		bookSet.add(new Book("Pedro", 4, 19, "Pepito", "2005", "", ""));
+		bookSet.add(new Book("A donde vas", 5, 19, "Jeimmy", "2003", "", ""));
+		bookSet.add(new Book("No se que mas poner", 6, 19, "Pepito", "2005", "", ""));
+		bookSet.add(new Book("Libro", 7, 19, "Pepito", "2005", "", ""));
+		bookSet.add(new Book("Principito", 1, 19, "Pepito", "2005", "", ""));
+		bookSet.add(new Book("100 Años de soledad", 2, 19, "Sara", "2002", "", ""));
+		bookSet.add(new Book("Principal", 3, 19, "Pepito", "2005", "", ""));
+		bookSet.add(new Book("Pedro", 4, 19, "Jeimmy", "2005", "", ""));
+		bookSet.add(new Book("A donde vas", 5, 19, "Pepito", "2003", "", ""));
+		bookSet.add(new Book("No se que mas poner", 6, 19, "Pepito", "2005", "", ""));
+		bookSet.add(new Book("Libro", 7, 19, "Pepito", "2005", "", ""));
+		bookSet.add(new Book("Principito", 1, 19, "Ana", "2005", "", ""));
+		bookSet.add(new Book("100 Años de soledad", 2, 19, "Pepito", "2005", "", ""));
+		bookSet.add(new Book("Principal", 3, 19, "Pepito", "2005", "", ""));
+		bookSet.add(new Book("Pedro", 4, 19, "Sara", "2005", "", ""));
+		bookSet.add(new Book("A donde vas", 5, 19, "Pepito", "2005", "", ""));
+		bookSet.add(new Book("No se que mas poner", 6, 19, "Pepito", "2005", "", ""));
+		bookSet.add(new Book("Libro", 7, 19, "Jeimmy", "2003", "", ""));
+		
 		return bookSet;
 	}
 }

@@ -55,7 +55,7 @@ public class MenuPanel extends JPanel {
         btnMyBooks.setIcon(new ImageIcon("data\\icons\\iconBook.png"));
         btnMyBooks.setBounds(0, 247, 285, 53);
         btnMyBooks.addActionListener(listener);
-        btnMyBooks.setActionCommand("RENTBOOK");
+        btnMyBooks.setActionCommand("MYBOOKS");
         btnMyBooks.addMouseListener(mouseListener);
         add(btnMyBooks);
 		

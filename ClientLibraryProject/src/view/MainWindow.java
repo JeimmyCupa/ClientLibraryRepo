@@ -12,6 +12,7 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -199,11 +200,10 @@ public class MainWindow extends JFrame implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(e.getSource().getClass().equals(Item.class)) {
-			JPanel item = (JPanel)e.getSource();
-			item.setEnabled(false);
-			bookDialog = new BookDialog(true, this, listener,(Item)item);
+			Item item = (Item)e.getSource();
+			bookDialog = new BookDialog(true, this, listener,item.obtainBook());
 			bookDialog.setVisible(true);
-			//Como cerrar
+			bookDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		}
 		
 	}

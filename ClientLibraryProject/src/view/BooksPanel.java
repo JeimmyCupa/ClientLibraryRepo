@@ -32,29 +32,15 @@ public class BooksPanel extends JPanel {
 				layout.setRows(layout.getRows()+1);
 				count = 0;
 			}
-			Item item = new Item(String.valueOf(bookSet.get(i).getBookID()),bookSet.get(i).getTitle(),bookSet.get(i).getAuthor(),bookSet.get(i).getDepartureYear(),"data/icons/iconUser.png",mouseListener);
+			Book book = bookSet.get(i);
+			book.setPathImage("/data/frontPage/libro2.jpg");
+			Item item = new Item(book,mouseListener);
 			
 			items.add(item);
 			add(item);
 			count++;
 		}
 	}
-	private MouseAdapter mouseClicked(ActionListener listener) {
-		return new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				btnMouseClicked(e,listener);
-			}
-		};
-	}
-	/**
-	 * De acuerdo con el id del libro que este en el panel que genero el evento se  
-	 * @param event
-	 */
-	private void btnMouseClicked(MouseEvent event,ActionListener listener) {
-		JPanel item = (JPanel)event.getSource();
-		//RentedBookDialog bookdialog = new RentedBookDialog(true, listener,item);
-		//bookdialog.setVisible(true);
-	}
+	
 
 }
