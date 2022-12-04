@@ -34,7 +34,7 @@ public class BookDialog extends JDialog {
 	public BookDialog(boolean mode,JFrame frame,ActionListener actionListener, Item item) {
 		super(frame,mode);
 		
-		setSize(432,350);
+		setSize(478,345);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		getContentPane().setLayout(null);
@@ -48,10 +48,10 @@ public class BookDialog extends JDialog {
 		
 		getContentPane().setLayout(null);
 		this.bookPanel = new JPanel();
-		bookPanel.setBounds(0,0,416,256);
+		bookPanel.setBounds(0,0,462,256);
 		JLabel lblTitle = new JLabel();
 		lblTitle.setText("Titulo");//item.obtainTitle());
-		lblTitle.setBounds(180, 11, 226, 31);
+		lblTitle.setBounds(205, 11, 226, 31);
 		lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		lblTitle.setForeground(MainWindow.MAINCOLOR);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -63,26 +63,26 @@ public class BookDialog extends JDialog {
 		bookPanel.add(lblImage);
 		
 		JLabel lblAuthor = new JLabel("Titulo");//item.obtainAuthor());
-		lblAuthor.setBounds(248, 53, 94, 20);
+		lblAuthor.setBounds(271, 53, 94, 20);
 		lblAuthor.setFont(new Font("Segoe UI", Font.BOLD, 17));
 		lblAuthor.setForeground(MainWindow.MAINCOLOR);
 		lblAuthor.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JLabel lblYear = new JLabel("Año");
-		lblYear.setBounds(248, 71, 94, 20);
+		lblYear.setBounds(271, 74, 94, 20);
 		lblYear.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		lblYear.setForeground(MainWindow.MAINCOLOR);
 		lblYear.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(180, 105, 226, 67);
+		textArea.setBounds(180, 105, 272, 67);
 		textArea.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		textArea.setEnabled(false);
 		textArea.setForeground(MainWindow.STRONGBLACK);
 		textArea.setBackground(MainWindow.WHITECOLOR);
 		
 		btnRentBook = new JButton("Rentar");
-		btnRentBook.setBounds(155, 206, 125, 39);
+		btnRentBook.setBounds(179, 206, 125, 39);
 		btnRentBook.setAlignmentX(CENTER_ALIGNMENT);
 		btnRentBook.setForeground(MainWindow.WHITECOLOR);
 		btnRentBook.setBackground(MainWindow.MAINCOLOR);
@@ -111,7 +111,7 @@ public class BookDialog extends JDialog {
 		btnRentBook.setAlignmentX(BOTTOM_ALIGNMENT);
 		
 		btnCancel = new JButton("Cancelar");
-		btnCancel.setBounds(291, 206, 125, 39);
+		btnCancel.setBounds(327, 206, 125, 39);
 		btnCancel.setAlignmentX(CENTER_ALIGNMENT);
 		btnCancel.setForeground(MainWindow.WHITECOLOR);
 		btnCancel.setBackground(MainWindow.MAINCOLOR);
