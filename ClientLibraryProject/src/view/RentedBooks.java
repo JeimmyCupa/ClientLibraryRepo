@@ -56,7 +56,7 @@ public class RentedBooks extends JPanel {
 		JScrollPane tableScroll = new JScrollPane(table);
 		tableScroll.setFocusable(false);
 		tableScroll.setBorder(new MatteBorder(2, 2, 2, 2, MainWindow.MAINCOLOR));
-		tableScroll.setBounds(97, 213, 717, 334);
+		tableScroll.setBounds(52, 213, 815, 334);
 		tableScroll.setVisible(true);
 		add(tableScroll);
 		
@@ -104,14 +104,14 @@ public class RentedBooks extends JPanel {
 		table.getTableHeader().setForeground(MainWindow.LIGHTGRAY);
 		
 		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(0).setPreferredWidth(100);
-		table.getColumnModel().getColumn(0).setMinWidth(90);
+		table.getColumnModel().getColumn(0).setPreferredWidth(150);
+		table.getColumnModel().getColumn(0).setMinWidth(140);
 		table.getColumnModel().getColumn(1).setResizable(false);
-		table.getColumnModel().getColumn(1).setPreferredWidth(115);
+		table.getColumnModel().getColumn(1).setPreferredWidth(100);
 		table.getColumnModel().getColumn(1).setMinWidth(60);
 		table.getColumnModel().getColumn(2).setResizable(false);
-		table.getColumnModel().getColumn(2).setPreferredWidth(100);
-		table.getColumnModel().getColumn(2).setMinWidth(60);
+		table.getColumnModel().getColumn(2).setPreferredWidth(130);
+		table.getColumnModel().getColumn(2).setMinWidth(100);
 		table.getColumnModel().getColumn(3).setResizable(false);
 		table.getColumnModel().getColumn(3).setPreferredWidth(100);
 		

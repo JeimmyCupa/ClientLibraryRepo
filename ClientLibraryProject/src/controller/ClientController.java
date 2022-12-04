@@ -42,9 +42,10 @@ public class ClientController implements ActionListener{
 			window.initSearchBooks(this.obtainBookSet());
 			break;
 		case "RENTBOOK":
-			window.initRentedBooks(this.obtainRentedBooks());
+			
 			break;
 		case "MYBOOKS":
+			window.initRentedBooks(this.obtainRentedBooks());
 			break;
 		case "CANCELAR":
 			window.closeDialog();
