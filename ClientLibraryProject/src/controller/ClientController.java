@@ -14,7 +14,6 @@ import view.MainWindow;
 public class ClientController implements ActionListener{
 	private MainWindow window;
 	public ClientController() {
-		System.out.println("Prueba final");
 		window = new MainWindow(this,obtainBookSet());
 		window.setVisible(true);
 	}
@@ -65,6 +64,27 @@ public class ClientController implements ActionListener{
 	}
 	private ArrayList<CopyBook> obtainRentedBooks(){
 		ArrayList<CopyBook> bookSet = new ArrayList<>();
+		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("100 Años de soledad", 2, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("Principal", 3, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("A donde vas", 5, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("No se que mas poner", 6, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("100 Años de soledad", 2, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("Principal", 3, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("A donde vas", 5, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("No se que mas poner", 6, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("100 Años de soledad", 2, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("Principal", 3, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("A donde vas", 5, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("No se que mas poner", 6, 19, "Pepito", "2005")));
+		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005")));
 		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005")));
 		bookSet.add(new CopyBook(new Book("100 Años de soledad", 2, 19, "Pepito", "2005")));
 		bookSet.add(new CopyBook(new Book("Principal", 3, 19, "Pepito", "2005")));

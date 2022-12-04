@@ -10,7 +10,8 @@ import javax.swing.JScrollPane;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
+import javax.swing.ListSelectionModel;
+
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -38,16 +39,22 @@ public class RentedBooks extends JPanel {
 		add(title_1);
 		
 		
-		table = new JTable(showBooks(bookSet));
+		table = new JTable(showBooks(bookSet)) {
+			public boolean isCellEditable(int rowIndex, int colIndex) {
+				return false;
+			}
+		};
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getTableHeader().setResizingAllowed(false);
 		table.setBounds(85, 249, 717, 334);
 		table.setGridColor(MainWindow.MAINCOLOR);
 		table.setBackground(MainWindow.BEIGE);
 		table.setForeground(MainWindow.STRONGBLACK);
-		table.setEnabled(false);
 		this.styleTable();
 		add(table);
 		
 		JScrollPane tableScroll = new JScrollPane(table);
+		tableScroll.setFocusable(false);
 		tableScroll.setBorder(new MatteBorder(2, 2, 2, 2, MainWindow.MAINCOLOR));
 		tableScroll.setBounds(97, 213, 717, 334);
 		tableScroll.setVisible(true);
@@ -86,8 +93,9 @@ public class RentedBooks extends JPanel {
 		table.setIntercellSpacing(new Dimension(10, 5));
 		table.setGridColor(MainWindow.WHITECOLOR);
 		table.setBackground(MainWindow.BEIGE);
-		table.setSelectionBackground(MainWindow.HOVERCOLOR);
-		table.setRowSelectionAllowed(true);
+		table.setSelectionBackground(MainWindow.LIGHTGRAY);
+		table.setSelectionForeground(MainWindow.STRONGBLACK);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setRowHeight(25);
 		
 		table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 23));
