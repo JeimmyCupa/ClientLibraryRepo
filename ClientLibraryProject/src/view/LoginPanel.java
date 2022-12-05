@@ -2,11 +2,13 @@ package view;
 
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,7 +20,7 @@ import javax.swing.border.MatteBorder;
 
 public class LoginPanel extends JPanel {
 
-	private JPanel panelImage, panelLogin; 
+	//private JPanel panelImage, panelLogin; 
 	private JTextField user;
 	private JPasswordField password;
 	private JButton btnLogin,btnRegister;
@@ -29,12 +31,19 @@ public class LoginPanel extends JPanel {
 	}
 	private void initComponents(ActionListener actionListener,MouseListener mouseListener) {
 		setLayout(null);
-		panelImage = new JPanel();
+		JPanel  panelImage = new JPanel();
+		panelImage.setLayout(null);
 		panelImage.setBounds(0, 0, 452, 635);
 		panelImage.setBackground(MainWindow.MAINCOLOR);
+		JLabel lblImage = new JLabel();
+		lblImage.setBounds(0,0, 452, 635);
+		Image image =new ImageIcon("data\\icons\\Imagen3.png").getImage();
+		Icon icon = new ImageIcon(image.getScaledInstance(lblImage.getWidth(), lblImage.getHeight(), Image.SCALE_SMOOTH));
+		lblImage.setIcon(icon);
+		panelImage.add(lblImage);
 		add(panelImage);
 		
-		panelLogin = new JPanel();
+		JPanel  panelLogin = new JPanel();
 		panelLogin.setLayout(null);
 		panelLogin.setBounds(452, 0, 748, 635);
 		panelLogin.setBackground(MainWindow.WHITECOLOR);

@@ -12,11 +12,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import model.Book;
+
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
@@ -31,27 +35,27 @@ public class BookDialog extends JDialog {
 	 * @param listener Recibe un objeto ActionListener de ClientController
 	 * @param item Recibe como parámetro un objeto Item, que hereda de JPanel, del libro a mostrar
 	 */
-	public BookDialog(boolean mode,JFrame frame,ActionListener actionListener, Item item) {
+	public BookDialog(boolean mode,JFrame frame,ActionListener actionListener, Book book) {
 		super(frame,mode);
 		
-		setSize(432,350);
+		setSize(478,345);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		getContentPane().setLayout(null);
-		initComponents(actionListener,item);
+		initComponents(actionListener,book);
 		
 		getContentPane().add(bookPanel);
 		bookPanel.setLayout(null);
 		
 	}
-	public void initComponents(ActionListener actionListener,Item item) {
+	public void initComponents(ActionListener actionListener,Book book) {
 		
 		getContentPane().setLayout(null);
 		this.bookPanel = new JPanel();
-		bookPanel.setBounds(0,0,416,256);
+		bookPanel.setBounds(0,0,462,256);
 		JLabel lblTitle = new JLabel();
-		lblTitle.setText("Titulo");//item.obtainTitle());
-		lblTitle.setBounds(180, 11, 226, 31);
+		lblTitle.setText(book.getTitle());
+		lblTitle.setBounds(205, 11, 226, 31);
 		lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		lblTitle.setForeground(MainWindow.MAINCOLOR);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -59,30 +63,31 @@ public class BookDialog extends JDialog {
 		
 		JLabel lblImage = new JLabel();
 		lblImage.setBounds(10, 11, 160, 234);
-		lblImage.setIcon(item.obtainFrontPage());
+		lblImage.setIcon(new ImageIcon(book.getPathImage()));//Crear metodo para asignar imagenes
 		bookPanel.add(lblImage);
 		
-		JLabel lblAuthor = new JLabel("Titulo");//item.obtainAuthor());
-		lblAuthor.setBounds(248, 53, 94, 20);
+		JLabel lblAuthor = new JLabel(book.getAuthor());
+		lblAuthor.setBounds(271, 53, 94, 20);
 		lblAuthor.setFont(new Font("Segoe UI", Font.BOLD, 17));
 		lblAuthor.setForeground(MainWindow.MAINCOLOR);
 		lblAuthor.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JLabel lblYear = new JLabel("Año");
-		lblYear.setBounds(248, 71, 94, 20);
+		JLabel lblYear = new JLabel(book.getDepartureYear());
+		lblYear.setBounds(271, 74, 94, 20);
 		lblYear.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		lblYear.setForeground(MainWindow.MAINCOLOR);
 		lblYear.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(180, 105, 226, 67);
+		textArea.setText(book.getDescription());
+		textArea.setBounds(180, 105, 272, 67);
 		textArea.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		textArea.setEnabled(false);
 		textArea.setForeground(MainWindow.STRONGBLACK);
 		textArea.setBackground(MainWindow.WHITECOLOR);
 		
 		btnRentBook = new JButton("Rentar");
-		btnRentBook.setBounds(155, 206, 125, 39);
+		btnRentBook.setBounds(179, 206, 125, 39);
 		btnRentBook.setAlignmentX(CENTER_ALIGNMENT);
 		btnRentBook.setForeground(MainWindow.WHITECOLOR);
 		btnRentBook.setBackground(MainWindow.MAINCOLOR);
@@ -106,12 +111,11 @@ public class BookDialog extends JDialog {
 				}
 			}
 		});
-		
 		btnRentBook.setActionCommand("RENTBOOK");
 		btnRentBook.setAlignmentX(BOTTOM_ALIGNMENT);
 		
 		btnCancel = new JButton("Cancelar");
-		btnCancel.setBounds(291, 206, 125, 39);
+		btnCancel.setBounds(327, 206, 125, 39);
 		btnCancel.setAlignmentX(CENTER_ALIGNMENT);
 		btnCancel.setForeground(MainWindow.WHITECOLOR);
 		btnCancel.setBackground(MainWindow.MAINCOLOR);
@@ -137,11 +141,10 @@ public class BookDialog extends JDialog {
 		});
 		
 		bookPanel.add(lblAuthor);
-		bookPanel.add(btnRentBook);
+		bookPanel.add(textArea);
 		bookPanel.add(lblYear);
 		bookPanel.add(btnRentBook);
 		bookPanel.add(btnCancel);
-		bookPanel.add(textArea);
 		
 		getContentPane().add(bookPanel);
 	}

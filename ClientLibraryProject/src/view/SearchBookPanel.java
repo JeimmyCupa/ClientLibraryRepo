@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 import javax.swing.JTextField;
 import model.Book;
+import model.CopyBook;
 
 public class SearchBookPanel extends JPanel {
 
@@ -41,7 +42,7 @@ public class SearchBookPanel extends JPanel {
 		
 		contentBookPanel = new JPanel();
 		contentBookPanel.setLayout(null);
-		contentBookPanel.setBounds(31, 231, 855, 374);
+		contentBookPanel.setBounds(31, 210, 855, 401);
 		add(contentBookPanel);
 		
 		initQueryPanel();
@@ -59,48 +60,15 @@ public class SearchBookPanel extends JPanel {
 		lblTitle.setForeground(MainWindow.MAINCOLOR);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		queryPanel.add(lblTitle);
-
-	
 		
-		title = new JTextField();
-		title.setColumns(10);
-		title.setBounds(275, 62, 227, 25);
-		title.setForeground(MainWindow.STRONGGRAY);
-		title.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		title.setBackground(MainWindow.WHITECOLOR);
-		title.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
-		title.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                textFieldKeyReleased(evt);
-            }
-        });
-		queryPanel.add(title);
-		/*
-		author = new JTextField();
-		author.setColumns(10);
-		author.setBounds(275, 98, 227, 25);
-		author.setForeground(MainWindow.STRONGGRAY);
-		author.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		author.setBackground(MainWindow.WHITECOLOR);
-		author.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
-		queryPanel.add(author);
+		JLabel lblBookTitle = new JLabel("Titulo del libro");
+		lblBookTitle.setBounds(158, 62, 118, 25);
+		lblBookTitle.setForeground(MainWindow.STRONGBLACK);
+		lblBookTitle.setFont(new Font("Segoe UI", Font.PLAIN, 17));
+		lblBookTitle.setHorizontalTextPosition(SwingConstants.RIGHT);
+		queryPanel.add(lblBookTitle);
 		
-		year = new JTextField();
-		year.setColumns(10);
-		year.setBounds(275, 134, 227, 25);
-		year.setForeground(MainWindow.STRONGGRAY);
-		year.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		year.setBackground(MainWindow.WHITECOLOR);
-		year.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
-		queryPanel.add(year);
-		*/
-		JLabel lblTtitle = new JLabel("Titulo del libro");
-		lblTtitle.setBounds(158, 62, 118, 25);
-		lblTtitle.setForeground(MainWindow.STRONGBLACK);
-		lblTtitle.setFont(new Font("Segoe UI", Font.PLAIN, 17));
-		lblTtitle.setHorizontalTextPosition(SwingConstants.RIGHT);
-		queryPanel.add(lblTtitle);
-		/*
+		
 		JLabel lblAuthor = new JLabel("Autor");
 		lblAuthor.setBounds(158, 103, 107, 25);
 		lblAuthor.setForeground(MainWindow.STRONGBLACK);
@@ -114,16 +82,58 @@ public class SearchBookPanel extends JPanel {
 		lblYear.setFont(new Font("Segoe UI", Font.PLAIN, 17));
 		lblYear.setHorizontalTextPosition(SwingConstants.RIGHT);
 		queryPanel.add(lblYear);
-		*/
+
+		title = new JTextField();
+		title.setColumns(10);
+		title.setBounds(275, 62, 227, 25);
+		title.setForeground(MainWindow.STRONGGRAY);
+		title.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		title.setBackground(MainWindow.WHITECOLOR);
+		title.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
+		title.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textFieldKeyReleased(evt);
+            }
+        });
+		queryPanel.add(title);
+		
+		author = new JTextField();
+		author.setColumns(10);
+		author.setBounds(275, 98, 227, 25);
+		author.setForeground(MainWindow.STRONGGRAY);
+		author.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		author.setBackground(MainWindow.WHITECOLOR);
+		author.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
+		author.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textFieldKeyReleased(evt);
+            }
+        });
+		queryPanel.add(author);
+		
+		year = new JTextField();
+		year.setColumns(10);
+		year.setBounds(275, 134, 227, 25);
+		year.setForeground(MainWindow.STRONGGRAY);
+		year.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		year.setBackground(MainWindow.WHITECOLOR);
+		year.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
+		year.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textFieldKeyReleased(evt);
+            }
+        });
+		queryPanel.add(year);
+		
 		showPanel(contentQueryPanel, queryPanel);
 	}
 	private void initBooksPanel(ArrayList<Book> bookSet) {
 		
 		booksPanel = new BooksPanel(listener,mouseListener,bookSet);
-		booksPanel.setBounds(0,0, 855, 374);
+		booksPanel.setBounds(0,0, 855, 401);
 		
 		JScrollPane scrollPane = new JScrollPane(booksPanel);
-		scrollPane.setBounds(0,0, 855, 374);
+		scrollPane.setBounds(0,0, 855, 401);
 		showPanel(contentBookPanel, scrollPane);
 		
 	}
@@ -141,37 +151,95 @@ public class SearchBookPanel extends JPanel {
 	}
 	//Metodo para el filtro con eventos de teclado busqueda de libros por titulo
 	private void textFieldKeyReleased(java.awt.event.KeyEvent evt) {
-		System.out.println("Titulo"+title.getText());
-		update(title.getText());
+		update(title.getText(),author.getText(),year.getText());
     }
-	private void update(String searchText) {
-		ArrayList<Book> auxBookSet = this.searchBooks(bookSet,searchText );
+	private void update(String searchText,String searchAuthor, String searchYear) {
+		ArrayList<Book> auxBookSet = this.searchBooks(bookSet,searchText,searchAuthor,searchYear );
 		initBooksPanel(auxBookSet);
 	}
-	public ArrayList<Book> searchBooks(ArrayList<Book> bookSet, String searchText){
+	public ArrayList<Book> searchBooks(ArrayList<Book> bookSet, String searchTitle,String searchAuthor, String searchYear){
 		ArrayList<Book> booksFound = new ArrayList<>();
-		char[] textChars = searchText.toCharArray();
-		if(textChars.length != 0) {
-			for (int i = 0; i < bookSet.size(); i++) {
-				String bookTitle = bookSet.get(i).getTitle();
-				boolean areEquals = true;
-				for (int j = 0; j < textChars.length && areEquals; j++) {
-					if(bookTitle.length() >= textChars.length) {
-						String actChar = String.valueOf(bookTitle.charAt(j));
-						if(actChar.compareToIgnoreCase(String.valueOf(textChars[j])) != 0) {
-							areEquals = false; 
-						}
-					}else {
-						areEquals = false;
+		char[] textChars = searchTitle.toCharArray();
+		char[] authorChars = searchAuthor.toCharArray();
+		char[] yearChars = searchYear.toCharArray();
+		
+			if(textChars.length != 0) {
+				for (int i = 0; i < bookSet.size(); i++) {
+					if (isSimilarWithTitle(bookSet.get(i), searchTitle)) {
+						booksFound.add(bookSet.get(i));
 					}
-				}
-				if (areEquals) {
-					booksFound.add(bookSet.get(i));
-				}
-			}			
-		}else {
-			return bookSet;
-		}
+				}	
+			}else if(authorChars.length != 0 || yearChars.length != 0){
+				booksFound = bookSet;
+			}
+			if(authorChars.length != 0) {
+				ArrayList<Book> aux  = new ArrayList<>();
+				for (int i = 0; i < booksFound.size(); i++) {
+					if (isSimilarWithAuthor(booksFound.get(i), searchAuthor)) {
+						aux.add(booksFound.get(i));
+					}
+				}	
+				booksFound = aux;
+			}
+			if(yearChars.length != 0) {
+				ArrayList<Book> aux  = new ArrayList<>();
+				for (int i = 0; i < booksFound.size(); i++) {
+					if (isSimilarWithYear(booksFound.get(i), searchYear)) {
+						aux.add(booksFound.get(i));
+					}
+				}	
+				booksFound = aux;
+			}
+			if(textChars.length == 0 && authorChars.length == 0 && yearChars.length == 0)
+				return bookSet;
 		return booksFound;
+	}
+	private boolean isSimilarWithTitle(Book actBook, String searchText) {
+		char[] textChars = searchText.toCharArray();
+		String bookTitle = actBook.getTitle();
+		boolean areEquals = true;
+		for (int j = 0; j < textChars.length && areEquals; j++) {
+			if(bookTitle.length() >= textChars.length) {
+				String actChar = String.valueOf(bookTitle.charAt(j));
+				if(actChar.compareToIgnoreCase(String.valueOf(textChars[j])) != 0) {
+					areEquals = false; 
+				}
+			}else {
+				areEquals = false;
+			}
+		}
+		return areEquals;
+	}
+	private boolean isSimilarWithAuthor(Book actBook, String searchAuthor) {
+		char[] textChars = searchAuthor.toCharArray();
+		String bookTitle = actBook.getAuthor();
+		boolean areEquals = true;
+		for (int j = 0; j < textChars.length && areEquals; j++) {
+			if(bookTitle.length() >= textChars.length) {
+				String actChar = String.valueOf(bookTitle.charAt(j));
+				if(actChar.compareToIgnoreCase(String.valueOf(textChars[j])) != 0) {
+					areEquals = false; 
+				}
+			}else {
+				areEquals = false;
+			}
+		}
+		return areEquals;
+	}
+	private boolean isSimilarWithYear(Book actBook, String searchYear) {
+		char[] textChars = searchYear.toCharArray();
+		String bookTitle = actBook.getDepartureYear();
+		boolean areEquals = true;
+		for (int j = 0; j < textChars.length && areEquals; j++) {
+			if(bookTitle.length() >= textChars.length) {
+				String actChar = String.valueOf(bookTitle.charAt(j));
+				if(actChar.compareToIgnoreCase(String.valueOf(textChars[j])) != 0) {
+					areEquals = false; 
+				}
+			}else {
+				areEquals = false;
+			}
+		}
+		return areEquals;
 	}
 }

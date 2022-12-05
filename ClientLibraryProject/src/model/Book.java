@@ -6,14 +6,18 @@ public class Book {
 	private int quantity;
 	private String author;
 	private String departureYear;
+	private String description;
+	private String pathImage;
 	
-	public Book(String title, int bookID, int quantity, String author, String departureYear) {
+	public Book(String title, int bookID, int quantity, String author, String departureYear,String description,String pathImage) {
 		super();
 		this.title = title;
 		this.bookID = bookID;
 		this.quantity = quantity;
 		this.author = author;
 		this.departureYear = departureYear;
+		this.description = description;
+		this.pathImage = pathImage;
 	}
 	public String getTitle() {
 		return title;
@@ -45,5 +49,18 @@ public class Book {
 	public void setDepartureYear(String departureYear) {
 		this.departureYear = departureYear;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getPathImage() {
+		return pathImage;
+	}
+	public void setPathImage(String pathImage) {
+		this.pathImage = pathImage;
+	}
+	
 	
 }
