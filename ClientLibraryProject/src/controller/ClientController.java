@@ -24,8 +24,8 @@ public class ClientController implements ActionListener{
 	private MainWindow window;
 	public ClientController() throws UnknownHostException, IOException {
 		window = new MainWindow(this,obtainBookSet());
-		/**this.socket = new Socket(HOST, PORT);
-		this.net = new Net(socket);**/
+		this.socket = new Socket(HOST, PORT);
+		this.net = new Net(socket);
 		this.init();
 	}
 	private void init() {
@@ -44,16 +44,16 @@ public class ClientController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String event = e.getActionCommand();
 		try {
-			//net.getOutput().writeUTF(event);
+			net.getOutput().writeUTF(event);
 
 			switch (event) {
 			case "LOGIN_USER":
 				this.loginUser();
-				
-				//window.initComponentsUser();
 				break;
 			case "CREATE_ACCOUNT_USER":
+				System.out.println("Voy a crear");
 				this.createAccountUser();
+				
 				break;
 			case "REGISTER_USER":
 				window.initRegisterPanel();
