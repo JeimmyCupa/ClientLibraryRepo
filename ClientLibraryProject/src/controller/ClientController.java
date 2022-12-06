@@ -43,7 +43,7 @@ public class ClientController implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String event = e.getActionCommand();
 		try {
-			net.getOutput().writeUTF(event);
+			//net.getOutput().writeUTF(event);
 
 			switch (event) {
 			case "LOGIN_USER":
