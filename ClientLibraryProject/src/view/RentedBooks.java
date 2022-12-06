@@ -74,6 +74,11 @@ public class RentedBooks extends JPanel {
 				txtTitle.setText("");
 			}
 		});
+		txtTitle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textFieldKeyReleased(evt);
+            }
+        });
 		add(txtTitle);
 		
 		JLabel title_1_1 = new JLabel("Buscar:");
