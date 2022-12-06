@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
 import javax.swing.text.IconView;
 
@@ -25,6 +26,7 @@ public class ClientController implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String event = e.getActionCommand();
+		
 		switch(event) {
 		case "LOGIN":
 			String user = window.obtainUser();
@@ -58,6 +60,9 @@ public class ClientController implements ActionListener{
 			break;
 		case "EXIT":
 			window.dispose();
+			break;
+		case "MIN":
+			window.setExtendedState(JFrame.ICONIFIED);
 			break;
 		
 		}

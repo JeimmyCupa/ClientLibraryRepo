@@ -35,7 +35,7 @@ public class MainWindow extends JFrame implements MouseListener{
     private ArrayList<Book> bookSet;
     private JPanel contentPane;//Panel principal de la ventana
 	private JPanel contentData,header,menuPanel,dataPanel;//Paneles para dividir el contenido en la ventana
-	private JButton btnExit;
+	private JButton btnExit,btnMin;
 	
 	private LoginPanel loginPanel;
 	private RegisterPanel registerPanel;
@@ -90,6 +90,21 @@ public class MainWindow extends JFrame implements MouseListener{
 		header.add(btnExit);
 		getContentPane().add(header);
 		
+		btnMin = new JButton();
+		btnMin.setText("-");
+		btnMin.setFont(new Font("Segoe UI", Font.PLAIN, 30));
+		btnMin.setForeground(WHITECOLOR);
+		btnMin.setBackground(MAINCOLOR);
+		btnMin.setBounds(1090,0,43,43);
+		btnMin.setBorderPainted(false);
+		btnMin.setMargin(new Insets(1, 1, 1, 1));;
+		btnMin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnMin.addActionListener(listener);
+		btnMin.setActionCommand("MIN");
+		btnMin.addMouseListener(this);
+		header.add(btnMin);
+		getContentPane().add(header);
+		
 		contentData = new JPanel();
 		contentData.setBounds(0,43,1200,637);
 		contentData.setLayout(null);
@@ -139,7 +154,6 @@ public class MainWindow extends JFrame implements MouseListener{
 		showPanel(dataPanel,searchBookPanel);
 	}
 	
-	//
 	public void initProfile(String strUserName, String strUserEmail, String strUserAge, String strUserID) {
 		profilePanel = new ProfilePanel(strUserName,strUserEmail,strUserAge,strUserID);
 		profilePanel.setLocation(0,0);
@@ -205,6 +219,7 @@ public class MainWindow extends JFrame implements MouseListener{
 			bookDialog.setVisible(true);
 			bookDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		}
+		
 		
 	}
 	@Override
