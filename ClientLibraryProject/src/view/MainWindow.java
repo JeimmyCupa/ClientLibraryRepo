@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 
 import model.Book;
 import model.CopyBook;
+import model.Person;
 
 import java.awt.Insets;
 
@@ -182,6 +183,9 @@ public class MainWindow extends JFrame implements MouseListener{
 	}
 	public String obtainPassword() {
 		return loginPanel.obtainPassword();
+	}
+	public Person obtainNewUser() {
+		return registerPanel.obtainNewUser();
 	}
 	//Metodos para el desplazamiento de la ventana
 	@SuppressWarnings("unchecked")

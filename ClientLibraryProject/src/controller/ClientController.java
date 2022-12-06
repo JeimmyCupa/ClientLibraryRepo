@@ -52,7 +52,7 @@ public class ClientController implements ActionListener{
 				//window.initComponentsUser();
 				break;
 			case "CREATE_ACCOUNT_USER":
-				
+				this.createAccountUser();
 				break;
 			case "REGISTER_USER":
 				window.initRegisterPanel();
@@ -104,6 +104,9 @@ public class ClientController implements ActionListener{
 		}
 	}
 	
+	private void createAccountUser() {
+		
+	}
 	private ArrayList<CopyBook> obtainRentedBooks(){
 		ArrayList<CopyBook> bookSet = new ArrayList<>();
 		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005", "", ""), 1));

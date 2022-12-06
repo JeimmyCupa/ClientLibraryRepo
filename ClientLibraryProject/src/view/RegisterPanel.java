@@ -18,6 +18,8 @@ import javax.swing.border.MatteBorder;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
 
+import model.Person;
+
 public class RegisterPanel extends JPanel {
 	private JPanel panelImage, panelLogin;
 	private JTextField name,user;
@@ -193,6 +195,10 @@ public class RegisterPanel extends JPanel {
 		
 	}
 	//GETTERS
+	public Person obtainNewUser() {
+		return new Person(name.getText(),lastName.getText(),id.getText(),email.getText(),String.valueOf(password.getPassword()));
+	}
+			
 	public String getName() {
 		return name.getText();
 	}
