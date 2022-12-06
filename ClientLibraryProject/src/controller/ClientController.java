@@ -23,8 +23,8 @@ public class ClientController implements ActionListener{
 	private MainWindow window;
 	public ClientController() throws UnknownHostException, IOException {
 		window = new MainWindow(this,obtainBookSet());
-		this.socket = new Socket(HOST, PORT);
-		this.net = new Net(socket);
+		/**this.socket = new Socket(HOST, PORT);
+		this.net = new Net(socket);**/
 		this.init();
 	}
 	private void init() {
