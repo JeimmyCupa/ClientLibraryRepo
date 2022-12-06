@@ -111,7 +111,7 @@ public class BookDialog extends JDialog {
 				}
 			}
 		});
-		btnRentBook.setActionCommand("RENTBOOK");
+		btnRentBook.setActionCommand("RENT_BOOK");
 		btnRentBook.setAlignmentX(BOTTOM_ALIGNMENT);
 		
 		btnCancel = new JButton("Cancelar");

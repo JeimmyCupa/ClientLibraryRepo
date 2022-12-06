@@ -100,7 +100,7 @@ public class RegisterPanel extends JPanel {
 		btnCreateAccount.setFont(new Font("Segoe UI", Font.BOLD, 23));
 		btnCreateAccount.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnCreateAccount.addActionListener(listener);
-		btnCreateAccount.setActionCommand("CREATEACCOUNT");
+		btnCreateAccount.setActionCommand("CREATE_ACCOUNT_USER");
 		btnCreateAccount.addMouseListener(mouseListener);
 		
 		lblCrearCredenciales = new JLabel("Crear credenciales");
@@ -116,7 +116,7 @@ public class RegisterPanel extends JPanel {
 		btnBack.setBorder(null);
 		btnBack.setBackground(MainWindow.MAINCOLOR);
 		btnBack.addActionListener(listener);
-		btnBack.setActionCommand("BACK");
+		btnBack.setActionCommand("BACK_TO_LOGIN");
 		btnBack.addMouseListener(mouseListener);
 		btnBack.setBounds(26, 182, 54, 42);
 		credentialsData.add(btnBack);
