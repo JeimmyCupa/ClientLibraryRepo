@@ -66,16 +66,16 @@ public class ClientController implements ActionListener{
 			case "RENT_BOOK":
 
 				break;
-			case "MYBOOKS":
+			case "MY_BOOKS":
 				window.initRentedBooks(this.obtainRentedBooks());
 				break;
 			case "CANCEL":
 				window.closeDialog();
 				break;
-			case "SINGOUT":
+			case "LOGOUT":
 				window.initLoginPanel();
 				break;
-			case "BACK":
+			case "BACK_TO_LOGIN":
 				window.initLoginPanel();
 				break;
 			case "EXIT":
