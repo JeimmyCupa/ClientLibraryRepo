@@ -49,7 +49,7 @@ public class MainWindow extends JFrame implements MouseListener{
 	
 	public MainWindow(ActionListener listener,ArrayList<Book> bookSet) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setUndecorated(true);
+		setUndecorated(true);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		
@@ -178,9 +178,11 @@ public class MainWindow extends JFrame implements MouseListener{
 	}
 	//Metodos para obtener datos del usuario
 	public String obtainUser() {
-		return loginPanel.getUser();
+		return loginPanel.obtainUser();
 	}
-	
+	public String obtainPassword() {
+		return loginPanel.obtainPassword();
+	}
 	//Metodos para el desplazamiento de la ventana
 	@SuppressWarnings("unchecked")
 	private void btnMoveMousePressed(MouseEvent event) {

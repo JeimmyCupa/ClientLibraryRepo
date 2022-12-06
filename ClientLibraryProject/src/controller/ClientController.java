@@ -2,6 +2,9 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -13,61 +16,94 @@ import model.CopyBook;
 import view.MainWindow;
 
 public class ClientController implements ActionListener{
+	private static final int PORT = 11961;
+	private static final String HOST = "localhost";
+	private Socket socket;
+	private Net net;
 	private MainWindow window;
-	public ClientController() {
+	public ClientController() throws UnknownHostException, IOException {
 		window = new MainWindow(this,obtainBookSet());
+		this.socket = new Socket(HOST, PORT);
+		this.net = new Net(socket);
+		this.init();
+	}
+	private void init() {
 		window.setVisible(true);
 	}
-	
 	public static void main(String[] args) {
-		new ClientController();
+		try {
+			new ClientController();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String event = e.getActionCommand();
-		
-		switch(event) {
-		case "LOGIN":
-			String user = window.obtainUser();
-			window.initComponentsUser();//Prueba
-			break;
-		case "CREATEACCOUNT":
-			break;
-		case "REGISTER":
-			window.initRegisterPanel();
-			break;
-		case "SHOWPROFILE":
-			window.initProfile("Juan","juansito@gmail.com","18","2");
-			break;
-		case "SEARCHBOOKS":
-			window.initSearchBooks(this.obtainBookSet());
-			break;
-		case "RENTBOOK":
-			
-			break;
-		case "MYBOOKS":
-			window.initRentedBooks(this.obtainRentedBooks());
-			break;
-		case "CANCELAR":
-			window.closeDialog();
-			break;
-		case "SINGOUT":
-			window.initLoginPanel();
-			break;
-		case "BACK":
-			window.initLoginPanel();
-			break;
-		case "EXIT":
-			window.dispose();
-			break;
-		case "MIN":
-			window.setExtendedState(JFrame.ICONIFIED);
-			break;
-		
+		try {
+			net.getOutput().writeUTF(event);
+
+			switch (event) {
+			case "LOGIN_USER":
+				this.loginUser();
+				
+				//window.initComponentsUser();
+				break;
+			case "CREATE_ACCOUNT_USER":
+				
+				break;
+			case "REGISTER_USER":
+				window.initRegisterPanel();
+				break;
+			case "SHOW_PROFILE":
+				window.initProfile("Juan", "juansito@gmail.com", "18", "2");
+				break;
+			case "SEARCH_BOOKS":
+				window.initSearchBooks(this.obtainBookSet());
+				break;
+			case "RENT_BOOK":
+
+				break;
+			case "MYBOOKS":
+				window.initRentedBooks(this.obtainRentedBooks());
+				break;
+			case "CANCEL":
+				window.closeDialog();
+				break;
+			case "SINGOUT":
+				window.initLoginPanel();
+				break;
+			case "BACK":
+				window.initLoginPanel();
+				break;
+			case "EXIT":
+				window.dispose();
+				break;
+			case "MIN":
+				window.setExtendedState(JFrame.ICONIFIED);
+				break;
+
+			}
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		
+
 	}
+	
+	private void loginUser() throws IOException {
+		net.getOutput().writeUTF(window.obtainUser());
+		net.getOutput().writeUTF(window.obtainPassword());
+		
+		if(net.getInput().readBoolean()) {
+			window.initComponentsUser();
+		}else {
+			//Crear el JDialog
+		}
+	}
+	
 	private ArrayList<CopyBook> obtainRentedBooks(){
 		ArrayList<CopyBook> bookSet = new ArrayList<>();
 		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005", "", ""), 1));

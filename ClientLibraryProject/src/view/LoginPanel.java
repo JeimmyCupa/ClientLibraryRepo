@@ -114,20 +114,15 @@ public class LoginPanel extends JPanel {
 		add(panelLogin);
 	}
 	//GETTERS AND SETTERS
-	public String getUser() {
+	public String obtainUser() {
 		return user.getText();
 	}
-	public void setUser(String user) {
-		this.user.setText(user);
-	}
-	public String getPassword() {
+	
+	public String obtainPassword() {
 		return String.valueOf(password.getPassword());
 	}
-	public void setPassword(String password) {
-		this.password.setText(password);
-	}
 	
-	
+	//Hacer cambios
 	public JButton getBtnLogin() {
 		return btnLogin;
 	}
