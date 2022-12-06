@@ -13,6 +13,7 @@ import javax.swing.text.IconView;
 
 import model.Book;
 import model.CopyBook;
+import model.Person;
 import view.MainWindow;
 
 public class ClientController implements ActionListener{
@@ -104,8 +105,15 @@ public class ClientController implements ActionListener{
 		}
 	}
 	
-	private void createAccountUser() {
-		
+	private void createAccountUser() throws IOException {
+		Person newUser = window.obtainNewUser();
+		net.getOutput().writeUTF(net.getMyGson().toJson(newUser));
+		if(net.getInput().readBoolean()) {
+			//Dialog usuario creado exitosamente
+			window.initLoginPanel();
+		}else {
+			//Dialog usuario ya se encuentra registrado
+		}
 	}
 	private ArrayList<CopyBook> obtainRentedBooks(){
 		ArrayList<CopyBook> bookSet = new ArrayList<>();
