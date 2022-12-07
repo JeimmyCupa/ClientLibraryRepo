@@ -136,7 +136,7 @@ public class ClientController implements ActionListener{
 	/*
 	private ArrayList<CopyBook> obtainRentedBooks(){
 		ArrayList<CopyBook> bookSet = new ArrayList<>();
-		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005", "", ""), 1));
+		/**bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005", "", ""), 1));
 		bookSet.add(new CopyBook(new Book("100 Años de soledad", 2, 19, "Pepito", "2005", "", ""), 2));
 		bookSet.add(new CopyBook(new Book("Principal", 3, 19, "Pepito", "2005", "", ""), 3));
 		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005", "", ""), 4));
@@ -156,8 +156,8 @@ public class ClientController implements ActionListener{
 		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005", "", ""), 4));
 		bookSet.add(new CopyBook(new Book("A donde vas", 5, 19, "Pepito", "2005", "", ""), 5));
 		bookSet.add(new CopyBook(new Book("No se que mas poner", 6, 19, "Pepito", "2005", "", ""), 6));
-		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005", "", ""), 7));
-		return bookSet;
+		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005", "", ""), 7));**/
+		return new ArrayList<>();
 	}
 	private ArrayList<Book> obtainBookSet() {
 		ArrayList<Book> bookSet = new ArrayList<Book>();
