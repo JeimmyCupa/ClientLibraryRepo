@@ -27,14 +27,6 @@ import javax.swing.JTextArea;
 public class BookDialog extends JDialog {
 	private JPanel bookPanel;
 	private JButton btnRentBook,btnCancel;
-
-	/**
-	 * Metodo constructor del dialogo para mostrar el libro con el boton de rentar.
-	 * @param frame Indica la ventana padre del dialogo
-	 * @param mode
-	 * @param listener Recibe un objeto ActionListener de ClientController
-	 * @param item Recibe como parámetro un objeto Item, que hereda de JPanel, del libro a mostrar
-	 */
 	public BookDialog(boolean mode,JFrame frame,ActionListener actionListener, Book book) {
 		super(frame,mode);
 		

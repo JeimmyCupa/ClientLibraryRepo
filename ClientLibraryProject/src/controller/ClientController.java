@@ -57,22 +57,21 @@ public class ClientController implements ActionListener{
 			case "CREATE_ACCOUNT_USER":
 				System.out.println("Voy a crear");
 				this.createAccountUser();
-				
 				break;
 			case "REGISTER_USER":
-				window.initRegisterPanel();
+				window.putVisibilityRegister();
 				break;
 			case "SHOW_PROFILE":
-				//window.initProfile();
+				window.putVisibilityProfile();
 				break;
 			case "SEARCH_BOOKS":
-				window.initSearchBooks(this.obtainBookSet());
+				window.putVisibilitySearchBook();;
 				break;
 			case "RENT_BOOK":
 
 				break;
 			case "MY_BOOKS":
-				window.initRentedBooks(this.obtainRentedBooks());
+				window.putVisibilityRentedBooks();;
 				break;
 			case "LOGOUT":
 				window.initLoginPanel();
@@ -100,13 +99,17 @@ public class ClientController implements ActionListener{
 		net.getOutput().writeUTF(window.obtainPassword());
 		
 		if(net.getInput().readBoolean()) {
-			window.setBookSet(this.obtainBookSet());
-			window.initRentedBooks(this.obtainRentedBooks());
-			window.initProfile(this.obtainUser());
-			window.initComponentsUser();
+			this.initializeUserView();
 		}else {
 			//Crear el JDialog
 		}
+	}
+	
+	private void initializeUserView() throws JsonSyntaxException, IOException {
+		window.setBookSet(this.obtainBookSet());
+		window.setBooksRented(this.obtainRentedBooks());
+		window.setProfile(this.obtainUser());
+		window.initComponentsUser();
 	}
 	
 	private void createAccountUser() throws IOException {

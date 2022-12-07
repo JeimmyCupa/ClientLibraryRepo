@@ -23,17 +23,11 @@ import model.Person;
 
 import java.awt.Insets;
 
-public class MainWindow extends JFrame{
-	public final static Color MAINCOLOR = new Color(46,55,100);
-    public final static Color WHITECOLOR = new Color(235,236,240);
-    public final static Color STRONGBLACK = new Color(14,29,38);
-    public final static Color STRONGGRAY = new Color(38,38,38);
-    public final static Color GRAY = new Color(89,89,89);
-    public final static Color LIGHTGRAY = new Color(166,166,166);
-    public final static Color BEIGE = new Color(242,242,199);
-    public final static Color HOVERCOLOR = new Color(74,87,120);
-	
+public class MainWindow extends JFrame implements Utilities{
     private ArrayList<Book> bookSet;
+    private ArrayList<CopyBook> booksRented;
+    private Person profile;
+    
     private JPanel contentPane;//Panel principal de la ventana
 	private JPanel contentData,header,menuPanel,dataPanel;//Paneles para dividir el contenido en la ventana
 	private JButton btnExit,btnMin;
@@ -46,26 +40,35 @@ public class MainWindow extends JFrame{
 	private RentedBooks rentedBooks;
 	//private BookDialog bookDialog;
 	private ActionListener listener;
+	
+	
 	private int xMouse, yMouse;//atributos para controlar el desplazamiento de la ventana
 	
 	public MainWindow(ActionListener listener) {
+		this.listener = listener;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setUndecorated(true);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		
 		setBounds(10,10,1200,680);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
-		this.listener = listener;
-		this.bookSet = bookSet;
-		menu = new MenuPanel(listener);
+		
 		initComponents();
+		initLoginPanel();
 	}
+	//SETTERS PARA INFORMACIÓN 
 	public void setBookSet(ArrayList<Book> bookSet) {
 		this.bookSet = bookSet;
+	}
+	public void setBooksRented(ArrayList<CopyBook> booksRented) {
+		this.booksRented = booksRented;
+	}
+	public void setProfile(Person profile) {
+		this.profile = profile;
 	}
 	//Metodo para inciar componentes generales de la GUI(Cabecera y un panel para el contenido en contentPane)
 	public void initComponents() {
@@ -114,19 +117,33 @@ public class MainWindow extends JFrame{
 		contentData.setLayout(null);
 		contentPane.add(contentData);
 	}
+	
+	private void initAllUserPanels() {
+		searchBookPanel = new SearchBookPanel(this,listener,bookSet);
+		searchBookPanel.setVisible(true);
+		searchBookPanel.setLocation(0,0);
+		dataPanel.add(searchBookPanel);
+		
+		rentedBooks = new RentedBooks(this.booksRented);
+		rentedBooks.setLocation(0, 0);
+		rentedBooks.setVisible(false);
+		dataPanel.add(registerPanel);
+		
+		profilePanel = new ProfilePanel(profile);
+		profilePanel.setLocation(0,0);
+		profilePanel.setVisible(false);
+		dataPanel.add(profilePanel);
+	}
 	//Metodo para iniciar componente del Login
 	public void initLoginPanel() {
 		loginPanel = new LoginPanel(listener);
 		loginPanel.setSize(1200, 635);
 		loginPanel.setLocation(0, 0);
-		showPanel(contentData, loginPanel);
-	}
-	/**
-	 * Metodo para iniciar panel de registro de nuevo usuario
-	 */
-	public void initRegisterPanel() {
+		contentData.add(loginPanel);
+		//showPanel(contentData, loginPanel);
 		registerPanel = new RegisterPanel(listener);
-		showPanel(contentData, registerPanel);
+		registerPanel.setVisible(false);
+		contentData.add(registerPanel);
 	}
 	/**Metodo que inicia la interfaz de usuario (Menu y un panel lateral para el contenido)
 	*Este metodo se debe llamar siempre el login sea exitoso.
@@ -148,8 +165,40 @@ public class MainWindow extends JFrame{
 		menu.setLocation(0, 0);
 		showPanel(menuPanel,menu);
 		
-		initSearchBooks(this.bookSet);
+		initAllUserPanels();
 	}
+	
+	public void putVisibilitySearchBook() {
+		searchBookPanel.setVisible(true);
+		rentedBooks.setVisible(false);
+		profilePanel.setVisible(false);
+	}
+	
+	public void putVisibilityProfile() {
+		profilePanel.setVisible(true);
+		searchBookPanel.setVisible(false);
+		rentedBooks.setVisible(false);
+	}
+	
+	public void putVisibilityRentedBooks() {
+		searchBookPanel.setVisible(false);
+		rentedBooks.setVisible(true);
+		profilePanel.setVisible(false);
+	}
+	
+	public void putVisibilityLogin() {
+		loginPanel.setVisible(true);
+		registerPanel.setVisible(false);
+	}
+	
+	public void putVisibilityRegister() {
+		loginPanel.setVisible(false);
+		registerPanel.setVisible(true);
+	}
+	
+	
+	
+	
 	//Metodo para pintar el panel buscar libros SearchBooks(){
 	public void initSearchBooks(ArrayList<Book> bookSet) {
 		searchBookPanel = new SearchBookPanel(this,listener,bookSet);
@@ -168,6 +217,10 @@ public class MainWindow extends JFrame{
 		rentedBooks.setLocation(0, 0);
 		showPanel(dataPanel,rentedBooks);
 	}
+	
+	
+	
+	
 	/*Metodo encargado de repintar un panel, recibe como parametro el panel en donde se quiere
 	 * pintar un segundo panel.
 	*/
