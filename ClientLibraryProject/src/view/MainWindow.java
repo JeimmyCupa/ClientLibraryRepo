@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import model.Person;
 
 import java.awt.Insets;
 
-public class MainWindow extends JFrame implements Utilities{
+public class MainWindow extends JFrame implements Utilities, MouseListener{
     private ArrayList<Book> bookSet;
     private ArrayList<CopyBook> booksRented;
     private Person profile;
@@ -199,7 +200,7 @@ public class MainWindow extends JFrame implements Utilities{
 	
 	//Metodo para pintar el panel buscar libros SearchBooks(){
 	public void initSearchBooks(ArrayList<Book> bookSet) {
-		searchBookPanel = new SearchBookPanel(this,listener,this.mouseClickedItem(),bookSet);
+		searchBookPanel = new SearchBookPanel(this,listener,this,bookSet);
 		searchBookPanel.setLocation(0,0);
 		dataPanel.add(searchBookPanel);
 		showPanel(dataPanel,searchBookPanel);
@@ -329,5 +330,34 @@ public class MainWindow extends JFrame implements Utilities{
 		windowDialog = new WindowDialog(true, this, listener, message);
 		windowDialog.setVisible(true);
 		windowDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if(e.getSource().getClass().equals(Item.class)) {
+			Item item = (Item)e.getSource();
+			bookDialog = new BookDialog(true, this, listener,item.obtainBook());
+			bookDialog.setVisible(true);
+			bookDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		}
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

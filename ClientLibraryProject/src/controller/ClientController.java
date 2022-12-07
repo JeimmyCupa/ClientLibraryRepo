@@ -55,7 +55,6 @@ public class ClientController implements ActionListener{
 				this.loginUser();
 				break;
 			case "CREATE_ACCOUNT_USER":
-				System.out.println("Voy a crear");
 				this.createAccountUser();
 				break;
 			case "REGISTER_USER":

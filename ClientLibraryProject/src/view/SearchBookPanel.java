@@ -26,10 +26,11 @@ public class SearchBookPanel extends JPanel {
 	private ArrayList<Book> bookSet;
 	private JFrame frame;
 	private ActionListener listener;
+	private MouseListener mouseListener;
 	private MouseAdapter mouseAdapterClicket;
-	public SearchBookPanel(JFrame frame,ActionListener listener,MouseAdapter mouseAdapterClicket,ArrayList<Book> bookSet) {
+	public SearchBookPanel(JFrame frame,ActionListener listener,MouseListener mouseListener,ArrayList<Book> bookSet) {
 		this.listener = listener;
-		this.mouseAdapterClicket = mouseAdapterClicket; 
+		this.mouseListener = mouseListener;
 		this.bookSet = bookSet;
 		this.frame = frame;
 		setSize(914,635);
@@ -135,7 +136,7 @@ public class SearchBookPanel extends JPanel {
 	}
 	private void initBooksPanel(ArrayList<Book> bookSet) {
 		
-		booksPanel = new BooksPanel(listener,this.mouseAdapterClicket,bookSet);
+		booksPanel = new BooksPanel(listener,mouseListener,bookSet);
 		booksPanel.setBounds(0,0, 855, 401);
 		
 		JScrollPane scrollPane = new JScrollPane(booksPanel);

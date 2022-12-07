@@ -24,12 +24,12 @@ import java.awt.event.MouseListener;
 public class Item extends JPanel {
 	private Book book;
 	private ActionListener listener;
-	public Item(Book book,ActionListener listener,MouseAdapter mouseAdapterClicket) {
+	public Item(Book book,ActionListener listener,MouseListener mouseListener) {
 		this.listener = listener;
 		this.book= book;
 		addMouseListener(this.mouseEntered());
 		addMouseListener(this.mouseExited());
-		addMouseListener(mouseAdapterClicket);
+		addMouseListener(mouseListener);
 		setBackground(MainWindow.WHITECOLOR);
 		setBorder(new MatteBorder(1,1,1,1,MainWindow.LIGHTGRAY));
 		setLayout(new GridBagLayout());

@@ -112,25 +112,7 @@ public class BookDialog extends JDialog {
 		btnCancel.setForeground(MainWindow.WHITECOLOR);
 		btnCancel.setBackground(MainWindow.MAINCOLOR);
 		btnCancel.addMouseListener(this.mouseClicked());
-		btnCancel.addMouseListener(new  MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if(e.getSource().equals(btnRentBook)){
-					JButton btn = (JButton)e.getSource();
-					btn.setBackground(MainWindow.HOVERCOLOR);
-					btn.setForeground(MainWindow.STRONGBLACK);
-				}
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {
-				setBackground(MainWindow.MAINCOLOR);
-				if(e.getSource().equals(btnRentBook)){
-					JButton btn = (JButton)e.getSource();
-					btn.setBackground(MainWindow.MAINCOLOR);
-					btn.setForeground(MainWindow.STRONGBLACK);
-				}
-			}
-		});
+		btnCancel.addMouseListener(this.mouseEntered());
 		
 		bookPanel.add(lblAuthor);
 		bookPanel.add(textArea);
@@ -150,7 +132,37 @@ public class BookDialog extends JDialog {
 			
 		};
 	}
+	public MouseAdapter mouseEntered() {
+		return new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnMouseEntered(e);
+			}
+		};
+	}
+	public MouseAdapter mouseExited() {
+		return new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnMouseExited(e);
+			}
+		};
+	}
 	
+	private void btnMouseEntered(MouseEvent event) {
+		if (event.getSource() == btnRentBook)
+			btnRentBook.setBackground(MainWindow.HOVERCOLOR);
+		else if (event.getSource() == btnCancel)
+			btnCancel.setBackground(MainWindow.HOVERCOLOR);
+	}
+
+	private void btnMouseExited(MouseEvent event) {
+		if (event.getSource() == btnRentBook)
+			btnRentBook.setBackground(MainWindow.MAINCOLOR);
+		else if (event.getSource() == btnCancel)
+			btnCancel.setBackground(MainWindow.MAINCOLOR);
+	}
+
 	private void verifyQuantity() {
 		if(book.getQuantity() == 0)
 			btnRentBook.setEnabled(false);
