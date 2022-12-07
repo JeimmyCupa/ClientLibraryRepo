@@ -310,7 +310,7 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 			btnMin.setBackground(HOVERCOLOR);
 	}
 	
-	//Revisar porque el mause adapter no esta enviando en si la accion del mouse listener
+	//Revisar porque el mouse adapter no esta enviando en si la accion del mouse listener
 	private MouseAdapter mouseClickedItem() {
 		return new MouseAdapter(){
 			@Override
@@ -331,6 +331,7 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 		windowDialog.setVisible(true);
 		windowDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(e.getSource().getClass().equals(Item.class)) {
@@ -340,6 +341,7 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 			bookDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		}
 	}
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub

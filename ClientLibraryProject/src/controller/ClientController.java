@@ -101,10 +101,10 @@ public class ClientController implements ActionListener{
 			if(!net.getInput().readBoolean()) {
 				this.initializeUserView();
 			}else {
-				//Ya inició sesión
+				window.showMessageDialog("El usuario ya inició sesión.");
 			}
 		}else {
-			//Crear el JDialog el usuario no se encuentra registrado
+			window.showMessageDialog("El usuario ya se encuentra registrado.");
 		}
 	}
 	
