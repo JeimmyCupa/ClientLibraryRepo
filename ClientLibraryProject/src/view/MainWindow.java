@@ -38,7 +38,7 @@ public class MainWindow extends JFrame implements Utilities{
 	private ProfilePanel profilePanel;
 	private SearchBookPanel searchBookPanel;
 	private RentedBooks rentedBooks;
-	//private BookDialog bookDialog;
+	private BookDialog bookDialog;
 	private ActionListener listener;
 	
 	
@@ -119,7 +119,7 @@ public class MainWindow extends JFrame implements Utilities{
 	}
 	
 	private void initAllUserPanels() {
-		searchBookPanel = new SearchBookPanel(this,listener,bookSet);
+		searchBookPanel = new SearchBookPanel(this,listener,this.mouseClickedItem(),this.bookSet);
 		searchBookPanel.setVisible(true);
 		searchBookPanel.setLocation(0,0);
 		dataPanel.add(searchBookPanel);
@@ -196,7 +196,7 @@ public class MainWindow extends JFrame implements Utilities{
 	
 	//Metodo para pintar el panel buscar libros SearchBooks(){
 	public void initSearchBooks(ArrayList<Book> bookSet) {
-		searchBookPanel = new SearchBookPanel(this,listener,bookSet);
+		searchBookPanel = new SearchBookPanel(this,listener,this.mouseClickedItem(),bookSet);
 		searchBookPanel.setLocation(0,0);
 		dataPanel.add(searchBookPanel);
 		showPanel(dataPanel,searchBookPanel);
@@ -238,6 +238,9 @@ public class MainWindow extends JFrame implements Utilities{
 		return registerPanel.obtainNewUser();
 	}
 	
+	public Book obtainRentBook() {
+		return bookDialog.obtainRentedBook();
+	}
 	
 	
 	
@@ -300,5 +303,20 @@ public class MainWindow extends JFrame implements Utilities{
 
 	private void btnMouseExited(MouseEvent event) {
 		setBackground(MainWindow.MAINCOLOR);
+	}
+	//Revisar porque el mause adapter no esta enviando en si la accion del mouse listener
+	private MouseAdapter mouseClickedItem() {
+		return new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				showDialogRentedBook((Item)e.getSource());
+			}
+		};
+	}
+	
+	private void showDialogRentedBook(Item item) {
+		bookDialog = new BookDialog(true,this, listener, item.obtainBook());
+		bookDialog.setVisible(true);
+		bookDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 	}
 }

@@ -27,9 +27,10 @@ import javax.swing.JTextArea;
 public class BookDialog extends JDialog {
 	private JPanel bookPanel;
 	private JButton btnRentBook,btnCancel;
+	private Book book;
 	public BookDialog(boolean mode,JFrame frame,ActionListener actionListener, Book book) {
 		super(frame,mode);
-		
+		this.book = book;
 		setSize(478,345);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -134,6 +135,7 @@ public class BookDialog extends JDialog {
 		bookPanel.add(lblAuthor);
 		bookPanel.add(textArea);
 		bookPanel.add(lblYear);
+		verifyQuantity();
 		bookPanel.add(btnRentBook);
 		bookPanel.add(btnCancel);
 		
@@ -147,6 +149,15 @@ public class BookDialog extends JDialog {
 			}
 			
 		};
+	}
+	
+	private void verifyQuantity() {
+		if(book.getQuantity() == 0)
+			btnRentBook.setEnabled(false);
+	}
+	
+	public Book obtainRentedBook() {
+		return this.book;
 	}
 	
 }

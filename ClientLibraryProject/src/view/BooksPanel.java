@@ -14,7 +14,7 @@ import model.Book;
 
 public class BooksPanel extends JPanel {
 	private ArrayList<Item> items;
-	public BooksPanel(JFrame frame,ActionListener listener,ArrayList<Book> bookSet) {
+	public BooksPanel(ActionListener listener,MouseAdapter mouseAdapterClicket,ArrayList<Book> bookSet) {
 		setSize(855, 440);
 		setBackground(MainWindow.WHITECOLOR);
 		items = new ArrayList<Item>();
@@ -22,11 +22,11 @@ public class BooksPanel extends JPanel {
 		layout.setColumns(3);
 		layout.setHgap(13);//Establece la separacion entre columnas
 		layout.setVgap(13);//Establece la separacion entre filas;
-		filBooksPanel(layout,frame,listener,bookSet);
+		filBooksPanel(layout,listener,mouseAdapterClicket,bookSet);
 		setLayout(layout);
 	}
 
-	private void filBooksPanel(GridLayout layout,JFrame frame,ActionListener listener,ArrayList<Book> bookSet) {
+	private void filBooksPanel(GridLayout layout,ActionListener listener,MouseAdapter mouseAdapterClicket,ArrayList<Book> bookSet) {
 		int count= 0; //Se encarga de controlar el numero de elementos por fila
 		for(int i = 0;i<bookSet.size();i++) {//Numero de items a crear
 			if(count == layout.getColumns()) {
@@ -35,7 +35,7 @@ public class BooksPanel extends JPanel {
 			}
 			Book book = bookSet.get(i);
 			book.setPathImage("/data/frontPage/libro2.jpg");
-			Item item = new Item(book,listener,frame);
+			Item item = new Item(book,listener,mouseAdapterClicket);
 			
 			items.add(item);
 			add(item);

@@ -24,12 +24,12 @@ import java.awt.event.MouseListener;
 public class Item extends JPanel {
 	private Book book;
 	private ActionListener listener;
-	public Item(Book book,ActionListener listener,JFrame mainWindow) {
+	public Item(Book book,ActionListener listener,MouseAdapter mouseAdapterClicket) {
 		this.listener = listener;
 		this.book= book;
 		addMouseListener(this.mouseEntered());
 		addMouseListener(this.mouseExited());
-		addMouseListener(this.mouseClicked(mainWindow));
+		addMouseListener(mouseAdapterClicket);
 		setBackground(MainWindow.WHITECOLOR);
 		setBorder(new MatteBorder(1,1,1,1,MainWindow.LIGHTGRAY));
 		setLayout(new GridBagLayout());
@@ -128,7 +128,7 @@ public class Item extends JPanel {
 		setBackground(MainWindow.WHITECOLOR);
 		setBorder(new MatteBorder(1, 1, 1, 1, MainWindow.GRAY));
 	}
-	
+	/*
 	private MouseAdapter mouseClicked(JFrame mainWindow) {
 		return new MouseAdapter(){
 			@Override
@@ -143,5 +143,6 @@ public class Item extends JPanel {
 		bookDialog.setVisible(true);
 		bookDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 	}
+	*/
 
 }

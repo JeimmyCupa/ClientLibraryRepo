@@ -67,11 +67,11 @@ public class ClientController implements ActionListener{
 			case "SEARCH_BOOKS":
 				window.putVisibilitySearchBook();;
 				break;
-			case "RENT_BOOK":
-
-				break;
 			case "MY_BOOKS":
 				window.putVisibilityRentedBooks();;
+				break;
+			case "RENT_BOOK":
+				this.rentBook();
 				break;
 			case "LOGOUT":
 				window.initLoginPanel();
@@ -99,9 +99,13 @@ public class ClientController implements ActionListener{
 		net.getOutput().writeUTF(window.obtainPassword());
 		
 		if(net.getInput().readBoolean()) {
-			this.initializeUserView();
+			if(!net.getInput().readBoolean()) {
+				this.initializeUserView();
+			}else {
+				//Ya inició sesión
+			}
 		}else {
-			//Crear el JDialog
+			//Crear el JDialog el usuario no se encuentra registrado
 		}
 	}
 	
@@ -122,6 +126,10 @@ public class ClientController implements ActionListener{
 		}else {
 			//Dialog usuario ya se encuentra registrado
 		}
+	}
+	
+	private void rentBook() {
+		net.getMyGson().toJson(window.obtainRentBook());
 	}
 	
 	private ArrayList<Book> obtainBookSet() throws JsonSyntaxException, IOException{
