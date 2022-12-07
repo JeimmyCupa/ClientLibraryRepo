@@ -82,7 +82,7 @@ public class MainWindow extends JFrame{
 		btnExit.setFont(new Font("Segoe UI", Font.PLAIN, 30));
 		btnExit.setForeground(WHITECOLOR);
 		btnExit.setBackground(MAINCOLOR);
-		btnExit.setBounds(1136,0,43,43);
+		btnExit.setBounds(1157,0,43,43);
 		btnExit.setBorderPainted(false);
 		btnExit.setMargin(new Insets(1, 1, 1, 1));;
 		btnExit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -95,10 +95,10 @@ public class MainWindow extends JFrame{
 		
 		btnMin = new JButton();
 		btnMin.setText("-");
-		btnMin.setFont(new Font("Segoe UI", Font.PLAIN, 30));
+		btnMin.setFont(new Font("Segoe UI", Font.PLAIN, 35));
 		btnMin.setForeground(WHITECOLOR);
 		btnMin.setBackground(MAINCOLOR);
-		btnMin.setBounds(1090,0,43,43);
+		btnMin.setBounds(1113,0,43,43);
 		btnMin.setBorderPainted(false);
 		btnMin.setMargin(new Insets(1, 1, 1, 1));;
 		btnMin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
