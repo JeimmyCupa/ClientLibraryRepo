@@ -2,14 +2,14 @@ package model;
 
 public class CopyBook {
 	private Book rentedBook;
-	private int userID;
+	private String userID;
 
-	public CopyBook(Book rentedBook, int userID) {
+	public CopyBook(Book rentedBook, String userID) {
 		this.rentedBook = rentedBook;
 		this.userID = userID;
 	}
 
-	public int getUserID() {
+	public String getUserID() {
 		return userID;
 	}
 	
