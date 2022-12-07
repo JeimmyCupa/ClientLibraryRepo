@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
@@ -25,8 +26,10 @@ public class SearchBookPanel extends JPanel {
 	private ArrayList<Book> bookSet;
 	private JFrame frame;
 	private ActionListener listener;
-	public SearchBookPanel(JFrame frame,ActionListener listener,ArrayList<Book> bookSet) {
+	private MouseAdapter mouseAdapterClicket;
+	public SearchBookPanel(JFrame frame,ActionListener listener,MouseAdapter mouseAdapterClicket,ArrayList<Book> bookSet) {
 		this.listener = listener;
+		this.mouseAdapterClicket = mouseAdapterClicket; 
 		this.bookSet = bookSet;
 		this.frame = frame;
 		setSize(914,635);
@@ -132,7 +135,7 @@ public class SearchBookPanel extends JPanel {
 	}
 	private void initBooksPanel(ArrayList<Book> bookSet) {
 		
-		booksPanel = new BooksPanel(frame,listener,bookSet);
+		booksPanel = new BooksPanel(listener,this.mouseAdapterClicket,bookSet);
 		booksPanel.setBounds(0,0, 855, 401);
 		
 		JScrollPane scrollPane = new JScrollPane(booksPanel);
