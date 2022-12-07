@@ -139,11 +139,15 @@ public class MainWindow extends JFrame implements Utilities{
 		loginPanel = new LoginPanel(listener);
 		loginPanel.setSize(1200, 635);
 		loginPanel.setLocation(0, 0);
-		contentData.add(loginPanel);
-		//showPanel(contentData, loginPanel);
+		showPanel(contentData, loginPanel);
+	}
+
+	/**
+	 * Metodo para iniciar panel de registro de nuevo usuario
+	 */
+	public void initRegisterPanel() {
 		registerPanel = new RegisterPanel(listener);
-		registerPanel.setVisible(false);
-		contentData.add(registerPanel);
+		showPanel(contentData, registerPanel);
 	}
 	/**Metodo que inicia la interfaz de usuario (Menu y un panel lateral para el contenido)
 	*Este metodo se debe llamar siempre el login sea exitoso.
@@ -169,32 +173,23 @@ public class MainWindow extends JFrame implements Utilities{
 	}
 	
 	public void putVisibilitySearchBook() {
-		searchBookPanel.setVisible(true);
 		rentedBooks.setVisible(false);
 		profilePanel.setVisible(false);
+		searchBookPanel.setVisible(true);
 	}
 	
 	public void putVisibilityProfile() {
-		profilePanel.setVisible(true);
 		searchBookPanel.setVisible(false);
 		rentedBooks.setVisible(false);
+		profilePanel.setVisible(true);
 	}
 	
 	public void putVisibilityRentedBooks() {
 		searchBookPanel.setVisible(false);
-		rentedBooks.setVisible(true);
 		profilePanel.setVisible(false);
+		rentedBooks.setVisible(true);
 	}
-	
-	public void putVisibilityLogin() {
-		loginPanel.setVisible(true);
-		registerPanel.setVisible(false);
-	}
-	
-	public void putVisibilityRegister() {
-		loginPanel.setVisible(false);
-		registerPanel.setVisible(true);
-	}
+
 	
 	
 	

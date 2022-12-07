@@ -59,7 +59,7 @@ public class ClientController implements ActionListener{
 				this.createAccountUser();
 				break;
 			case "REGISTER_USER":
-				window.putVisibilityRegister();
+				window.initRegisterPanel();
 				break;
 			case "SHOW_PROFILE":
 				window.putVisibilityProfile();
@@ -118,6 +118,7 @@ public class ClientController implements ActionListener{
 		if(net.getInput().readBoolean()) {
 			//Dialog usuario creado exitosamente
 			window.initLoginPanel();
+			
 		}else {
 			//Dialog usuario ya se encuentra registrado
 		}
