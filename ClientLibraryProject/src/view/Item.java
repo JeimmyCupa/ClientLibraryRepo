@@ -7,6 +7,8 @@ import java.awt.Insets;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -14,17 +16,20 @@ import javax.swing.border.MatteBorder;
 
 import model.Book;
 
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Item extends JPanel {
 	private Book book;
-	public Item(Book book,MouseListener mouseListener) {
+	private ActionListener listener;
+	public Item(Book book,ActionListener listener,JFrame mainWindow) {
+		this.listener = listener;
 		this.book= book;
 		addMouseListener(this.mouseEntered());
 		addMouseListener(this.mouseExited());
-		addMouseListener(mouseListener);
+		addMouseListener(this.mouseClicked(mainWindow));
 		setBackground(MainWindow.WHITECOLOR);
 		setBorder(new MatteBorder(1,1,1,1,MainWindow.LIGHTGRAY));
 		setLayout(new GridBagLayout());
@@ -39,7 +44,7 @@ public class Item extends JPanel {
 		
 		//frontPage.setBorder(new MatteBorder(5,5,5,5));
 		frontPage.setBackground(MainWindow.WHITECOLOR);
-		frontPage.addMouseListener(mouseListener);
+		//frontPage.addMouseListener(mouseListener);
 		add(frontPage,c);//Se añade el elemento junto con la ubicacion establecida en el objeto GridBagConstraints 
 		
 		GridBagConstraints c1 = new GridBagConstraints();
@@ -112,14 +117,31 @@ public class Item extends JPanel {
 			}
 		};
 	}
-	//Metodos para manejar el efecto Hover
-		private void btnMouseEntered(MouseEvent event) {
-			setBackground(MainWindow.BEIGE);
-			setBorder(new MatteBorder(1,1,1,1,MainWindow.MAINCOLOR));
-		}
-		private void btnMouseExited(MouseEvent event) {
-			setBackground(MainWindow.WHITECOLOR);
-			setBorder(new MatteBorder(1,1,1,1,MainWindow.GRAY));
-		}
+
+	// Metodos para manejar el efecto Hover
+	private void btnMouseEntered(MouseEvent event) {
+		setBackground(MainWindow.BEIGE);
+		setBorder(new MatteBorder(1, 1, 1, 1, MainWindow.MAINCOLOR));
+	}
+
+	private void btnMouseExited(MouseEvent event) {
+		setBackground(MainWindow.WHITECOLOR);
+		setBorder(new MatteBorder(1, 1, 1, 1, MainWindow.GRAY));
+	}
+	
+	private MouseAdapter mouseClicked(JFrame mainWindow) {
+		return new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				showDialogRentedBook(mainWindow,(Item)e.getSource());
+			}
+		};
+	}
+	
+	private void showDialogRentedBook(JFrame mainWindow,Item item) {
+		BookDialog bookDialog = new BookDialog(true,mainWindow, listener, item.obtainBook());
+		bookDialog.setVisible(true);
+		bookDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+	}
 
 }

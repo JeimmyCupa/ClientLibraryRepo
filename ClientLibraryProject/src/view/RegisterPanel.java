@@ -28,15 +28,12 @@ public class RegisterPanel extends JPanel {
 	private JTextField id;
 	private JTextField lastName;
 	private JTextField email;
-	private JLabel lblId;
-	private JLabel lblLastName;
-	private JLabel lblEmail;
-	private JLabel lblCrearCredenciales;
-	public RegisterPanel(ActionListener actionListener,MouseListener mouseListener) {
+	
+	public RegisterPanel(ActionListener actionListener) {
 		setSize(1200, 635);
-		initComponents(actionListener,mouseListener);
+		initComponents(actionListener);
 	}
-	private void initComponents(ActionListener listener,MouseListener mouseListener) {
+	private void initComponents(ActionListener listener) {
 		setLayout(null);
 		panelImage = new JPanel();
 		panelImage.setBounds(0, 0, 452, 635);
@@ -103,9 +100,10 @@ public class RegisterPanel extends JPanel {
 		btnCreateAccount.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnCreateAccount.addActionListener(listener);
 		btnCreateAccount.setActionCommand("CREATE_ACCOUNT_USER");
-		btnCreateAccount.addMouseListener(mouseListener);
+		btnCreateAccount.addMouseListener(this.mouseEntered());
+		btnCreateAccount.addMouseListener(this.mouseExited());
 		
-		lblCrearCredenciales = new JLabel("Crear credenciales");
+		JLabel lblCrearCredenciales = new JLabel("Crear credenciales");
 		lblCrearCredenciales.setForeground(MainWindow.MAINCOLOR);
 		lblCrearCredenciales.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		lblCrearCredenciales.setBackground(MainWindow.WHITECOLOR);
@@ -119,7 +117,8 @@ public class RegisterPanel extends JPanel {
 		btnBack.setBackground(MainWindow.MAINCOLOR);
 		btnBack.addActionListener(listener);
 		btnBack.setActionCommand("BACK_TO_LOGIN");
-		btnBack.addMouseListener(mouseListener);
+		btnBack.addMouseListener(this.mouseEntered());
+		btnBack.addMouseListener(this.mouseExited());
 		btnBack.setBounds(26, 182, 54, 42);
 		credentialsData.add(btnBack);
 		
@@ -133,14 +132,6 @@ public class RegisterPanel extends JPanel {
 		panelLogin.add(personalData);
 		personalData.setLayout(null);
 		
-		name = new JTextField();
-		name.setBounds(118, 62, 357, 29);
-		personalData.add(name);
-		name.setForeground(MainWindow.WHITECOLOR);
-		name.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		name.setBackground(MainWindow.MAINCOLOR);
-		name.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
-		
 		JLabel lblName = new JLabel("Nombre");
 		lblName.setBounds(10, 71, 77, 18);
 		lblName.setForeground(MainWindow.WHITECOLOR);
@@ -148,6 +139,27 @@ public class RegisterPanel extends JPanel {
 		lblName.setBackground(MainWindow.MAINCOLOR);
 		personalData.add(lblName);
 	
+		JLabel lblId = new JLabel("ID");
+		lblId.setForeground(MainWindow.WHITECOLOR);
+		lblId.setFont(new Font("Segoe UI", Font.PLAIN, 19));
+		lblId.setBackground(MainWindow.MAINCOLOR);
+		lblId.setBounds(10, 22, 77, 18);
+		personalData.add(lblId);
+		
+		JLabel lblLastName = new JLabel("Apellido");
+		lblLastName.setForeground(MainWindow.WHITECOLOR);
+		lblLastName.setFont(new Font("Segoe UI", Font.PLAIN, 19));
+		lblLastName.setBackground(MainWindow.MAINCOLOR);
+		lblLastName.setBounds(10, 124, 98, 18);
+		personalData.add(lblLastName);
+		
+		JLabel lblEmail = new JLabel("Correo");
+		lblEmail.setForeground(MainWindow.WHITECOLOR);
+		lblEmail.setFont(new Font("Segoe UI", Font.PLAIN, 19));
+		lblEmail.setBackground(MainWindow.MAINCOLOR);
+		lblEmail.setBounds(10, 174, 98, 18);
+		personalData.add(lblEmail);
+		
 		id = new JTextField();
 		id.setForeground(MainWindow.WHITECOLOR);
 		id.setFont(new Font("Segoe UI", Font.PLAIN, 20));
@@ -155,6 +167,14 @@ public class RegisterPanel extends JPanel {
 		id.setBackground(MainWindow.MAINCOLOR);
 		id.setBounds(118, 11, 357, 29);
 		personalData.add(id);
+		
+		name = new JTextField();
+		name.setBounds(118, 62, 357, 29);
+		personalData.add(name);
+		name.setForeground(MainWindow.WHITECOLOR);
+		name.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		name.setBackground(MainWindow.MAINCOLOR);
+		name.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
 		
 		lastName = new JTextField();
 		lastName.setForeground(Color.WHITE);
@@ -172,26 +192,6 @@ public class RegisterPanel extends JPanel {
 		email.setBounds(118, 163, 357, 29);
 		personalData.add(email);
 		
-		lblId = new JLabel("ID");
-		lblId.setForeground(MainWindow.WHITECOLOR);
-		lblId.setFont(new Font("Segoe UI", Font.PLAIN, 19));
-		lblId.setBackground(MainWindow.MAINCOLOR);
-		lblId.setBounds(10, 22, 77, 18);
-		personalData.add(lblId);
-		
-		lblLastName = new JLabel("Apellido");
-		lblLastName.setForeground(MainWindow.WHITECOLOR);
-		lblLastName.setFont(new Font("Segoe UI", Font.PLAIN, 19));
-		lblLastName.setBackground(MainWindow.MAINCOLOR);
-		lblLastName.setBounds(10, 124, 98, 18);
-		personalData.add(lblLastName);
-		
-		lblEmail = new JLabel("Correo");
-		lblEmail.setForeground(MainWindow.WHITECOLOR);
-		lblEmail.setFont(new Font("Segoe UI", Font.PLAIN, 19));
-		lblEmail.setBackground(MainWindow.MAINCOLOR);
-		lblEmail.setBounds(10, 174, 98, 18);
-		personalData.add(lblEmail);
 		
 	}
 	//GETTERS
@@ -199,29 +199,29 @@ public class RegisterPanel extends JPanel {
 		return new Person(name.getText(),lastName.getText(),id.getText(),email.getText(),String.valueOf(password.getPassword()));
 	}
 			
-	public String getName() {
-		return name.getText();
-	}
+	// Metodos para manejar el efecto Hover de los botones
+		private MouseAdapter mouseEntered() {
+			return new MouseAdapter() {
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					btnMouseEntered(e);
+				}
+			};
+		}
 
-	public String getUser() {
-		return user.getText();
-	}
-	
-	public String getPassword() {
-		return String.valueOf(password.getPassword());
-	}
-	
-	public String getLastName() {
-		return lastName.getText();
-	}
-	
-	public String getEmail() {
-		return email.getText();
-	}
-	public JButton getBtnBack() {
-		return btnBack;
-	}
-	public JButton getBtnCreateAccount() {
-		return btnCreateAccount;
-	}
+		private MouseAdapter mouseExited() {
+			return new MouseAdapter() {
+				@Override
+				public void mouseExited(MouseEvent e) {
+					btnMouseExited(e);
+				}
+			};
+		}
+		private void btnMouseEntered(MouseEvent event) {
+			setBackground(MainWindow.HOVERCOLOR);
+		}
+
+		private void btnMouseExited(MouseEvent event) {
+			setBackground(MainWindow.MAINCOLOR);
+		}
 }

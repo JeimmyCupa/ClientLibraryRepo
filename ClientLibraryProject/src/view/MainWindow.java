@@ -23,7 +23,7 @@ import model.Person;
 
 import java.awt.Insets;
 
-public class MainWindow extends JFrame implements MouseListener{
+public class MainWindow extends JFrame{
 	public final static Color MAINCOLOR = new Color(46,55,100);
     public final static Color WHITECOLOR = new Color(235,236,240);
     public final static Color STRONGBLACK = new Color(14,29,38);
@@ -44,11 +44,11 @@ public class MainWindow extends JFrame implements MouseListener{
 	private ProfilePanel profilePanel;
 	private SearchBookPanel searchBookPanel;
 	private RentedBooks rentedBooks;
-	private BookDialog bookDialog;
+	//private BookDialog bookDialog;
 	private ActionListener listener;
 	private int xMouse, yMouse;//atributos para controlar el desplazamiento de la ventana
 	
-	public MainWindow(ActionListener listener,ArrayList<Book> bookSet) {
+	public MainWindow(ActionListener listener) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setUndecorated(true);
 		setLocationRelativeTo(null);
@@ -61,10 +61,11 @@ public class MainWindow extends JFrame implements MouseListener{
 		setContentPane(contentPane);
 		this.listener = listener;
 		this.bookSet = bookSet;
-		menu = new MenuPanel(listener, this);
+		menu = new MenuPanel(listener);
 		initComponents();
-		initRegisterPanel();
-		initLoginPanel();
+	}
+	public void setBookSet(ArrayList<Book> bookSet) {
+		this.bookSet = bookSet;
 	}
 	//Metodo para inciar componentes generales de la GUI(Cabecera y un panel para el contenido en contentPane)
 	public void initComponents() {
@@ -87,7 +88,8 @@ public class MainWindow extends JFrame implements MouseListener{
 		btnExit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnExit.addActionListener(listener);
 		btnExit.setActionCommand("EXIT");
-		btnExit.addMouseListener(this);
+		btnExit.addMouseListener(this.mouseEntered());
+		btnExit.addMouseListener(this.mouseExited());
 		header.add(btnExit);
 		getContentPane().add(header);
 		
@@ -102,7 +104,8 @@ public class MainWindow extends JFrame implements MouseListener{
 		btnMin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnMin.addActionListener(listener);
 		btnMin.setActionCommand("MIN");
-		btnMin.addMouseListener(this);
+		btnMin.addMouseListener(this.mouseEntered());
+		btnMin.addMouseListener(this.mouseExited());
 		header.add(btnMin);
 		getContentPane().add(header);
 		
@@ -113,7 +116,7 @@ public class MainWindow extends JFrame implements MouseListener{
 	}
 	//Metodo para iniciar componente del Login
 	public void initLoginPanel() {
-		loginPanel = new LoginPanel(listener,this);
+		loginPanel = new LoginPanel(listener);
 		loginPanel.setSize(1200, 635);
 		loginPanel.setLocation(0, 0);
 		showPanel(contentData, loginPanel);
@@ -122,7 +125,7 @@ public class MainWindow extends JFrame implements MouseListener{
 	 * Metodo para iniciar panel de registro de nuevo usuario
 	 */
 	public void initRegisterPanel() {
-		registerPanel = new RegisterPanel(listener,this);
+		registerPanel = new RegisterPanel(listener);
 		showPanel(contentData, registerPanel);
 	}
 	/**Metodo que inicia la interfaz de usuario (Menu y un panel lateral para el contenido)
@@ -140,7 +143,7 @@ public class MainWindow extends JFrame implements MouseListener{
 		menuPanel.setLayout(null);
 		contentData.add(menuPanel);
 		
-		menu = new MenuPanel(listener,this);
+		menu = new MenuPanel(listener);
 		menu.setSize(285, 636);
 		menu.setLocation(0, 0);
 		showPanel(menuPanel,menu);
@@ -149,14 +152,14 @@ public class MainWindow extends JFrame implements MouseListener{
 	}
 	//Metodo para pintar el panel buscar libros SearchBooks(){
 	public void initSearchBooks(ArrayList<Book> bookSet) {
-		searchBookPanel = new SearchBookPanel(listener,this,bookSet);
+		searchBookPanel = new SearchBookPanel(this,listener,bookSet);
 		searchBookPanel.setLocation(0,0);
 		dataPanel.add(searchBookPanel);
 		showPanel(dataPanel,searchBookPanel);
 	}
 	
-	public void initProfile(String strUserName, String strUserEmail, String strUserAge, String strUserID) {
-		profilePanel = new ProfilePanel(strUserName,strUserEmail,strUserAge,strUserID);
+	public void initProfile(Person user) {
+		profilePanel = new ProfilePanel(user);
 		profilePanel.setLocation(0,0);
 		showPanel(dataPanel,profilePanel);
 	}
@@ -174,9 +177,8 @@ public class MainWindow extends JFrame implements MouseListener{
 		contentPanel.revalidate();
 		contentPanel.repaint();
 	}
-	public void closeDialog() {
-		bookDialog.dispose();
-	}
+	
+	
 	//Metodos para obtener datos del usuario
 	public String obtainUser() {
 		return loginPanel.obtainUser();
@@ -187,6 +189,12 @@ public class MainWindow extends JFrame implements MouseListener{
 	public Person obtainNewUser() {
 		return registerPanel.obtainNewUser();
 	}
+	
+	
+	
+	
+	
+	
 	//Metodos para el desplazamiento de la ventana
 	@SuppressWarnings("unchecked")
 	private void btnMoveMousePressed(MouseEvent event) {
@@ -217,77 +225,32 @@ public class MainWindow extends JFrame implements MouseListener{
 			}
 		};
 	}
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		if(e.getSource().getClass().equals(Item.class)) {
-			Item item = (Item)e.getSource();
-			bookDialog = new BookDialog(true, this, listener,item.obtainBook());
-			bookDialog.setVisible(true);
-			bookDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		}
-		
-		
+	
+
+	// Metodos para manejar el efecto Hover de los botones
+	private MouseAdapter mouseEntered() {
+		return new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnMouseEntered(e);
+			}
+		};
 	}
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+
+	private MouseAdapter mouseExited() {
+		return new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnMouseExited(e);
+			}
+		};
 	}
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+
+	private void btnMouseEntered(MouseEvent event) {
+		setBackground(MainWindow.HOVERCOLOR);
 	}
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		JButton btnChangeColor = new JButton();
-		if(e.getSource().equals(btnExit)) {
-			btnExit.setBackground(HOVERCOLOR);
-		}else if(e.getSource().equals(loginPanel.getBtnLogin())) {
-			loginPanel.getBtnLogin().setBackground(HOVERCOLOR);
-		}else if(e.getSource().equals(loginPanel.getBtnRegister())) {
-			loginPanel.getBtnRegister().setForeground(MAINCOLOR);
-		}
-		else if(e.getSource().equals(menu.getBtnProfile())) {
-			btnChangeColor = menu.getBtnProfile();
-		}else if(e.getSource().equals(menu.getBtnSearchBooks())) {
-			btnChangeColor =menu.getBtnSearchBooks();
-		}else if(e.getSource().equals(menu.getBtnMyBooks())) {
-			btnChangeColor = menu.getBtnMyBooks();
-		}else if(e.getSource().equals(menu.getBtnSingOut())) {
-			btnChangeColor = menu.getBtnSingOut();
-		}else if(e.getSource().equals(registerPanel.getBtnCreateAccount())) {
-			btnChangeColor = registerPanel.getBtnCreateAccount();
-		}else if(e.getSource().equals(registerPanel.getBtnBack())) {
-			btnChangeColor = registerPanel.getBtnBack();
-		}
-		btnChangeColor.setBackground(HOVERCOLOR);
-		
-	}
-	@Override
-	public void mouseExited(MouseEvent e) {
-		JButton btnChangeColor = new JButton();
-		
-		if(e.getSource().equals(btnExit)) {
-			btnChangeColor = btnExit;
-		}else if(e.getSource().equals(loginPanel.getBtnLogin())) {
-			btnChangeColor = loginPanel.getBtnLogin();
-		}else if(e.getSource().equals(loginPanel.getBtnRegister())) {
-			loginPanel.getBtnRegister().setForeground(GRAY);
-		}else if(e.getSource().equals(menu.getBtnProfile())) {
-			btnChangeColor = menu.getBtnProfile();
-		}else if(e.getSource().equals(menu.getBtnSearchBooks())) {
-			btnChangeColor =menu.getBtnSearchBooks();
-		}else if(e.getSource().equals(menu.getBtnMyBooks())) {
-			btnChangeColor = menu.getBtnMyBooks();
-		}else if(e.getSource().equals(menu.getBtnSingOut())) {
-			btnChangeColor = menu.getBtnSingOut();
-		}else if(e.getSource().equals(registerPanel.getBtnCreateAccount())) {
-			btnChangeColor = registerPanel.getBtnCreateAccount();
-			
-		}else if(e.getSource().equals(registerPanel.getBtnBack())) {
-			btnChangeColor = registerPanel.getBtnBack();
-		}
-		btnChangeColor.setBackground(MAINCOLOR);
+
+	private void btnMouseExited(MouseEvent event) {
+		setBackground(MainWindow.MAINCOLOR);
 	}
 }

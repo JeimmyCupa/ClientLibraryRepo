@@ -18,17 +18,16 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 
 public class MenuPanel extends JPanel {
-	private JButton btnProfile,btnMyBooks,btnSearchBooks,btnSingOut;
 	
-	public MenuPanel(ActionListener actionListener,MouseListener mouseListener) {
+	public MenuPanel(ActionListener actionListener) {
 		setSize(285, 636);
 		setLayout(null);
 		setBackground(MainWindow.MAINCOLOR);
-		initComponents(actionListener,mouseListener);
+		initComponents(actionListener);
 	}
 	//Metodo que inicializa todos los botones del menu
-	private void initComponents(ActionListener listener,MouseListener mouseListener) {
-		btnProfile = new JButton();
+	private void initComponents(ActionListener listener) {
+		JButton btnProfile = new JButton();
 		propertiesBtn(btnProfile);
 		btnProfile.setText("Mi perfil");
 		btnProfile.setIcon(new ImageIcon("data\\icons\\iconUserCircle.png"));
@@ -36,37 +35,41 @@ public class MenuPanel extends JPanel {
 		btnProfile.addActionListener(listener);
 		btnProfile.setActionCommand("SHOWPROFILE");
         //Evento hover para el boton, necesita como parametro un objeto de MouseAdapter
-        btnProfile.addMouseListener(mouseListener);
+        btnProfile.addMouseListener(this.mouseEntered());
+        btnProfile.addMouseListener(this.mouseExited());
 		add(btnProfile);
 		
-		btnSearchBooks = new JButton();
+		JButton btnSearchBooks = new JButton();
         propertiesBtn(btnSearchBooks);
         btnSearchBooks.setText("Buscar libros");
         btnSearchBooks.setIcon(new ImageIcon("data\\icons\\iconSearch.png"));
         btnSearchBooks.setBounds(0, 192, 285, 53);
         btnSearchBooks.addActionListener(listener);
         btnSearchBooks.setActionCommand("SEARCHBOOKS");
-        btnSearchBooks.addMouseListener(mouseListener);
+        btnSearchBooks.addMouseListener(this.mouseEntered());
+        btnSearchBooks.addMouseListener(this.mouseExited());
         add(btnSearchBooks);
 
-        btnMyBooks = new JButton();
+        JButton btnMyBooks = new JButton();
         propertiesBtn(btnMyBooks);
         btnMyBooks.setText("Mis libros rentados");
         btnMyBooks.setIcon(new ImageIcon("data\\icons\\iconBook.png"));
         btnMyBooks.setBounds(0, 247, 285, 53);
         btnMyBooks.addActionListener(listener);
         btnMyBooks.setActionCommand("MYBOOKS");
-        btnMyBooks.addMouseListener(mouseListener);
+        btnMyBooks.addMouseListener(this.mouseEntered());
+        btnMyBooks.addMouseListener(this.mouseExited());
         add(btnMyBooks);
 		
-		btnSingOut = new JButton();
+        JButton btnSingOut = new JButton();
 		propertiesBtn(btnSingOut);
 		btnSingOut.setText("Cerrar sesi\u00F3n");
 		btnSingOut.setIcon(new ImageIcon("data\\icons\\iconSingOut.png"));
 		btnSingOut.setBounds(0, 302, 285, 53);
 		btnSingOut.addActionListener(listener);
 		btnSingOut.setActionCommand("LOGOUT");
-        btnSingOut.addMouseListener(mouseListener);
+        btnSingOut.addMouseListener(this.mouseEntered());
+        btnSingOut.addMouseListener(this.mouseExited());
 		add(btnSingOut);
 	}
 	private void propertiesBtn(JButton buttonToApply) {
@@ -79,31 +82,33 @@ public class MenuPanel extends JPanel {
         buttonToApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         buttonToApply.setBackground(MainWindow.MAINCOLOR);
 	}
-	public JButton getBtnProfile() {
-		return btnProfile;
+	
+	
+	// Metodos para manejar el efecto Hover de los botones
+	private MouseAdapter mouseEntered() {
+		return new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnMouseEntered(e);
+			}
+		};
 	}
-	public JButton getBtnMyBooks() {
-		return btnMyBooks;
+
+	private MouseAdapter mouseExited() {
+		return new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnMouseExited(e);
+			}
+		};
 	}
-	public JButton getBtnSearchBooks() {
-		return btnSearchBooks;
+
+	private void btnMouseEntered(MouseEvent event) {
+		setBackground(MainWindow.HOVERCOLOR);
 	}
-	public JButton getBtnSingOut() {
-		return btnSingOut;
+
+	private void btnMouseExited(MouseEvent event) {
+		setBackground(MainWindow.MAINCOLOR);
 	}
 	
-	/*
-	public void setBackgroundBtn(JButton btn) {
-		JButton btnChangeColor = new JButton();
-		if(btn.equals(btnProfile)) {
-			btnChangeColor = btnProfile;
-		}else if(btn.equals(btnSearchBooks)) {
-			btnChangeColor = btnSearchBooks;
-		}else if(btn.equals(btnMyBooks)) {
-			btnChangeColor = btnMyBooks;
-		}else if(btn.equals(btnSingOut)) {
-			btnChangeColor = btnSingOut;
-		}
-		btnChangeColor.setBackground(MainWindow.hoverColor);
-	}*/
 }

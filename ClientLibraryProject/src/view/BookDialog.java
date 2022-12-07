@@ -43,7 +43,6 @@ public class BookDialog extends JDialog {
 		setResizable(false);
 		getContentPane().setLayout(null);
 		initComponents(actionListener,book);
-		
 		getContentPane().add(bookPanel);
 		bookPanel.setLayout(null);
 		
@@ -119,7 +118,7 @@ public class BookDialog extends JDialog {
 		btnCancel.setAlignmentX(CENTER_ALIGNMENT);
 		btnCancel.setForeground(MainWindow.WHITECOLOR);
 		btnCancel.setBackground(MainWindow.MAINCOLOR);
-		btnCancel.addActionListener(actionListener);
+		btnCancel.addMouseListener(this.mouseClicked());
 		btnCancel.addMouseListener(new  MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -147,6 +146,15 @@ public class BookDialog extends JDialog {
 		bookPanel.add(btnCancel);
 		
 		getContentPane().add(bookPanel);
+	}
+	private MouseAdapter mouseClicked() {
+		return new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			}
+			
+		};
 	}
 	
 }

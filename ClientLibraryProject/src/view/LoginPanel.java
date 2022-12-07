@@ -19,17 +19,16 @@ import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
 public class LoginPanel extends JPanel {
-
-	//private JPanel panelImage, panelLogin; 
 	private JTextField user;
 	private JPasswordField password;
 	private JButton btnLogin,btnRegister;
 
-	public LoginPanel(ActionListener actionListener,MouseListener mouseListener) {
+	public LoginPanel(ActionListener actionListener) {
 		setSize(1200, 635);
-		initComponents(actionListener,mouseListener);
+		initComponents(actionListener);
 	}
-	private void initComponents(ActionListener actionListener,MouseListener mouseListener) {
+	
+	private void initComponents(ActionListener actionListener) {
 		setLayout(null);
 		JPanel  panelImage = new JPanel();
 		panelImage.setLayout(null);
@@ -86,7 +85,8 @@ public class LoginPanel extends JPanel {
 		btnLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnLogin.addActionListener(actionListener);
 		btnLogin.setActionCommand("LOGIN_USER");
-		btnLogin.addMouseListener(mouseListener);
+		btnLogin.addMouseListener(this.mouseEntered());
+		btnLogin.addMouseListener(this.mouseExited());
 		panelLogin.add(btnLogin);
 		
 		JLabel iconUser = new JLabel();
@@ -108,11 +108,13 @@ public class LoginPanel extends JPanel {
 		btnRegister.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnRegister.addActionListener(actionListener);
 		btnRegister.setActionCommand("REGISTER_USER");
-		btnRegister.addMouseListener(mouseListener);
+		btnRegister.addMouseListener(this.mouseEntered());
+		btnRegister.addMouseListener(this.mouseExited());
 		panelLogin.add(btnRegister);
 		
 		add(panelLogin);
 	}
+	
 	//GETTERS AND SETTERS
 	public String obtainUser() {
 		return user.getText();
@@ -122,16 +124,35 @@ public class LoginPanel extends JPanel {
 		return String.valueOf(password.getPassword());
 	}
 	
-	//Hacer cambios
-	public JButton getBtnLogin() {
-		return btnLogin;
+	// Metodos para manejar el efecto Hover de los botones
+	private MouseAdapter mouseEntered() {
+		return new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnMouseEntered(e);
+			}
+		};
 	}
-	public JButton getBtnRegister() {
-		return btnRegister;
+
+	private MouseAdapter mouseExited() {
+		return new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnMouseExited(e);
+			}
+		};
+	}
+	private void btnMouseEntered(MouseEvent event) {
+		setBackground(MainWindow.HOVERCOLOR);
+	}
+
+	private void btnMouseExited(MouseEvent event) {
+		setBackground(MainWindow.MAINCOLOR);
 	}
 	
-	//Metodos para obtener los objetos de la Clase MouseAdapter
-	public MouseAdapter mousePressed() {
+	
+	//Metodos para el efecto de llenado de los campos de texto de usuario y contraseñ
+	private MouseAdapter mousePressed() {
 		return new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {

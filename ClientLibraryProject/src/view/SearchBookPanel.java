@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,18 +23,19 @@ public class SearchBookPanel extends JPanel {
 	private JPanel contentQueryPanel, contentBookPanel;
 	private JTextField title,author,year;
 	private ArrayList<Book> bookSet;
+	private JFrame frame;
 	private ActionListener listener;
-	private MouseListener mouseListener;
-	public SearchBookPanel(ActionListener listener,MouseListener mouseListener,ArrayList<Book> bookSet) {
+	public SearchBookPanel(JFrame frame,ActionListener listener,ArrayList<Book> bookSet) {
 		this.listener = listener;
-		this.mouseListener = mouseListener;
 		this.bookSet = bookSet;
+		this.frame = frame;
 		setSize(914,635);
 		setLocation(0,0);
 		setBackground(MainWindow.WHITECOLOR);
 		setLayout(null);
 		initComponents();
 	}
+	
 	private void initComponents() {
 		contentQueryPanel = new JPanel();
 		contentQueryPanel.setLayout(null);
@@ -48,6 +50,7 @@ public class SearchBookPanel extends JPanel {
 		initQueryPanel();
 		initBooksPanel(bookSet);
 	}
+	
 	private void initQueryPanel() {
 		queryPanel = new JPanel();
 		queryPanel.setBounds(0, 0, 857, 173);
@@ -129,7 +132,7 @@ public class SearchBookPanel extends JPanel {
 	}
 	private void initBooksPanel(ArrayList<Book> bookSet) {
 		
-		booksPanel = new BooksPanel(listener,mouseListener,bookSet);
+		booksPanel = new BooksPanel(frame,listener,bookSet);
 		booksPanel.setBounds(0,0, 855, 401);
 		
 		JScrollPane scrollPane = new JScrollPane(booksPanel);

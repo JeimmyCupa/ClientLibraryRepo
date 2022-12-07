@@ -11,6 +11,10 @@ import javax.swing.JFrame;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
 import javax.swing.text.IconView;
 
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
+
+
 import model.Book;
 import model.CopyBook;
 import model.Person;
@@ -23,7 +27,7 @@ public class ClientController implements ActionListener{
 	private Net net;
 	private MainWindow window;
 	public ClientController() throws UnknownHostException, IOException {
-		window = new MainWindow(this,obtainBookSet());
+		window = new MainWindow(this);
 		this.socket = new Socket(HOST, PORT);
 		this.net = new Net(socket);
 		this.init();
@@ -59,7 +63,7 @@ public class ClientController implements ActionListener{
 				window.initRegisterPanel();
 				break;
 			case "SHOW_PROFILE":
-				window.initProfile("Juan", "juansito@gmail.com", "18", "2");
+				//window.initProfile();
 				break;
 			case "SEARCH_BOOKS":
 				window.initSearchBooks(this.obtainBookSet());
@@ -69,9 +73,6 @@ public class ClientController implements ActionListener{
 				break;
 			case "MY_BOOKS":
 				window.initRentedBooks(this.obtainRentedBooks());
-				break;
-			case "CANCEL":
-				window.closeDialog();
 				break;
 			case "LOGOUT":
 				window.initLoginPanel();
@@ -99,6 +100,9 @@ public class ClientController implements ActionListener{
 		net.getOutput().writeUTF(window.obtainPassword());
 		
 		if(net.getInput().readBoolean()) {
+			window.setBookSet(this.obtainBookSet());
+			window.initRentedBooks(this.obtainRentedBooks());
+			window.initProfile(this.obtainUser());
 			window.initComponentsUser();
 		}else {
 			//Crear el JDialog
@@ -115,6 +119,21 @@ public class ClientController implements ActionListener{
 			//Dialog usuario ya se encuentra registrado
 		}
 	}
+	
+	private ArrayList<Book> obtainBookSet() throws JsonSyntaxException, IOException{
+		ArrayList<Book> bookSet = net.getMyGson().fromJson(net.getInput().readUTF(),new TypeToken<ArrayList<Book>>() {}.getType());
+		return bookSet;
+	}
+	
+	private ArrayList<CopyBook> obtainRentedBooks() throws JsonSyntaxException, IOException{
+		ArrayList<CopyBook> bookSet = net.getMyGson().fromJson(net.getInput().readUTF(),new TypeToken<ArrayList<Book>>() {}.getType());
+		return bookSet;
+	}
+	
+	private Person obtainUser() throws JsonSyntaxException, IOException {
+		return net.getMyGson().fromJson(net.getInput().readUTF(), Person.class);
+	}
+	/*
 	private ArrayList<CopyBook> obtainRentedBooks(){
 		ArrayList<CopyBook> bookSet = new ArrayList<>();
 		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005", "", ""), 1));
@@ -166,4 +185,5 @@ public class ClientController implements ActionListener{
 		
 		return bookSet;
 	}
+	*/
 }
