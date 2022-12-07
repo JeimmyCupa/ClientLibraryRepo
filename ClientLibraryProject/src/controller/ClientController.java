@@ -64,10 +64,10 @@ public class ClientController implements ActionListener{
 				window.putVisibilityProfile();
 				break;
 			case "SEARCH_BOOKS":
-				window.putVisibilitySearchBook();;
+				window.putVisibilitySearchBook();
 				break;
 			case "MY_BOOKS":
-				window.putVisibilityRentedBooks();;
+				window.putVisibilityRentedBooks();
 				break;
 			case "RENT_BOOK":
 				this.rentBook();
