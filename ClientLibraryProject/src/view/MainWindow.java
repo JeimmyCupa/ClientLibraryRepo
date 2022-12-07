@@ -39,6 +39,7 @@ public class MainWindow extends JFrame implements Utilities{
 	private SearchBookPanel searchBookPanel;
 	private RentedBooks rentedBooks;
 	private BookDialog bookDialog;
+	private WindowDialog windowDialog;
 	private ActionListener listener;
 	
 	
@@ -318,5 +319,11 @@ public class MainWindow extends JFrame implements Utilities{
 		bookDialog = new BookDialog(true,this, listener, item.obtainBook());
 		bookDialog.setVisible(true);
 		bookDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+	}
+	
+	public void showMessageDialog(String message) {
+		windowDialog = new WindowDialog(true, this, listener, message);
+		windowDialog.setVisible(true);
+		windowDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 	}
 }
