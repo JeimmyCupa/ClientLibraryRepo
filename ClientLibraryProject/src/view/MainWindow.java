@@ -61,15 +61,15 @@ public class MainWindow extends JFrame implements Utilities{
 		initLoginPanel();
 	}
 	//SETTERS PARA INFORMACIÓN 
-	public void setBookSet(ArrayList<Book> bookSet) {
-		this.bookSet = bookSet;
-	}
-	public void setBooksRented(ArrayList<CopyBook> booksRented) {
-		this.booksRented = booksRented;
-	}
-	public void setProfile(Person profile) {
-		this.profile = profile;
-	}
+		public void setBookSet(ArrayList<Book> bookSet) {
+			this.bookSet = bookSet;
+		}
+		public void setBooksRented(ArrayList<CopyBook> booksRented) {
+			this.booksRented = booksRented;
+		}
+		public void setProfile(Person profile) {
+			this.profile = profile;
+		}
 	//Metodo para inciar componentes generales de la GUI(Cabecera y un panel para el contenido en contentPane)
 	public void initComponents() {
 

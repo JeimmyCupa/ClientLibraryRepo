@@ -18,7 +18,7 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 
 public class MenuPanel extends JPanel {
-	
+	private JButton btnProfile,btnSearchBooks,btnMyBooks,btnSingOut;
 	public MenuPanel(ActionListener actionListener) {
 		setSize(285, 636);
 		setLayout(null);
@@ -27,7 +27,7 @@ public class MenuPanel extends JPanel {
 	}
 	//Metodo que inicializa todos los botones del menu
 	private void initComponents(ActionListener listener) {
-		JButton btnProfile = new JButton();
+		btnProfile = new JButton();
 		propertiesBtn(btnProfile);
 		btnProfile.setText("Mi perfil");
 		btnProfile.setIcon(new ImageIcon("data\\icons\\iconUserCircle.png"));
@@ -39,7 +39,7 @@ public class MenuPanel extends JPanel {
         btnProfile.addMouseListener(this.mouseExited());
 		add(btnProfile);
 		
-		JButton btnSearchBooks = new JButton();
+		btnSearchBooks = new JButton();
         propertiesBtn(btnSearchBooks);
         btnSearchBooks.setText("Buscar libros");
         btnSearchBooks.setIcon(new ImageIcon("data\\icons\\iconSearch.png"));
@@ -50,7 +50,7 @@ public class MenuPanel extends JPanel {
         btnSearchBooks.addMouseListener(this.mouseExited());
         add(btnSearchBooks);
 
-        JButton btnMyBooks = new JButton();
+        btnMyBooks = new JButton();
         propertiesBtn(btnMyBooks);
         btnMyBooks.setText("Mis libros rentados");
         btnMyBooks.setIcon(new ImageIcon("data\\icons\\iconBook.png"));
@@ -61,7 +61,7 @@ public class MenuPanel extends JPanel {
         btnMyBooks.addMouseListener(this.mouseExited());
         add(btnMyBooks);
 		
-        JButton btnSingOut = new JButton();
+        btnSingOut = new JButton();
 		propertiesBtn(btnSingOut);
 		btnSingOut.setText("Cerrar sesi\u00F3n");
 		btnSingOut.setIcon(new ImageIcon("data\\icons\\iconSingOut.png"));
@@ -104,11 +104,29 @@ public class MenuPanel extends JPanel {
 	}
 
 	private void btnMouseEntered(MouseEvent event) {
-		setBackground(MainWindow.HOVERCOLOR);
+		JButton btn = null;
+		if(event.getSource() == btnProfile)
+			btn = btnProfile;
+		else if(event.getSource() == btnMyBooks)
+			btn = btnMyBooks;
+		else if(event.getSource() == btnSearchBooks)
+			btn = btnSearchBooks;
+		else if(event.getSource() == btnSingOut)
+			btn = btnSingOut;
+		btn.setBackground(MainWindow.HOVERCOLOR);
 	}
 
 	private void btnMouseExited(MouseEvent event) {
-		setBackground(MainWindow.MAINCOLOR);
+		JButton btn = null;
+		if(event.getSource() == btnProfile)
+			btn = btnProfile;
+		else if(event.getSource() == btnMyBooks)
+			btn = btnMyBooks;
+		else if(event.getSource() == btnSearchBooks)
+			btn = btnSearchBooks;
+		else if(event.getSource() == btnSingOut)
+			btn = btnSingOut;
+		btn.setBackground(MainWindow.MAINCOLOR);
 	}
 	
 }
