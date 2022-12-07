@@ -156,9 +156,10 @@ public class ClientController implements ActionListener{
 		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005", "", ""), 4));
 		bookSet.add(new CopyBook(new Book("A donde vas", 5, 19, "Pepito", "2005", "", ""), 5));
 		bookSet.add(new CopyBook(new Book("No se que mas poner", 6, 19, "Pepito", "2005", "", ""), 6));
-		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005", "", ""), 7));**/
+		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005", "", ""), 7));
 		return new ArrayList<>();
-	}
+	}*/
+/*
 	private ArrayList<Book> obtainBookSet() {
 		ArrayList<Book> bookSet = new ArrayList<Book>();
 		bookSet.add(new Book("Principito", 1, 19, "Pepito", "2005", "", ""));
