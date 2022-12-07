@@ -129,7 +129,10 @@ public class LoginPanel extends JPanel {
 		return new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				btnMouseEntered(e);
+				if (e.getSource() == btnRegister)
+					btnRegisterHover((JButton) e.getSource());
+				else if (e.getSource() == btnLogin)
+					btnMouseEntered();
 			}
 		};
 	}
@@ -138,16 +141,28 @@ public class LoginPanel extends JPanel {
 		return new MouseAdapter() {
 			@Override
 			public void mouseExited(MouseEvent e) {
-				btnMouseExited(e);
+				if (e.getSource() == btnRegister)
+					btnRegisterHoverExit(btnRegister);
+				else if (e.getSource() == btnLogin)
+					btnMouseExited();
 			}
 		};
 	}
-	private void btnMouseEntered(MouseEvent event) {
-		setBackground(MainWindow.HOVERCOLOR);
+
+	private void btnRegisterHover(JButton btnRegister) {
+		btnRegister.setForeground(MainWindow.MAINCOLOR);
 	}
 
-	private void btnMouseExited(MouseEvent event) {
-		setBackground(MainWindow.MAINCOLOR);
+	private void btnRegisterHoverExit(JButton btnRegister) {
+		btnRegister.setForeground(MainWindow.STRONGGRAY);
+	}
+
+	private void btnMouseEntered() {
+		btnLogin.setBackground(MainWindow.HOVERCOLOR);
+	}
+
+	private void btnMouseExited() {
+		btnLogin.setBackground(MainWindow.MAINCOLOR);
 	}
 	
 	

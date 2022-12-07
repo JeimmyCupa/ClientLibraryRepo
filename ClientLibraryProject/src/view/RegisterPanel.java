@@ -200,28 +200,35 @@ public class RegisterPanel extends JPanel {
 	}
 			
 	// Metodos para manejar el efecto Hover de los botones
-		private MouseAdapter mouseEntered() {
-			return new MouseAdapter() {
-				@Override
-				public void mouseEntered(MouseEvent e) {
-					btnMouseEntered(e);
-				}
-			};
-		}
+	private MouseAdapter mouseEntered() {
+		return new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnMouseEntered(e);
+			}
+		};
+	}
 
-		private MouseAdapter mouseExited() {
-			return new MouseAdapter() {
-				@Override
-				public void mouseExited(MouseEvent e) {
-					btnMouseExited(e);
-				}
-			};
-		}
-		private void btnMouseEntered(MouseEvent event) {
-			setBackground(MainWindow.HOVERCOLOR);
-		}
+	private MouseAdapter mouseExited() {
+		return new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnMouseExited(e);
+			}
+		};
+	}
 
-		private void btnMouseExited(MouseEvent event) {
-			setBackground(MainWindow.MAINCOLOR);
-		}
+	private void btnMouseEntered(MouseEvent event) {
+		if (event.getSource() == btnBack)
+			btnBack.setBackground(MainWindow.HOVERCOLOR);
+		else if (event.getSource() == btnCreateAccount)
+			btnCreateAccount.setBackground(MainWindow.HOVERCOLOR);
+	}
+
+	private void btnMouseExited(MouseEvent event) {
+		if (event.getSource() == btnBack)
+			btnBack.setBackground(MainWindow.MAINCOLOR);
+		else if (event.getSource() == btnCreateAccount)
+			btnCreateAccount.setBackground(MainWindow.MAINCOLOR);
+	}
 }

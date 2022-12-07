@@ -1,12 +1,11 @@
 package view;
 
-import java.awt.Color;
+
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
@@ -62,17 +61,19 @@ public class MainWindow extends JFrame implements Utilities{
 		initLoginPanel();
 	}
 	//SETTERS PARA INFORMACIÓN 
-		public void setBookSet(ArrayList<Book> bookSet) {
-			this.bookSet = bookSet;
-		}
-		public void setBooksRented(ArrayList<CopyBook> booksRented) {
-			this.booksRented = booksRented;
-		}
-		public void setProfile(Person profile) {
-			this.profile = profile;
-		}
+	public void setBookSet(ArrayList<Book> bookSet) {
+		this.bookSet = bookSet;
+	}
+
+	public void setBooksRented(ArrayList<CopyBook> booksRented) {
+		this.booksRented = booksRented;
+	}
+
+	public void setProfile(Person profile) {
+		this.profile = profile;
+	}
 	//Metodo para inciar componentes generales de la GUI(Cabecera y un panel para el contenido en contentPane)
-	public void initComponents() {
+	private void initComponents() {
 
 		header = new JPanel();
 		header.setBounds(0, 0, 1200, 45);
@@ -119,22 +120,6 @@ public class MainWindow extends JFrame implements Utilities{
 		contentPane.add(contentData);
 	}
 	
-	private void initAllUserPanels() {
-		searchBookPanel = new SearchBookPanel(this,listener,this.mouseClickedItem(),this.bookSet);
-		searchBookPanel.setVisible(true);
-		searchBookPanel.setLocation(0,0);
-		dataPanel.add(searchBookPanel);
-		
-		rentedBooks = new RentedBooks(this.booksRented);
-		rentedBooks.setLocation(0, 0);
-		rentedBooks.setVisible(false);
-		dataPanel.add(registerPanel);
-		
-		profilePanel = new ProfilePanel(profile);
-		profilePanel.setLocation(0,0);
-		profilePanel.setVisible(false);
-		dataPanel.add(profilePanel);
-	}
 	//Metodo para iniciar componente del Login
 	public void initLoginPanel() {
 		loginPanel = new LoginPanel(listener);
@@ -151,7 +136,7 @@ public class MainWindow extends JFrame implements Utilities{
 		showPanel(contentData, registerPanel);
 	}
 	/**Metodo que inicia la interfaz de usuario (Menu y un panel lateral para el contenido)
-	*Este metodo se debe llamar siempre el login sea exitoso.
+	*Este metodo se debe llamar siempre que el login sea exitoso.
 	*/
 	public void initComponentsUser() {
 		dataPanel = new JPanel();//Panel que se actualiza de acuerdo a la opcion del menu selecionada
@@ -171,6 +156,23 @@ public class MainWindow extends JFrame implements Utilities{
 		showPanel(menuPanel,menu);
 		
 		initAllUserPanels();
+	}
+	
+	private void initAllUserPanels() {
+		searchBookPanel = new SearchBookPanel(this,listener,this.mouseClickedItem(),this.bookSet);
+		searchBookPanel.setVisible(true);
+		searchBookPanel.setLocation(0,0);
+		dataPanel.add(searchBookPanel);
+		
+		rentedBooks = new RentedBooks(this.booksRented);
+		rentedBooks.setLocation(0, 0);
+		rentedBooks.setVisible(false);
+		dataPanel.add(registerPanel);
+		
+		profilePanel = new ProfilePanel(profile);
+		profilePanel.setLocation(0,0);
+		profilePanel.setVisible(false);
+		dataPanel.add(profilePanel);
 	}
 	
 	public void putVisibilitySearchBook() {
@@ -213,14 +215,11 @@ public class MainWindow extends JFrame implements Utilities{
 		rentedBooks.setLocation(0, 0);
 		showPanel(dataPanel,rentedBooks);
 	}
-	
-	
-	
-	
+
 	/*Metodo encargado de repintar un panel, recibe como parametro el panel en donde se quiere
 	 * pintar un segundo panel.
 	*/
-	public void showPanel(JPanel contentPanel,JPanel panel) {
+	private void showPanel(JPanel contentPanel,JPanel panel) {
 		contentPanel.removeAll();
 		contentPanel.add(panel);
 		contentPanel.revalidate();
@@ -229,6 +228,7 @@ public class MainWindow extends JFrame implements Utilities{
 	
 	
 	//Metodos para obtener datos del usuario
+	
 	public String obtainUser() {
 		return loginPanel.obtainUser();
 	}
@@ -243,10 +243,7 @@ public class MainWindow extends JFrame implements Utilities{
 		return bookDialog.obtainRentedBook();
 	}
 	
-	
-	
-	
-	
+
 	//Metodos para el desplazamiento de la ventana
 	@SuppressWarnings("unchecked")
 	private void btnMoveMousePressed(MouseEvent event) {
@@ -299,12 +296,19 @@ public class MainWindow extends JFrame implements Utilities{
 	}
 
 	private void btnMouseEntered(MouseEvent event) {
-		setBackground(MainWindow.HOVERCOLOR);
+		if(event.getSource() == btnExit)
+			btnExit.setBackground(HOVERCOLOR);
+		else if(event.getSource() == btnMin)
+			btnMin.setBackground(HOVERCOLOR);
 	}
 
 	private void btnMouseExited(MouseEvent event) {
-		setBackground(MainWindow.MAINCOLOR);
+		if(event.getSource() == btnExit)
+			btnExit.setBackground(HOVERCOLOR);
+		else if(event.getSource() == btnMin)
+			btnMin.setBackground(HOVERCOLOR);
 	}
+	
 	//Revisar porque el mause adapter no esta enviando en si la accion del mouse listener
 	private MouseAdapter mouseClickedItem() {
 		return new MouseAdapter(){
