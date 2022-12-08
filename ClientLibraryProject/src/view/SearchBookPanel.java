@@ -24,15 +24,12 @@ public class SearchBookPanel extends JPanel {
 	private JPanel contentQueryPanel, contentBookPanel;
 	private JTextField title,author,year;
 	private ArrayList<Book> bookSet;
-	private JFrame frame;
 	private ActionListener listener;
 	private MouseListener mouseListener;
-	private MouseAdapter mouseAdapterClicket;
 	public SearchBookPanel(ActionListener listener,MouseListener mouseListener,ArrayList<Book> bookSet) {
 		this.listener = listener;
 		this.mouseListener = mouseListener;
 		this.bookSet = bookSet;
-		this.frame = frame;
 		setSize(914,635);
 		setLocation(0,0);
 		setBackground(MainWindow.WHITECOLOR);

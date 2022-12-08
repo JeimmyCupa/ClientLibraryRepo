@@ -7,7 +7,8 @@ public class Book {
 	private String author;
 	private String departureYear;
 	private String description;
-	private String pathImage;
+	private String pathImage;//Le envio el 
+	private byte [] bytesImage;
 	
 	public Book(String title, int bookID, int quantity, String author, String departureYear,String description,String pathImage) {
 		super();
@@ -20,6 +21,14 @@ public class Book {
 		this.pathImage = pathImage;
 	}
 	
+	public void setBytesImage(byte[] bytesImage) {
+		this.bytesImage = bytesImage;
+	}
+	
+	public byte[] getBytesImage() {
+		return bytesImage;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -74,6 +83,10 @@ public class Book {
 	
 	public void setPathImage(String pathImage) {
 		this.pathImage = pathImage;
+	}
+	
+	public String toString() {
+		return "Titulo: " + title + " | Autor: " + author + " | Cantidad: " + quantity;
 	}
 	
 	public int compare(Book book) {

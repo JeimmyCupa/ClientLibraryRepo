@@ -179,8 +179,9 @@ public class BookDialog extends JDialog {
 	}
 
 	private void verifyQuantity() {
-		if(book.getQuantity() == 0)
+		if(book.getQuantity() == 0) {
 			btnRentBook.setEnabled(false);
+		}
 	}
 	
 	public Book obtainRentedBook() {

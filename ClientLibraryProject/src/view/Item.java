@@ -4,12 +4,12 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -23,15 +23,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Item extends JPanel {
-	private Book book;
-	private ActionListener listener;
-	public Item(Book book,ActionListener listener,MouseListener mouseListener) {
-		this.listener = listener;
-		this.book= book;
+	private JLabel frontPage,lblID,lblTitle,lblAuthor,lblYear;
+	private Book book; 
+	
+	public Item(ActionListener listener,MouseListener mouseListener,Book book) {
+		this.book = book;
 		addMouseListener(this.mouseEntered());
 		addMouseListener(this.mouseExited());
-		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		addMouseListener(mouseListener);
+		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		setBackground(MainWindow.WHITECOLOR);
 		setBorder(new MatteBorder(1,1,1,1,MainWindow.LIGHTGRAY));
 		setLayout(new GridBagLayout());
@@ -41,16 +41,20 @@ public class Item extends JPanel {
 		c.gridy = 0;
 		c.insets = new Insets(5,5,5,5);//Establece el espacio entre componentes
 		
-		JLabel frontPage = new JLabel();
-		frontPage.setIcon(new ImageIcon(book.getPathImage()));
+		frontPage = new JLabel();
+		Image image = new ImageIcon(book.getBytesImage()).getImage();
+		ImageIcon icon = new ImageIcon(image.getScaledInstance(202, 270, Image.SCALE_SMOOTH));
+		frontPage.setIcon(icon);
 		frontPage.setBackground(MainWindow.WHITECOLOR);
+		frontPage.addMouseListener(mouseListener);
+		
 		add(frontPage,c);//Se añade el elemento junto con la ubicacion establecida en el objeto GridBagConstraints 
 		
 		GridBagConstraints c1 = new GridBagConstraints();
 		c1.gridx = 0;
 		c1.gridy = 1;
 		c1.insets = new Insets(5,5,5,5);
-		JLabel lblID = new JLabel();
+		lblID = new JLabel();
 		lblID.setText(String.valueOf(book.getBookID()));
 		lblID.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		lblID.setForeground(MainWindow.MAINCOLOR);
@@ -62,7 +66,7 @@ public class Item extends JPanel {
 		c2.gridy = 2;
 		c2.insets = new Insets(5,5,5,5);
 		
-		JLabel lblTitle = new JLabel();
+		lblTitle = new JLabel();
 		lblTitle.setText(book.getTitle());
 		lblTitle.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		lblTitle.setForeground(MainWindow.MAINCOLOR);
@@ -74,7 +78,7 @@ public class Item extends JPanel {
 		c3.gridy = 3;
 		c3.insets = new Insets(5,5,5,5);
 		
-		JLabel lblAuthor = new JLabel();
+		lblAuthor = new JLabel();
 		lblAuthor.setText(book.getAuthor());
 		lblAuthor.setFont(new Font("Segoe UI", Font.BOLD, 18));
 		lblAuthor.setForeground(MainWindow.MAINCOLOR);
@@ -85,18 +89,26 @@ public class Item extends JPanel {
 		c4.gridx = 0;
 		c4.gridy = 4;
 		c4.insets = new Insets(5,5,5,5);
-		JLabel lblYear = new JLabel();
+		lblYear = new JLabel();
 		lblYear.setText(book.getDepartureYear());
 		lblYear.setFont(new Font("Segoe UI", Font.BOLD, 18));
 		lblYear.setForeground(MainWindow.MAINCOLOR);
 		lblYear.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblYear,c4);
-
+		
+		GridBagConstraints c5 = new GridBagConstraints();
+		c5.gridx = 0;
+		c5.gridy = 5;
+		c5.insets = new Insets(5,5,5,5);
+		
+		
 	}
 	//Setters y getters
+	
 	public Book obtainBook() {
 		return this.book;
 	}
+	
 	//Metodos efecto hover
 	private MouseAdapter mouseEntered() {
 		return new MouseAdapter() {
@@ -116,6 +128,17 @@ public class Item extends JPanel {
 		};
 	}
 
+	private MouseAdapter mouseClicked() {
+		return new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//showBookDialog();
+			}
+		};
+	}
+	
+	
+	
 	// Metodos para manejar el efecto Hover
 	private void btnMouseEntered(MouseEvent event) {
 		setBackground(MainWindow.BEIGE);

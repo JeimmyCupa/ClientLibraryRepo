@@ -34,8 +34,8 @@ public class BooksPanel extends JPanel {
 				count = 0;
 			}
 			Book book = bookSet.get(i);
-			book.setPathImage("/data/frontPage/libro2.jpg");
-			Item item = new Item(book,listener,mouseListener);
+			//Validar disponivilidad
+			Item item = new Item(listener,mouseListener,book);
 			
 			items.add(item);
 			add(item);

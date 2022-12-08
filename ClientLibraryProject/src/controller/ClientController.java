@@ -143,12 +143,24 @@ public class ClientController implements ActionListener,Utilities{
 	
 	private ArrayList<Book> obtainBookSet() throws JsonSyntaxException, IOException{
 		ArrayList<Book> bookSet = net.getMyGson().fromJson(net.getInput().readUTF(),new TypeToken<ArrayList<Book>>() {}.getType());
+		for (int i = 0; i < bookSet.size(); i++) {
+			int size = net.getInput().readInt();
+			byte [] bytesImage = new byte[size];
+			net.getInput().read(bytesImage);
+			bookSet.get(i).setBytesImage(bytesImage);
+		}
 		return bookSet;
 	}
 	
 	private ArrayList<CopyBook> obtainRentedBooks() throws JsonSyntaxException, IOException{
-		ArrayList<CopyBook> bookSet = net.getMyGson().fromJson(net.getInput().readUTF(),new TypeToken<ArrayList<CopyBook>>() {}.getType());
-		return bookSet;
+		ArrayList<CopyBook> booksRented = net.getMyGson().fromJson(net.getInput().readUTF(),new TypeToken<ArrayList<CopyBook>>() {}.getType());
+		for (int i = 0; i < booksRented.size(); i++) {
+			int size = net.getInput().readInt();
+			byte [] bytesImage = new byte[size];
+			net.getInput().read(bytesImage);
+			booksRented.get(i).getRentedBook().setBytesImage(bytesImage);;
+		}
+		return booksRented;
 	}
 	
 	private Person obtainUser() throws JsonSyntaxException, IOException {
