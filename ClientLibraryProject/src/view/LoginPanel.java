@@ -126,6 +126,11 @@ public class LoginPanel extends JPanel {
 		return String.valueOf(password.getPassword());
 	}
 	
+	public void clearFields() {
+		this.user.setText("Usuario");
+		this.password.setText("*********");
+	}
+	
 	// Metodos para manejar el efecto Hover de los botones
 	private MouseAdapter mouseEntered() {
 		return new MouseAdapter() {

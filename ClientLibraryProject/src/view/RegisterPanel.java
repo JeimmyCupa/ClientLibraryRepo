@@ -271,6 +271,15 @@ public class RegisterPanel extends JPanel {
 	public Person obtainNewUser() {
 		return new Person(name.getText(),lastName.getText(),id.getText(),email.getText(),String.valueOf(password.getPassword()));
 	}
+	
+	public void clearFields() {
+		user.setText("");
+		password.setText("");
+		email.setText("");
+		name.setText("");
+		lastName.setText("");
+		id.setText("");
+	}
 			
 	// Metodos para manejar el efecto Hover de los botones
 	private MouseAdapter mouseEntered() {

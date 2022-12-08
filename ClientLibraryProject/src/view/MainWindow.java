@@ -193,29 +193,6 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 		rentedBooks.setVisible(true);
 	}
 
-	
-	
-	
-	
-	//Metodo para pintar el panel buscar libros SearchBooks(){
-	public void initSearchBooks(ArrayList<Book> bookSet) {
-		searchBookPanel = new SearchBookPanel(listener,this,bookSet);
-		searchBookPanel.setLocation(0,0);
-		dataPanel.add(searchBookPanel);
-		showPanel(dataPanel,searchBookPanel);
-	}
-	
-	public void initProfile(Person user) {
-		profilePanel = new ProfilePanel(user);
-		profilePanel.setLocation(0,0);
-		showPanel(dataPanel,profilePanel);
-	}
-	public void initRentedBooks(ArrayList<CopyBook> bookSet) {
-		rentedBooks = new RentedBooks(bookSet);
-		rentedBooks.setLocation(0, 0);
-		showPanel(dataPanel,rentedBooks);
-	}
-
 	/*Metodo encargado de repintar un panel, recibe como parametro el panel en donde se quiere
 	 * pintar un segundo panel.
 	*/
@@ -236,6 +213,14 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 		windowDialog = new WindowDialog(true, this, listener, message);
 		windowDialog.setVisible(true);
 		windowDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+	}
+	
+	public void clearFieldsLogin() {
+		loginPanel.clearFields();
+	}
+	
+	public void clearFieldsRegister() {
+		registerPanel.clearFields();
 	}
 	
 	public void closeMessageDialog() {
