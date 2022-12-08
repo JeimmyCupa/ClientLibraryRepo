@@ -108,9 +108,11 @@ public class ClientController implements ActionListener,Utilities{
 				this.initializeUserView();
 			}else {
 				window.showMessageDialog(SESSION_IS_ACTIVE);
+				window.clearFieldsLogin();
 			}
 		}else {
 			window.showMessageDialog(USER_NO_REGISTER);
+			window.clearFieldsLogin();
 		}
 	}
 	
@@ -127,9 +129,9 @@ public class ClientController implements ActionListener,Utilities{
 		if(!net.getInput().readBoolean()) {
 			window.showMessageDialog(USER_CREATED);
 			window.initLoginPanel();
-			
 		}else {
 			window.showMessageDialog(USER_IS_CREATED);
+			window.clearFieldsRegister();
 		}
 	}
 	
