@@ -91,11 +91,11 @@ public class LoginPanel extends JPanel {
 		panelLogin.add(btnLogin);
 		
 		JLabel iconUser = new JLabel();
-		iconUser.setIcon(new ImageIcon("data\\icons\\iconUser.png"));
+		iconUser.setIcon(new ImageIcon(MainWindow.USER_ICON_PATH));
 		iconUser.setBounds(622, 235, 57, 51);
 		panelLogin.add(iconUser);
 		JLabel iconPassword = new JLabel();
-		iconPassword.setIcon(new ImageIcon("data\\icons\\iconPassword.png"));
+		iconPassword.setIcon(new ImageIcon(MainWindow.PASSWORD_ICON_PATH));
 		iconPassword.setBounds(622, 307, 57, 51);
 		panelLogin.add(iconPassword);
 		

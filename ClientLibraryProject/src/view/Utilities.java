@@ -11,7 +11,9 @@ public interface Utilities {
     public final static Color LIGHTGRAY = new Color(166,166,166);
     public final static Color BEIGE = new Color(242,242,199);
     public final static Color HOVERCOLOR = new Color(74,87,120);
-	public final static String USER_CREATED = "Se ha creado el usuario";
+	public final static String USER_ICON_PATH = "data\\icons\\iconUser.png";
+	public final static String PASSWORD_ICON_PATH = "data\\icons\\iconPassword.png";
+    public final static String USER_CREATED = "Se ha creado el usuario";
 	public final static String ADMIN_CREATED = "Se ha creado el administrador";
 	public final static String ADMIN_NO_REGISTER = "El administrador no se encuentra registrado";
 	public final static String USER_NO_REGISTER = "El usuario no se encuentra registrado";
