@@ -21,7 +21,7 @@ import model.CopyBook;
 import model.Person;
 
 import java.awt.Insets;
-
+//CLIENT
 public class MainWindow extends JFrame implements Utilities, MouseListener{
     private ArrayList<Book> bookSet;
     private ArrayList<CopyBook> booksRented;
