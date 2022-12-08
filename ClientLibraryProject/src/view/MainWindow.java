@@ -1,6 +1,5 @@
 package view;
 
-
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -41,8 +40,6 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 	private BookDialog bookDialog;
 	private WindowDialog windowDialog;
 	private ActionListener listener;
-	
-	
 	private int xMouse, yMouse;//atributos para controlar el desplazamiento de la ventana
 	
 	public MainWindow(ActionListener listener) {
