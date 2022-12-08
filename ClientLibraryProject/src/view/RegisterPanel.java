@@ -29,9 +29,13 @@ public class RegisterPanel extends JPanel {
 	private JTextField lastName;
 	private JTextField email;
 	
+	
+	
+	
 	public RegisterPanel(ActionListener actionListener) {
 		setSize(1200, 635);
 		initComponents(actionListener);
+		//areFieldsValid();
 	}
 	private void initComponents(ActionListener listener) {
 		setLayout(null);
@@ -81,7 +85,7 @@ public class RegisterPanel extends JPanel {
 		invalidPassword.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		invalidPassword.setBackground(new Color(235, 236, 240));
 		invalidPassword.setBounds(507, 92, 113, 18);
-		invalidPassword.setVisible(false);
+		invalidPassword.setVisible(true);
 		credentialsData.add(invalidPassword);
 		
 		JLabel lblPassword = new JLabel("Contraseña");
@@ -92,7 +96,6 @@ public class RegisterPanel extends JPanel {
 		credentialsData.add(lblPassword);
 		
 		password = new JPasswordField();
-		password.setText("");
 		password.setBounds(132, 72, 365, 37);
 		password.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
 		password.setFont(new Font("Segoe UI", Font.PLAIN, 20));
@@ -139,7 +142,6 @@ public class RegisterPanel extends JPanel {
 		btnBack.setBounds(26, 182, 54, 42);
 		credentialsData.add(btnBack);
 		initComponentsPersonalData();
-		areFieldsValid();
 	}
 	private void initComponentsPersonalData() {
 		JPanel personalData = new JPanel();
@@ -186,7 +188,6 @@ public class RegisterPanel extends JPanel {
 		personalData.add(invalidID);
 		
 		id = new JTextField();
-		id.setText("");
 		id.setForeground(MainWindow.WHITECOLOR);
 		id.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		id.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
@@ -206,11 +207,10 @@ public class RegisterPanel extends JPanel {
 		invalidName.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		invalidName.setBackground(new Color(235, 236, 240));
 		invalidName.setBounds(496, 72, 113, 18);
-		invalidName.setVisible(false);
+		invalidName.setVisible(true);
 		personalData.add(invalidName);
 		
 		name = new JTextField();
-		name.setText("");
 		name.setBounds(118, 62, 357, 29);		
 		name.setForeground(MainWindow.WHITECOLOR);
 		name.setFont(new Font("Segoe UI", Font.PLAIN, 20));
@@ -251,11 +251,10 @@ public class RegisterPanel extends JPanel {
 		invalidEmail.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		invalidEmail.setBackground(new Color(235, 236, 240));
 		invalidEmail.setBounds(496, 175, 113, 18);
-		invalidEmail.setVisible(false);
+		invalidEmail.setVisible(true);
 		personalData.add(invalidEmail);
 		
 		email = new JTextField();
-		email.setText("");
 		email.setForeground(MainWindow.WHITECOLOR);
 		email.setFont(new Font("Segoe UI", Font.PLAIN, 20));
 		email.setBorder(new MatteBorder(0, 0, 2, 0, MainWindow.LIGHTGRAY));
@@ -308,7 +307,7 @@ public class RegisterPanel extends JPanel {
 	}
 	
 	private void numberKeyRealeased(java.awt.event.KeyEvent evt, JTextField textField, JLabel errorLabel) {
-		if(isIntegerNumber(textField.getText()) || textField.getText().equals("") ) {
+		if(isIntegerNumber(textField.getText()) || !textField.getText().equals("")) {
 			errorLabel.setVisible(false);
 			btnCreateAccount.setEnabled(true);	
 		}else {
@@ -328,7 +327,7 @@ public class RegisterPanel extends JPanel {
 	}
 	
 	private void fieldsEmptyKeyReleased(java.awt.event.KeyEvent evt, JTextField textField, JLabel errorLabel) {
-		if(!textField.getText().equals("")) {
+		if(textField.getText().equals("")) {
 			errorLabel.setVisible(true);
 			btnCreateAccount.setEnabled(false);
 		}else {
@@ -348,7 +347,7 @@ public class RegisterPanel extends JPanel {
 	}
 	
 	private void areFieldsValid() {
-		if(!id.getText().equals("") && !name.getText().equals("") && !lastName.getText().equals("") && email.getText().equals("") && !String.valueOf(password.getPassword()).equals("")) {
+		if(!id.getText().equals("") && !name.getText().equals("") && !lastName.getText().equals("") && !email.getText().equals("") && !String.valueOf(password.getPassword()).equals("")) {
 			btnCreateAccount.setEnabled(true);
 		}else {
 			btnCreateAccount.setEnabled(false);
