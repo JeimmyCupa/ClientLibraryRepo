@@ -122,8 +122,8 @@ public class ClientController implements ActionListener,Utilities{
 	private void createAccountUser() throws IOException {
 		Person newUser = window.obtainNewUser();
 		net.getOutput().writeUTF(net.getMyGson().toJson(newUser));
-		if(net.getInput().readBoolean()) {
-			window.showMessageDialog(ADMIN_CREATED);
+		if(!net.getInput().readBoolean()) {
+			window.showMessageDialog(USER_CREATED);
 			window.initLoginPanel();
 			
 		}else {
@@ -131,8 +131,8 @@ public class ClientController implements ActionListener,Utilities{
 		}
 	}
 	
-	private void rentBook() {
-		net.getMyGson().toJson(window.obtainRentBook());
+	private void rentBook() throws IOException {
+		net.getOutput().writeUTF( net.getMyGson().toJson(window.obtainRentBook()));
 	}
 	
 	private ArrayList<Book> obtainBookSet() throws JsonSyntaxException, IOException{
@@ -141,7 +141,7 @@ public class ClientController implements ActionListener,Utilities{
 	}
 	
 	private ArrayList<CopyBook> obtainRentedBooks() throws JsonSyntaxException, IOException{
-		ArrayList<CopyBook> bookSet = net.getMyGson().fromJson(net.getInput().readUTF(),new TypeToken<ArrayList<Book>>() {}.getType());
+		ArrayList<CopyBook> bookSet = net.getMyGson().fromJson(net.getInput().readUTF(),new TypeToken<ArrayList<CopyBook>>() {}.getType());
 		return bookSet;
 	}
 	

@@ -28,7 +28,7 @@ public class SearchBookPanel extends JPanel {
 	private ActionListener listener;
 	private MouseListener mouseListener;
 	private MouseAdapter mouseAdapterClicket;
-	public SearchBookPanel(JFrame frame,ActionListener listener,MouseListener mouseListener,ArrayList<Book> bookSet) {
+	public SearchBookPanel(ActionListener listener,MouseListener mouseListener,ArrayList<Book> bookSet) {
 		this.listener = listener;
 		this.mouseListener = mouseListener;
 		this.bookSet = bookSet;

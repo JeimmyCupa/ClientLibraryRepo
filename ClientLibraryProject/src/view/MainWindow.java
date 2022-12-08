@@ -157,7 +157,7 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 	}
 	
 	private void initAllUserPanels() {
-		searchBookPanel = new SearchBookPanel(this,listener,this.mouseClickedItem(),this.bookSet);
+		searchBookPanel = new SearchBookPanel(listener,this.mouseClickedItem(),this.bookSet);
 		searchBookPanel.setVisible(true);
 		searchBookPanel.setLocation(0,0);
 		dataPanel.add(searchBookPanel);
@@ -165,7 +165,7 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 		rentedBooks = new RentedBooks(this.booksRented);
 		rentedBooks.setLocation(0, 0);
 		rentedBooks.setVisible(false);
-		dataPanel.add(registerPanel);
+		dataPanel.add(rentedBooks);
 		
 		profilePanel = new ProfilePanel(profile);
 		profilePanel.setLocation(0,0);
@@ -197,7 +197,7 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 	
 	//Metodo para pintar el panel buscar libros SearchBooks(){
 	public void initSearchBooks(ArrayList<Book> bookSet) {
-		searchBookPanel = new SearchBookPanel(this,listener,this,bookSet);
+		searchBookPanel = new SearchBookPanel(listener,this,bookSet);
 		searchBookPanel.setLocation(0,0);
 		dataPanel.add(searchBookPanel);
 		showPanel(dataPanel,searchBookPanel);

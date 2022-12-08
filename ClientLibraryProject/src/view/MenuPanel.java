@@ -33,7 +33,7 @@ public class MenuPanel extends JPanel {
 		btnProfile.setIcon(new ImageIcon("data\\icons\\iconUserCircle.png"));
 		btnProfile.setBounds(0, 136, 285, 53);
 		btnProfile.addActionListener(listener);
-		btnProfile.setActionCommand("SHOWPROFILE");
+		btnProfile.setActionCommand("SHOW_PROFILE");
         //Evento hover para el boton, necesita como parametro un objeto de MouseAdapter
         btnProfile.addMouseListener(this.mouseEntered());
         btnProfile.addMouseListener(this.mouseExited());
@@ -45,7 +45,7 @@ public class MenuPanel extends JPanel {
         btnSearchBooks.setIcon(new ImageIcon("data\\icons\\iconSearch.png"));
         btnSearchBooks.setBounds(0, 192, 285, 53);
         btnSearchBooks.addActionListener(listener);
-        btnSearchBooks.setActionCommand("SEARCHBOOKS");
+        btnSearchBooks.setActionCommand("SEARCH_BOOKS");
         btnSearchBooks.addMouseListener(this.mouseEntered());
         btnSearchBooks.addMouseListener(this.mouseExited());
         add(btnSearchBooks);
@@ -56,7 +56,7 @@ public class MenuPanel extends JPanel {
         btnMyBooks.setIcon(new ImageIcon("data\\icons\\iconBook.png"));
         btnMyBooks.setBounds(0, 247, 285, 53);
         btnMyBooks.addActionListener(listener);
-        btnMyBooks.setActionCommand("MYBOOKS");
+        btnMyBooks.setActionCommand("MY_BOOKS");
         btnMyBooks.addMouseListener(this.mouseEntered());
         btnMyBooks.addMouseListener(this.mouseExited());
         add(btnMyBooks);
