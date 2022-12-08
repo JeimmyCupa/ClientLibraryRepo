@@ -227,6 +227,21 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 		contentPanel.repaint();
 	}
 	
+	private void showDialogRentedBook(Item item) {
+		bookDialog = new BookDialog(true,this, listener, item.obtainBook());
+		bookDialog.setVisible(true);
+		bookDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+	}
+	
+	public void showMessageDialog(String message) {
+		windowDialog = new WindowDialog(true, this, listener, message);
+		windowDialog.setVisible(true);
+		windowDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+	}
+	
+	public void closeMessageDialog() {
+		windowDialog.dispose();
+	}
 	
 	//Metodos para obtener datos del usuario
 	
@@ -244,7 +259,7 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 		return bookDialog.obtainRentedBook();
 	}
 	
-
+	
 	//Metodos para el desplazamiento de la ventana
 	@SuppressWarnings("unchecked")
 	private void btnMoveMousePressed(MouseEvent event) {
@@ -318,18 +333,6 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 				showDialogRentedBook((Item)e.getSource());
 			}
 		};
-	}
-	
-	private void showDialogRentedBook(Item item) {
-		bookDialog = new BookDialog(true,this, listener, item.obtainBook());
-		bookDialog.setVisible(true);
-		bookDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-	}
-	
-	public void showMessageDialog(String message) {
-		windowDialog = new WindowDialog(true, this, listener, message);
-		windowDialog.setVisible(true);
-		windowDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 	}
 	
 	@Override

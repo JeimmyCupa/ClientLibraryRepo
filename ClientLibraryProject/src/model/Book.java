@@ -8,9 +8,8 @@ public class Book {
 	private String departureYear;
 	private String description;
 	private String pathImage;
-	private String actPathImage;
 	
-	public Book(String title, int bookID, int quantity, String author, String departureYear, String description, String pathImage) {
+	public Book(String title, int bookID, int quantity, String author, String departureYear,String description,String pathImage) {
 		super();
 		this.title = title;
 		this.bookID = bookID;
@@ -19,14 +18,6 @@ public class Book {
 		this.departureYear = departureYear;
 		this.description = description;
 		this.pathImage = pathImage;
-	}
-	
-	private void selectPathImage() {
-		if(quantity == 0) {
-			actPathImage = "data\\frontPages\\agotado.jpg";
-		}else {
-			actPathImage = pathImage;
-		}
 	}
 	
 	public String getTitle() {
@@ -51,13 +42,8 @@ public class Book {
 	
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-		selectPathImage();
 	}
 	
-	public String getActPathImage() {
-		return actPathImage;
-	}
-
 	public String getAuthor() {
 		return author;
 	}
@@ -89,4 +75,21 @@ public class Book {
 	public void setPathImage(String pathImage) {
 		this.pathImage = pathImage;
 	}
+	
+	public int compare(Book book) {
+		int result = 0;
+		if(!this.title.equals(book.getTitle())) {
+			result = -1;
+		}else {
+			if(!this.author.equals(book.getAuthor())) {
+				result = -1;
+			}else {
+				if(!this.departureYear.equals(book.getDepartureYear())) {
+					result = -1;
+				}
+			}
+		}
+		return result;
+	}
+	
 }

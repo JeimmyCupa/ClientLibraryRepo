@@ -76,22 +76,5 @@ public class WindowDialog extends JDialog {
 		contentPanel.add(acceptBtn);
 	}
 
-	public static void main(String[] args) {
-		try {
-			JFrame test = new JFrame();
-			WindowDialog dialog = new WindowDialog(true, test, new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-			}, MainWindow. SESSIONISACTIVE);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 }

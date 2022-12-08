@@ -19,8 +19,9 @@ import model.Book;
 import model.CopyBook;
 import model.Person;
 import view.MainWindow;
+import view.Utilities;
 
-public class ClientController implements ActionListener{
+public class ClientController implements ActionListener,Utilities{
 	private static final int PORT = 11961;
 	private static final String HOST = "localhost";
 	private Socket socket;
@@ -78,6 +79,9 @@ public class ClientController implements ActionListener{
 			case "BACK_TO_LOGIN":
 				window.initLoginPanel();
 				break;
+			case "ACCEPT_MESSAGE":
+				window.closeMessageDialog();
+			break;
 			case "EXIT":
 				window.dispose();
 				break;
@@ -101,10 +105,10 @@ public class ClientController implements ActionListener{
 			if(!net.getInput().readBoolean()) {
 				this.initializeUserView();
 			}else {
-				window.showMessageDialog("El usuario ya inició sesión.");
+				window.showMessageDialog(SESSION_IS_ACTIVE);
 			}
 		}else {
-			window.showMessageDialog("El usuario ya se encuentra registrado.");
+			window.showMessageDialog(USER_NO_REGISTER);
 		}
 	}
 	
@@ -119,11 +123,11 @@ public class ClientController implements ActionListener{
 		Person newUser = window.obtainNewUser();
 		net.getOutput().writeUTF(net.getMyGson().toJson(newUser));
 		if(net.getInput().readBoolean()) {
-			//Dialog usuario creado exitosamente
+			window.showMessageDialog(ADMIN_CREATED);
 			window.initLoginPanel();
 			
 		}else {
-			//Dialog usuario ya se encuentra registrado
+			window.showMessageDialog(USER_IS_CREATED);
 		}
 	}
 	
