@@ -36,6 +36,7 @@ public class BookDialog extends JDialog {
 		setResizable(false);
 		getContentPane().setLayout(null);
 		initComponents(actionListener,book);
+		putButtonActivated(book.getQuantity());
 		getContentPane().add(bookPanel);
 		bookPanel.setLayout(null);
 		
@@ -152,6 +153,15 @@ public class BookDialog extends JDialog {
 				btnMouseExited(e);
 			}
 		};
+	}
+	
+	private void putButtonActivated(int quantity) {
+		if(quantity != 0) {
+			btnRentBook.setEnabled(true);
+		}else {
+			btnRentBook.setEnabled(false);
+		}
+		
 	}
 	
 	private void btnMouseEntered(MouseEvent event) {
