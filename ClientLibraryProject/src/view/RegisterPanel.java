@@ -28,14 +28,10 @@ public class RegisterPanel extends JPanel {
 	private JTextField id;
 	private JTextField lastName;
 	private JTextField email;
-	
-	
-	
-	
+
 	public RegisterPanel(ActionListener actionListener) {
 		setSize(1200, 635);
 		initComponents(actionListener);
-		//areFieldsValid();
 	}
 	private void initComponents(ActionListener listener) {
 		setLayout(null);
@@ -117,6 +113,7 @@ public class RegisterPanel extends JPanel {
 		btnCreateAccount.setForeground(MainWindow.WHITECOLOR);
 		btnCreateAccount.setFont(new Font("Segoe UI", Font.BOLD, 23));
 		btnCreateAccount.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnCreateAccount.setFocusable(false);
 		btnCreateAccount.addActionListener(listener);
 		btnCreateAccount.setActionCommand("CREATE_ACCOUNT_USER");
 		btnCreateAccount.addMouseListener(this.mouseEntered());
@@ -135,6 +132,8 @@ public class RegisterPanel extends JPanel {
 		btnBack.setFont(new Font("Segoe UI", Font.BOLD, 23));
 		btnBack.setBorder(null);
 		btnBack.setBackground(MainWindow.MAINCOLOR);
+		btnBack.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnBack.setFocusable(false);
 		btnBack.addActionListener(listener);
 		btnBack.setActionCommand("BACK_TO_LOGIN");
 		btnBack.addMouseListener(this.mouseEntered());

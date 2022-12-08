@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -29,6 +30,7 @@ public class Item extends JPanel {
 		this.book= book;
 		addMouseListener(this.mouseEntered());
 		addMouseListener(this.mouseExited());
+		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		addMouseListener(mouseListener);
 		setBackground(MainWindow.WHITECOLOR);
 		setBorder(new MatteBorder(1,1,1,1,MainWindow.LIGHTGRAY));
@@ -41,10 +43,7 @@ public class Item extends JPanel {
 		
 		JLabel frontPage = new JLabel();
 		frontPage.setIcon(new ImageIcon(book.getPathImage()));
-		
-		//frontPage.setBorder(new MatteBorder(5,5,5,5));
 		frontPage.setBackground(MainWindow.WHITECOLOR);
-		//frontPage.addMouseListener(mouseListener);
 		add(frontPage,c);//Se añade el elemento junto con la ubicacion establecida en el objeto GridBagConstraints 
 		
 		GridBagConstraints c1 = new GridBagConstraints();
@@ -68,7 +67,6 @@ public class Item extends JPanel {
 		lblTitle.setFont(new Font("Segoe UI", Font.PLAIN, 18));
 		lblTitle.setForeground(MainWindow.MAINCOLOR);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		//lblTitle.addMouseListener(mouseclicked);
 		add(lblTitle,c2);
 		
 		GridBagConstraints c3 = new GridBagConstraints();
@@ -128,21 +126,5 @@ public class Item extends JPanel {
 		setBackground(MainWindow.WHITECOLOR);
 		setBorder(new MatteBorder(1, 1, 1, 1, MainWindow.GRAY));
 	}
-	/*
-	private MouseAdapter mouseClicked(JFrame mainWindow) {
-		return new MouseAdapter(){
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				showDialogRentedBook(mainWindow,(Item)e.getSource());
-			}
-		};
-	}
-	
-	private void showDialogRentedBook(JFrame mainWindow,Item item) {
-		BookDialog bookDialog = new BookDialog(true,mainWindow, listener, item.obtainBook());
-		bookDialog.setVisible(true);
-		bookDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-	}
-	*/
 
 }

@@ -47,8 +47,8 @@ public class BookDialog extends JDialog {
 		bookPanel.setBounds(0,0,462,256);
 		JLabel lblTitle = new JLabel();
 		lblTitle.setText(book.getTitle());
-		lblTitle.setBounds(205, 11, 226, 31);
-		lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 30));
+		lblTitle.setBounds(180, 11, 272, 31);
+		lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 25));
 		lblTitle.setForeground(MainWindow.MAINCOLOR);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		bookPanel.add(lblTitle);
@@ -83,6 +83,8 @@ public class BookDialog extends JDialog {
 		btnRentBook.setAlignmentX(CENTER_ALIGNMENT);
 		btnRentBook.setForeground(MainWindow.WHITECOLOR);
 		btnRentBook.setBackground(MainWindow.MAINCOLOR);
+		btnRentBook.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnRentBook.setFocusable(false);
 		btnRentBook.addActionListener(actionListener);
 		btnRentBook.addMouseListener(new  MouseAdapter() {
 			@Override
@@ -111,6 +113,9 @@ public class BookDialog extends JDialog {
 		btnCancel.setAlignmentX(CENTER_ALIGNMENT);
 		btnCancel.setForeground(MainWindow.WHITECOLOR);
 		btnCancel.setBackground(MainWindow.MAINCOLOR);
+		btnCancel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnCancel.setFocusable(false);
+		btnCancel.setActionCommand("CANCEL_RENT_BOOK");
 		btnCancel.addMouseListener(this.mouseClicked());
 		btnCancel.addMouseListener(this.mouseEntered());
 		

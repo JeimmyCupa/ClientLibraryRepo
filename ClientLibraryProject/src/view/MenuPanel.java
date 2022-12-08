@@ -80,6 +80,7 @@ public class MenuPanel extends JPanel {
         buttonToApply.setForeground(Color.white);
         buttonToApply.setFont(new Font("Segoe UI", Font.BOLD, 20));
         buttonToApply.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        buttonToApply.setFocusable(false);
         buttonToApply.setBackground(MainWindow.MAINCOLOR);
 	}
 	

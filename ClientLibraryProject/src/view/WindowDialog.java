@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -50,6 +51,8 @@ public class WindowDialog extends JDialog {
 		acceptBtn.setAlignmentX(CENTER_ALIGNMENT);
 		acceptBtn.setForeground(MainWindow.WHITECOLOR);
 		acceptBtn.setBackground(MainWindow.MAINCOLOR);
+		acceptBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		acceptBtn.setFocusable(false);
 		acceptBtn.addActionListener(actionListener);
 		acceptBtn.addMouseListener(new  MouseAdapter() {
 			@Override

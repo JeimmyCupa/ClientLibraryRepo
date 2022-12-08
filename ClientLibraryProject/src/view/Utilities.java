@@ -23,4 +23,5 @@ public interface Utilities {
 	public final static String BOOK_REMOVE_SUCCESFULLY = "El libro ha sido eliminado exitosamente.";
 	public final static String QUANTITY_ADDED_SUCCESFULLY = "La cantidad de libros fue modificada.";
 	public final static String BOOK_GIVE_BACK_SUCCEFULLY = "El libro fue devuelto exitosamente";
+	public final static String BOOK_RENTED_SUCCEFULLY= "El libro fue agregado a su lista de libros rentados.";
 }

@@ -83,6 +83,7 @@ public class LoginPanel extends JPanel {
 		btnLogin.setForeground(MainWindow.WHITECOLOR);
 		btnLogin.setFont(new Font("Segoe UI", Font.BOLD, 23));
 		btnLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnLogin.setFocusable(false);
 		btnLogin.addActionListener(actionListener);
 		btnLogin.setActionCommand("LOGIN_USER");
 		btnLogin.addMouseListener(this.mouseEntered());
@@ -106,6 +107,7 @@ public class LoginPanel extends JPanel {
 		btnRegister.setForeground(MainWindow.GRAY);
 		btnRegister.setBackground(MainWindow.WHITECOLOR);
 		btnRegister.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnRegister.setFocusable(false);
 		btnRegister.addActionListener(actionListener);
 		btnRegister.setActionCommand("REGISTER_USER");
 		btnRegister.addMouseListener(this.mouseEntered());

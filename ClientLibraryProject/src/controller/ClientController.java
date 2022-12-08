@@ -40,7 +40,6 @@ public class ClientController implements ActionListener,Utilities{
 		try {
 			new ClientController();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -72,6 +71,9 @@ public class ClientController implements ActionListener,Utilities{
 				break;
 			case "RENT_BOOK":
 				this.rentBook();
+				break;
+			case "CANCEL_RENT_BOOK":
+				window.closeDialogRentedBook();
 				break;
 			case "LOGOUT":
 				window.initLoginPanel();
@@ -133,6 +135,8 @@ public class ClientController implements ActionListener,Utilities{
 	
 	private void rentBook() throws IOException {
 		net.getOutput().writeUTF( net.getMyGson().toJson(window.obtainRentBook()));
+		window.showMessageDialog(BOOK_RENTED_SUCCEFULLY);
+		window.closeDialogRentedBook();
 	}
 	
 	private ArrayList<Book> obtainBookSet() throws JsonSyntaxException, IOException{

@@ -91,6 +91,7 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 		btnExit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnExit.addActionListener(listener);
 		btnExit.setActionCommand("EXIT");
+		btnExit.setFocusable(false);
 		btnExit.addMouseListener(this.mouseEntered());
 		btnExit.addMouseListener(this.mouseExited());
 		header.add(btnExit);
@@ -105,6 +106,7 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 		btnMin.setBorderPainted(false);
 		btnMin.setMargin(new Insets(1, 1, 1, 1));;
 		btnMin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnMin.setFocusable(false);
 		btnMin.addActionListener(listener);
 		btnMin.setActionCommand("MIN");
 		btnMin.addMouseListener(this.mouseEntered());
@@ -240,6 +242,10 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 		windowDialog.dispose();
 	}
 	
+	public void closeDialogRentedBook() {
+		bookDialog.dispose();
+	}
+	
 	//Metodos para obtener datos del usuario
 	
 	public String obtainUser() {
@@ -317,9 +323,9 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 
 	private void btnMouseExited(MouseEvent event) {
 		if(event.getSource() == btnExit)
-			btnExit.setBackground(HOVERCOLOR);
+			btnExit.setBackground(MAINCOLOR);
 		else if(event.getSource() == btnMin)
-			btnMin.setBackground(HOVERCOLOR);
+			btnMin.setBackground(MAINCOLOR);
 	}
 	
 	//Revisar porque el mouse adapter no esta enviando en si la accion del mouse listener
