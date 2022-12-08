@@ -136,7 +136,7 @@ public class ClientController implements ActionListener,Utilities{
 	}
 	
 	private void rentBook() throws IOException {
-		net.getOutput().writeUTF( net.getMyGson().toJson(window.obtainRentBook()));
+		net.getOutput().writeUTF( net.getMyGson().toJson(window.obtainRentBook()));//quitar lo bytes de la imagen en rented
 		window.showMessageDialog(BOOK_RENTED_SUCCEFULLY);
 		window.closeDialogRentedBook();
 	}

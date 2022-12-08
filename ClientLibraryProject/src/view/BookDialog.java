@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -56,7 +57,10 @@ public class BookDialog extends JDialog {
 		
 		JLabel lblImage = new JLabel();
 		lblImage.setBounds(10, 11, 160, 234);
-		lblImage.setIcon(new ImageIcon(book.getPathImage()));//Crear metodo para asignar imagenes
+		Image image = new ImageIcon(book.getBytesImage()).getImage();
+		ImageIcon icon = new ImageIcon(image.getScaledInstance(202, 270, Image.SCALE_SMOOTH));
+		lblImage.setIcon(icon);
+
 		bookPanel.add(lblImage);
 		
 		JLabel lblAuthor = new JLabel(book.getAuthor());
@@ -185,6 +189,7 @@ public class BookDialog extends JDialog {
 	}
 	
 	public Book obtainRentedBook() {
+		this.book.setBytesImage(null);
 		return this.book;
 	}
 	

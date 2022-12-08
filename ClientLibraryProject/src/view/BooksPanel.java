@@ -34,10 +34,8 @@ public class BooksPanel extends JPanel {
 				count = 0;
 			}
 			Book book = bookSet.get(i);
-			//Validar disponivilidad
 			Item item = new Item(listener,mouseListener,book);
-			
-			items.add(item);
+items.add(item);
 			add(item);
 			count++;
 		}
