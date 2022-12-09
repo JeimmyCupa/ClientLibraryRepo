@@ -35,7 +35,7 @@ public class ClientController implements ActionListener,Utilities{
 		Thread thread = new Thread(){
 			public void run() {
 				while (isActive) {
-					verify();
+					//verify();
 				}
 			}
 		};
@@ -47,7 +47,8 @@ public class ClientController implements ActionListener,Utilities{
 		try {
 			if(isActive) {
 				if(net.getInput().available() > 0) {
-					if(net.getInput().readUTF().equals("NOTIFY")) {
+					char test = net.getInput().readChar();
+					if(Character.compare(test, 'N') > 0) {
 						if(isSessionActive) {
 							initializeUserView();
 						}
