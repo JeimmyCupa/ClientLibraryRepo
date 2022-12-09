@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.Book;
+import structure.Book;
 
 public class BooksPanel extends JPanel {
 	private ArrayList<Item> items;

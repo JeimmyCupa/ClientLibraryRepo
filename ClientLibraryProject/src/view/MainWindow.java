@@ -16,9 +16,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import model.Book;
-import model.CopyBook;
-import model.Person;
+import structure.Book;
+import structure.CopyBook;
+import structure.Person;
 
 import java.awt.Insets;
 //CLIENT

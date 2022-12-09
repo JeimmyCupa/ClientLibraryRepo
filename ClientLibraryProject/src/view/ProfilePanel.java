@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
-import model.Person;
+import structure.Person;
 
 import javax.swing.SwingConstants;
 

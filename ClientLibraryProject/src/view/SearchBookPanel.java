@@ -9,8 +9,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
+
+import structure.Book;
+
 import javax.swing.JTextField;
-import model.Book;
 
 public class SearchBookPanel extends JPanel {
 

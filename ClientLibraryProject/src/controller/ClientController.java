@@ -14,22 +14,24 @@ import javax.swing.text.IconView;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
-
-import model.Book;
-import model.CopyBook;
-import model.Person;
+import structure.Book;
+import structure.CopyBook;
+import structure.Person;
+import structure.ReadConfigs;
 import view.MainWindow;
 import view.Utilities;
 
 public class ClientController implements ActionListener,Utilities{
-	private static final int PORT = 11961;
-	private static final String HOST = "localhost";
 	private Socket socket;
 	private Net net;
 	private MainWindow window;
+	private ReadConfigs readConfigs;
+	
 	public ClientController() throws UnknownHostException, IOException {
 		window = new MainWindow(this);
-		this.socket = new Socket(HOST, PORT);
+		this.readConfigs = new ReadConfigs();
+		
+		this.socket = new Socket(readConfigs.obtainHOST(),readConfigs.obtainPort());
 		this.net = new Net(socket);
 		this.init();
 	}

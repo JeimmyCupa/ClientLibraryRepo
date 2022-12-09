@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
-import model.Book;
+import structure.Book;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;

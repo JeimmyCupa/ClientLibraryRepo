@@ -20,7 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import model.Book;
+import structure.Book;
 
 import javax.swing.JLabel;
 import javax.swing.JTextArea;

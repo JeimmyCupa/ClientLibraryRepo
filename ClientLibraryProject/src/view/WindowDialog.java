@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import model.Book;
+import structure.Book;
 
 public class WindowDialog extends JDialog {
 	private JPanel contentPanel;

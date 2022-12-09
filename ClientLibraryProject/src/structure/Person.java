@@ -1,4 +1,4 @@
-package model;
+package structure;
 
 public class Person {
 	private String name;

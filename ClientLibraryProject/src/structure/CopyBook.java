@@ -1,4 +1,4 @@
-package model;
+package structure;
 
 public class CopyBook {
 	private Book rentedBook;

@@ -9,6 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
+
+import structure.CopyBook;
+
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
@@ -16,7 +19,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JTable;
-import model.CopyBook;
 
 public class RentedBooks extends JPanel {
 	private ArrayList<CopyBook> bookSet;

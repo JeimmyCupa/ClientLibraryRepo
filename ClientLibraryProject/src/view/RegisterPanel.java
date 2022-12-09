@@ -18,7 +18,7 @@ import javax.swing.border.MatteBorder;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
 
-import model.Person;
+import structure.Person;
 
 public class RegisterPanel extends JPanel {
 	private JPanel panelImage, panelLogin;
