@@ -70,6 +70,7 @@ public class MainWindow extends JFrame implements Utilities, MouseListener{
 	public void setProfile(Person profile) {
 		this.profile = profile;
 	}
+	
 	//Metodo para inciar componentes generales de la GUI(Cabecera y un panel para el contenido en contentPane)
 	private void initComponents() {
 

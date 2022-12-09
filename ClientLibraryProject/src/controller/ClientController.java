@@ -6,14 +6,9 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-
 import javax.swing.JFrame;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
-import javax.swing.text.IconView;
-
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-
 import structure.Book;
 import structure.CopyBook;
 import structure.Person;
@@ -26,24 +21,47 @@ public class ClientController implements ActionListener,Utilities{
 	private Net net;
 	private MainWindow window;
 	private ReadConfigs readConfigs;
+	private boolean isSessionActive;
+	private boolean isActive;
 	
 	public ClientController() throws UnknownHostException, IOException {
 		window = new MainWindow(this);
+		isSessionActive = false;
+		isActive = true;
 		this.readConfigs = new ReadConfigs();
 		this.socket = new Socket(readConfigs.obtainHOST(),readConfigs.obtainPort());
 		this.net = new Net(socket);
-		
+		this.net.getOutput().writeInt(0);
+		Thread thread = new Thread(){
+			public void run() {
+				while (isActive) {
+					verify();
+				}
+			}
+		};
+		thread.start();
 		this.init();
 	}
-	private void init() {
-		window.setVisible(true);
-	}
-	public static void main(String[] args) {
+	
+	private void verify() {
 		try {
-			new ClientController();
-		} catch (IOException e) {
+			if(isActive) {
+				if(net.getInput().available() > 0) {
+					if(net.getInput().readUTF().equals("NOTIFY")) {
+						if(isSessionActive) {
+							initializeUserView();
+						}
+						
+					}
+				}
+			}
+		}catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void init() {
+		window.setVisible(true);
 	}
 	
 	@Override
@@ -78,6 +96,7 @@ public class ClientController implements ActionListener,Utilities{
 				window.closeDialogRentedBook();
 				break;
 			case "LOGOUT":
+				isSessionActive = false;
 				window.initLoginPanel();
 				break;
 			case "BACK_TO_LOGIN":
@@ -87,6 +106,8 @@ public class ClientController implements ActionListener,Utilities{
 				window.closeMessageDialog();
 			break;
 			case "EXIT":
+				isActive = false;
+				isSessionActive = false;
 				window.dispose();
 				break;
 			case "MIN":
@@ -95,7 +116,6 @@ public class ClientController implements ActionListener,Utilities{
 
 			}
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -107,6 +127,7 @@ public class ClientController implements ActionListener,Utilities{
 		if(net.getInput().readBoolean()) {
 			if(!net.getInput().readBoolean()) {
 				this.initializeUserView();
+				isSessionActive = true;
 			}else {
 				window.showMessageDialog(SESSION_IS_ACTIVE);
 				window.clearFieldsLogin();
@@ -120,7 +141,9 @@ public class ClientController implements ActionListener,Utilities{
 	private void initializeUserView() throws JsonSyntaxException, IOException {
 		window.setBookSet(this.obtainBookSet());
 		window.setBooksRented(this.obtainRentedBooks());
-		window.setProfile(this.obtainUser());
+		if(!isSessionActive) {
+			window.setProfile(this.obtainUser());
+		}
 		window.initComponentsUser();
 	}
 	
@@ -168,58 +191,12 @@ public class ClientController implements ActionListener,Utilities{
 	private Person obtainUser() throws JsonSyntaxException, IOException {
 		return net.getMyGson().fromJson(net.getInput().readUTF(), Person.class);
 	}
-	/*
-	private ArrayList<CopyBook> obtainRentedBooks(){
-		ArrayList<CopyBook> bookSet = new ArrayList<>();
-		/**bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005", "", ""), 1));
-		bookSet.add(new CopyBook(new Book("100 Años de soledad", 2, 19, "Pepito", "2005", "", ""), 2));
-		bookSet.add(new CopyBook(new Book("Principal", 3, 19, "Pepito", "2005", "", ""), 3));
-		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005", "", ""), 4));
-		bookSet.add(new CopyBook(new Book("A donde vas", 5, 19, "Pepito", "2005", "", ""), 5));
-		bookSet.add(new CopyBook(new Book("No se que mas poner", 6, 19, "Pepito", "2005", "", ""), 6));
-		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005", "", ""), 7));
-		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005", "", ""), 1));
-		bookSet.add(new CopyBook(new Book("100 Años de soledad", 2, 19, "Pepito", "2005", "", ""), 2));
-		bookSet.add(new CopyBook(new Book("Principal", 3, 19, "Pepito", "2005", "", ""), 3));
-		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005", "", ""), 4));
-		bookSet.add(new CopyBook(new Book("A donde vas", 5, 19, "Pepito", "2005", "", ""), 5));
-		bookSet.add(new CopyBook(new Book("No se que mas poner", 6, 19, "Pepito", "2005", "", ""), 6));
-		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005", "", ""), 7));
-		bookSet.add(new CopyBook(new Book("Principito", 1, 19, "Pepito", "2005", "", ""), 1));
-		bookSet.add(new CopyBook(new Book("100 Años de soledad", 2, 19, "Pepito", "2005", "", ""), 2));
-		bookSet.add(new CopyBook(new Book("Principal", 3, 19, "Pepito", "2005", "", ""), 3));
-		bookSet.add(new CopyBook(new Book("Pedro", 4, 19, "Pepito", "2005", "", ""), 4));
-		bookSet.add(new CopyBook(new Book("A donde vas", 5, 19, "Pepito", "2005", "", ""), 5));
-		bookSet.add(new CopyBook(new Book("No se que mas poner", 6, 19, "Pepito", "2005", "", ""), 6));
-		bookSet.add(new CopyBook(new Book("Libro", 7, 19, "Pepito", "2005", "", ""), 7));
-		return new ArrayList<>();
-	}*/
-/*
-	private ArrayList<Book> obtainBookSet() {
-		ArrayList<Book> bookSet = new ArrayList<Book>();
-		bookSet.add(new Book("Principito", 1, 19, "Pepito", "2005", "", ""));
-		bookSet.add(new Book("100 Años de soledad", 2, 19, "Ana", "2010", "", ""));
-		bookSet.add(new Book("Principal", 3, 19, "Pepito", "2005", "", ""));
-		bookSet.add(new Book("Pedro", 4, 19, "Pepito", "2005", "", ""));
-		bookSet.add(new Book("A donde vas", 5, 19, "Jeimmy", "2003", "", ""));
-		bookSet.add(new Book("No se que mas poner", 6, 19, "Pepito", "2005", "", ""));
-		bookSet.add(new Book("Libro", 7, 19, "Pepito", "2005", "", ""));
-		bookSet.add(new Book("Principito", 1, 19, "Pepito", "2005", "", ""));
-		bookSet.add(new Book("100 Años de soledad", 2, 19, "Sara", "2002", "", ""));
-		bookSet.add(new Book("Principal", 3, 19, "Pepito", "2005", "", ""));
-		bookSet.add(new Book("Pedro", 4, 19, "Jeimmy", "2005", "", ""));
-		bookSet.add(new Book("A donde vas", 5, 19, "Pepito", "2003", "", ""));
-		bookSet.add(new Book("No se que mas poner", 6, 19, "Pepito", "2005", "", ""));
-		bookSet.add(new Book("Libro", 7, 19, "Pepito", "2005", "", ""));
-		bookSet.add(new Book("Principito", 1, 19, "Ana", "2005", "", ""));
-		bookSet.add(new Book("100 Años de soledad", 2, 19, "Pepito", "2005", "", ""));
-		bookSet.add(new Book("Principal", 3, 19, "Pepito", "2005", "", ""));
-		bookSet.add(new Book("Pedro", 4, 19, "Sara", "2005", "", ""));
-		bookSet.add(new Book("A donde vas", 5, 19, "Pepito", "2005", "", ""));
-		bookSet.add(new Book("No se que mas poner", 6, 19, "Pepito", "2005", "", ""));
-		bookSet.add(new Book("Libro", 7, 19, "Jeimmy", "2003", "", ""));
-		
-		return bookSet;
+	
+	public static void main(String[] args) {
+		try {
+			new ClientController();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	*/
 }
