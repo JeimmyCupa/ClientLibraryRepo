@@ -104,7 +104,6 @@ public class ClientController implements ActionListener,Utilities{
 	private void loginUser() throws IOException {
 		net.getOutput().writeUTF(window.obtainUser());
 		net.getOutput().writeUTF(window.obtainPassword());
-		
 		if(net.getInput().readBoolean()) {
 			if(!net.getInput().readBoolean()) {
 				this.initializeUserView();
@@ -138,7 +137,7 @@ public class ClientController implements ActionListener,Utilities{
 	}
 	
 	private void rentBook() throws IOException {
-		net.getOutput().writeUTF( net.getMyGson().toJson(window.obtainRentBook()));//quitar lo bytes de la imagen en rented
+		net.getOutput().writeUTF(net.getMyGson().toJson(window.obtainRentBook()));//quitar lo bytes de la imagen en rented
 		window.showMessageDialog(BOOK_RENTED_SUCCEFULLY);
 		window.closeDialogRentedBook();
 	}
@@ -148,6 +147,7 @@ public class ClientController implements ActionListener,Utilities{
 		for (int i = 0; i < bookSet.size(); i++) {
 			int size = net.getInput().readInt();
 			byte [] bytesImage = new byte[size];
+			System.out.println("Clase Respuesta: " + net.getInput().getClass());
 			net.getInput().read(bytesImage);
 			bookSet.get(i).setBytesImage(bytesImage);
 		}
