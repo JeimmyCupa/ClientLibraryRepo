@@ -24,6 +24,7 @@ public class ClientController implements ActionListener,Utilities{
 	private boolean isSessionActive;
 	private boolean isActive;
 	
+	
 	public ClientController() throws UnknownHostException, IOException {
 		window = new MainWindow(this);
 		isSessionActive = false;
