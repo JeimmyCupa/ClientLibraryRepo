@@ -35,7 +35,7 @@ public class ClientController implements ActionListener,Utilities{
 		Thread thread = new Thread(){
 			public void run() {
 				while (isActive) {
-					//verify();
+					verify();
 				}
 			}
 		};
@@ -47,10 +47,11 @@ public class ClientController implements ActionListener,Utilities{
 		try {
 			if(isActive) {
 				if(net.getInput().available() > 0) {
-					char test = net.getInput().readChar();
-					if(Character.compare(test, 'N') > 0) {
+					
+					if(net.getInput().readInt() == 0) {
 						if(isSessionActive) {
-							initializeUserView();
+							System.out.println(net.getInput().readUTF());
+							//initializeUserView();
 						}
 						
 					}
@@ -167,7 +168,9 @@ public class ClientController implements ActionListener,Utilities{
 	}
 	
 	private ArrayList<Book> obtainBookSet() throws JsonSyntaxException, IOException{
-		ArrayList<Book> bookSet = net.getMyGson().fromJson(net.getInput().readUTF(),new TypeToken<ArrayList<Book>>() {}.getType());
+		String json = net.getInput().readUTF();
+		System.out.println(json);
+		ArrayList<Book> bookSet = net.getMyGson().fromJson(json,new TypeToken<ArrayList<Book>>() {}.getType());
 		for (int i = 0; i < bookSet.size(); i++) {
 			int size = net.getInput().readInt();
 			byte [] bytesImage = new byte[size];

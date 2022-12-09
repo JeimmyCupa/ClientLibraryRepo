@@ -7,7 +7,7 @@ public class Book {
 	private String author;
 	private String departureYear;
 	private String description;
-	private String pathImage;//Le envio el 
+	private String pathImage;
 	private byte [] bytesImage;
 	
 	public Book(String title, int bookID, int quantity, String author, String departureYear,String description,String pathImage) {
@@ -85,10 +85,6 @@ public class Book {
 		this.pathImage = pathImage;
 	}
 	
-	public String toString() {
-		return "Titulo: " + title + " | Autor: " + author + " | Cantidad: " + quantity;
-	}
-	
 	public int compare(Book book) {
 		int result = 0;
 		if(!this.title.equals(book.getTitle())) {
@@ -104,5 +100,4 @@ public class Book {
 		}
 		return result;
 	}
-	
 }
