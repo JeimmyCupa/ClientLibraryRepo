@@ -46,7 +46,7 @@ public class RegisterPanel extends JPanel {
 		panelLogin.setBackground(MainWindow.WHITECOLOR);
 		
 		//Componentes del panelRegistro
-		JLabel lblTitle = new JLabel("Registro al sistema");
+		JLabel lblTitle = new JLabel("Registro Usuario");
 		lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		lblTitle.setForeground(MainWindow.STRONGBLACK);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);

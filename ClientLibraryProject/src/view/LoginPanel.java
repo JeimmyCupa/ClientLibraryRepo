@@ -48,11 +48,11 @@ public class LoginPanel extends JPanel {
 		panelLogin.setBackground(MainWindow.WHITECOLOR);
 		
 		//Componentes del panelLogin
-		JLabel lblTitle = new JLabel("Login");
+		JLabel lblTitle = new JLabel("Login Administrador");
 		lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 30));
 		lblTitle.setForeground(MainWindow.MAINCOLOR);
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitle.setBounds(255,75,200,50);
+		lblTitle.setBounds(238,75,334,50);
 		panelLogin.add(lblTitle);
 		
 		user = new JTextField();
