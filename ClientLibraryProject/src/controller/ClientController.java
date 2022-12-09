@@ -30,7 +30,6 @@ public class ClientController implements ActionListener,Utilities{
 	public ClientController() throws UnknownHostException, IOException {
 		window = new MainWindow(this);
 		this.readConfigs = new ReadConfigs();
-		
 		this.socket = new Socket(readConfigs.obtainHOST(),readConfigs.obtainPort());
 		this.net = new Net(socket);
 		this.init();

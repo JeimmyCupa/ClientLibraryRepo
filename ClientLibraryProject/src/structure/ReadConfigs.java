@@ -10,15 +10,15 @@ import javax.swing.JOptionPane;
 public class ReadConfigs {
 	private Properties properties;
 	private FileInputStream input;
-	private final String propertiesPath = "data/config/configs.properties";
+	private final String PROPERTIES_PATH = "data/config/configs.properties";
 	
 	public ReadConfigs() {
 		this.properties = new Properties();
 		try {
-			this.input = new FileInputStream(propertiesPath);
+			this.input = new FileInputStream(PROPERTIES_PATH);
 			properties.load(input);
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "El archivo de configuraciiones no fue encontrado");
+			JOptionPane.showMessageDialog(null, "Error al leer archivo de configuraciones.");
 			e.printStackTrace();
 		}
 	}
