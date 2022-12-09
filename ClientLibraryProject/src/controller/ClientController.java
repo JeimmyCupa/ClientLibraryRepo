@@ -32,6 +32,7 @@ public class ClientController implements ActionListener,Utilities{
 		this.readConfigs = new ReadConfigs();
 		this.socket = new Socket(readConfigs.obtainHOST(),readConfigs.obtainPort());
 		this.net = new Net(socket);
+		
 		this.init();
 	}
 	private void init() {
