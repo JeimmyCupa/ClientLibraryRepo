@@ -13,6 +13,8 @@ import structure.Book;
 import structure.CopyBook;
 import structure.Person;
 import structure.ReadConfigs;
+import structure.Request;
+import structure.Response;
 import view.MainWindow;
 import view.Utilities;
 
@@ -35,7 +37,7 @@ public class ClientController implements ActionListener,Utilities{
 		Thread thread = new Thread(){
 			public void run() {
 				while (isActive) {
-					//verify();
+					verify();
 				}
 			}
 		};
@@ -47,12 +49,14 @@ public class ClientController implements ActionListener,Utilities{
 		try {
 			if(isActive) {
 				if(net.getInput().available() > 0) {
-					char test = net.getInput().readChar();
-					if(Character.compare(test, 'N') > 0) {
+					Response response = new Response();
+					response = net.getMyGson().fromJson(net.getInput().readUTF(), response.getClass());
+					if(response.isNotify()) {
 						if(isSessionActive) {
-							initializeUserView();
+							initializeUserView(response.getBooks(), response.getBooksRented(), response.getProfile());
 						}
-						
+					} else {
+						protocol(response);
 					}
 				}
 			}
@@ -69,14 +73,12 @@ public class ClientController implements ActionListener,Utilities{
 	public void actionPerformed(ActionEvent e) {
 		String event = e.getActionCommand();
 		try {
-			net.getOutput().writeUTF(event);
-
 			switch (event) {
 			case "LOGIN_USER":
-				this.loginUser();
+				this.loginUser(event);
 				break;
 			case "CREATE_ACCOUNT_USER":
-				this.createAccountUser();
+				this.createAccountUser(event);
 				break;
 			case "REGISTER_USER":
 				window.initRegisterPanel();
@@ -91,7 +93,7 @@ public class ClientController implements ActionListener,Utilities{
 				window.putVisibilityRentedBooks();
 				break;
 			case "RENT_BOOK":
-				this.rentBook();
+				this.rentBook(event);
 				break;
 			case "CANCEL_RENT_BOOK":
 				window.closeDialogRentedBook();
@@ -122,76 +124,77 @@ public class ClientController implements ActionListener,Utilities{
 
 	}
 	
-	private void loginUser() throws IOException {
-		net.getOutput().writeUTF(window.obtainUser());
-		net.getOutput().writeUTF(window.obtainPassword());
-		if(net.getInput().readBoolean()) {
-			if(!net.getInput().readBoolean()) {
-				this.initializeUserView();
-				isSessionActive = true;
+	private void protocol(Response response) throws IOException {
+		switch (response.getOption()) {
+		case "LOGIN_USER":
+			if(response.isValid()) {
+				Response newResponse = net.getMyGson().fromJson(net.getInput().readUTF(), Response.class);
+				if(!newResponse.isValid()) {
+					this.initializeUserView(newResponse.getBooks(), newResponse.getBooksRented(), newResponse.getProfile());
+				}else {
+					window.showMessageDialog(SESSION_IS_ACTIVE);
+					window.clearFieldsLogin();
+				}
 			}else {
-				window.showMessageDialog(SESSION_IS_ACTIVE);
+				window.showMessageDialog(ADMIN_NO_REGISTER);
 				window.clearFieldsLogin();
 			}
-		}else {
-			window.showMessageDialog(USER_NO_REGISTER);
-			window.clearFieldsLogin();
+			break;
+		case "CREATE_ACCOUNT_USER":
+			if(!response.isValid()) {
+				window.showMessageDialog(USER_CREATED);
+				window.initLoginPanel();
+			}else {
+				window.showMessageDialog(USER_IS_CREATED);
+				window.clearFieldsRegister();
+			}
+			break;
+		case "LOGOUT":
+			isSessionActive = false;
+			break;
+		case "RENT_BOOK":
+			window.showMessageDialog(BOOK_RENTED_SUCCEFULLY);
+			window.closeDialogRentedBook();
+			break;
+		case "EXIT":
+			isActive = false;
+			isSessionActive = false;
+			break;
 		}
 	}
 	
-	private void initializeUserView() throws JsonSyntaxException, IOException {
-		window.setBookSet(this.obtainBookSet());
-		window.setBooksRented(this.obtainRentedBooks());
+	private void loginUser(String option) throws IOException {
+		Request request = new Request();
+		request.setAppOption(option);
+		request.setUserID(window.obtainUser());
+		request.setPassword(window.obtainPassword());
+		net.getOutput().writeUTF(net.getMyGson().toJson(request));
+	}
+	
+	private void initializeUserView(ArrayList<Book> books, ArrayList<CopyBook> rentedBooks, Person user) throws JsonSyntaxException, IOException {
+		window.setVisible(false);
+		window = new MainWindow(this);
+		window.setBookSet(books);
+		window.setBooksRented(rentedBooks);
 		if(!isSessionActive) {
-			window.setProfile(this.obtainUser());
+			window.setProfile(user);
 		}
 		window.initComponentsUser();
+		init();
 	}
 	
-	private void createAccountUser() throws IOException {
-		Person newUser = window.obtainNewUser();
-		net.getOutput().writeUTF(net.getMyGson().toJson(newUser));
-		if(!net.getInput().readBoolean()) {
-			window.showMessageDialog(USER_CREATED);
-			window.initLoginPanel();
-		}else {
-			window.showMessageDialog(USER_IS_CREATED);
-			window.clearFieldsRegister();
-		}
+	private void createAccountUser(String option) throws IOException {
+		Request request = new Request();
+		request.setAppOption(option);
+		request.setPerson(window.obtainNewUser());
+		net.getOutput().writeUTF(net.getMyGson().toJson(request));
 	}
 	
-	private void rentBook() throws IOException {
-		net.getOutput().writeUTF(net.getMyGson().toJson(window.obtainRentBook()));//quitar lo bytes de la imagen en rented
-		window.showMessageDialog(BOOK_RENTED_SUCCEFULLY);
-		window.closeDialogRentedBook();
+	private void rentBook(String option) throws IOException {
+		Request request = new Request();
+		net.getOutput().writeUTF(net.getMyGson().toJson(request));
 	}
 	
-	private ArrayList<Book> obtainBookSet() throws JsonSyntaxException, IOException{
-		ArrayList<Book> bookSet = net.getMyGson().fromJson(net.getInput().readUTF(),new TypeToken<ArrayList<Book>>() {}.getType());
-		for (int i = 0; i < bookSet.size(); i++) {
-			int size = net.getInput().readInt();
-			byte [] bytesImage = new byte[size];
-			System.out.println("Clase Respuesta: " + net.getInput().getClass());
-			net.getInput().read(bytesImage);
-			bookSet.get(i).setBytesImage(bytesImage);
-		}
-		return bookSet;
-	}
-	
-	private ArrayList<CopyBook> obtainRentedBooks() throws JsonSyntaxException, IOException{
-		ArrayList<CopyBook> booksRented = net.getMyGson().fromJson(net.getInput().readUTF(),new TypeToken<ArrayList<CopyBook>>() {}.getType());
-		for (int i = 0; i < booksRented.size(); i++) {
-			int size = net.getInput().readInt();
-			byte [] bytesImage = new byte[size];
-			net.getInput().read(bytesImage);
-			booksRented.get(i).getRentedBook().setBytesImage(bytesImage);;
-		}
-		return booksRented;
-	}
-	
-	private Person obtainUser() throws JsonSyntaxException, IOException {
-		return net.getMyGson().fromJson(net.getInput().readUTF(), Person.class);
-	}
 	
 	public static void main(String[] args) {
 		try {

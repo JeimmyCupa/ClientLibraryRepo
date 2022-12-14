@@ -50,4 +50,13 @@ public class Person {
 		this.isSessionStarted = sessionStarted;
 	}
 	
+	public int compare(Person person) {
+		return getID().compareToIgnoreCase(person.getID());
+	}
+
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", lastName=" + lastName + ", ID=" + ID + ", email=" + email + ", password="
+				+ password + ", isSessionStarted=" + isSessionStarted + "]";
+	}
 }

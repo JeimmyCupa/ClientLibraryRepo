@@ -23,7 +23,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Item extends JPanel {
-	private JLabel frontPage,lblID,lblTitle,lblAuthor,lblYear;
+	private JLabel lblID,lblTitle,lblAuthor,lblYear;
 	private Book book; 
 	
 	public Item(ActionListener listener,MouseListener mouseListener,Book book) {
@@ -41,14 +41,7 @@ public class Item extends JPanel {
 		c.gridy = 0;
 		c.insets = new Insets(5,5,5,5);//Establece el espacio entre componentes
 		
-		frontPage = new JLabel();
-		Image image = new ImageIcon(book.getBytesImage()).getImage();
-		ImageIcon icon = new ImageIcon(image.getScaledInstance(202, 270, Image.SCALE_SMOOTH));
-		frontPage.setIcon(icon);
-		frontPage.setBackground(MainWindow.WHITECOLOR);
-		frontPage.addMouseListener(mouseListener);
-		
-		add(frontPage,c);//Se añade el elemento junto con la ubicacion establecida en el objeto GridBagConstraints 
+	
 		
 		GridBagConstraints c1 = new GridBagConstraints();
 		c1.gridx = 0;
