@@ -50,22 +50,18 @@ public class ClientController implements ActionListener,Utilities{
 		try {
 			if(isActive) {
 				if(net.getInput().available() > 0) {
-<<<<<<< HEAD
 					Response response = new Response();
 					response = net.getMyGson().fromJson(net.getInput().readUTF(), response.getClass());
 					if(response.isNotify()) {
-						if(isSessionActive) {
-							initializeUserView(response.getBooks(), response.getBooksRented(), response.getProfile());
-=======
-					
+						if(isSessionActive) 
+							initializeUserView(response.getBooks(), response.getBooksRented(), response.getProfile());					
 					if(net.getInput().readInt() == 0) {
 						if(isSessionActive) {
 							System.out.println(net.getInput().readUTF());
-							//initializeUserView();
->>>>>>> a2192ed54464ff3d0161d7ccc5de901aa18db88f
 						}
 					} else {
 						protocol(response);
+					}
 					}
 				}
 			}
@@ -203,38 +199,6 @@ public class ClientController implements ActionListener,Utilities{
 		Request request = new Request();
 		net.getOutput().writeUTF(net.getMyGson().toJson(request));
 	}
-	
-<<<<<<< HEAD
-=======
-	private ArrayList<Book> obtainBookSet() throws JsonSyntaxException, IOException{
-		String json = net.getInput().readUTF();
-		System.out.println(json);
-		ArrayList<Book> bookSet = net.getMyGson().fromJson(json,new TypeToken<ArrayList<Book>>() {}.getType());
-		for (int i = 0; i < bookSet.size(); i++) {
-			int size = net.getInput().readInt();
-			byte [] bytesImage = new byte[size];
-			System.out.println("Clase Respuesta: " + net.getInput().getClass());
-			net.getInput().read(bytesImage);
-			bookSet.get(i).setBytesImage(bytesImage);
-		}
-		return bookSet;
-	}
-	
-	private ArrayList<CopyBook> obtainRentedBooks() throws JsonSyntaxException, IOException{
-		ArrayList<CopyBook> booksRented = net.getMyGson().fromJson(net.getInput().readUTF(),new TypeToken<ArrayList<CopyBook>>() {}.getType());
-		for (int i = 0; i < booksRented.size(); i++) {
-			int size = net.getInput().readInt();
-			byte [] bytesImage = new byte[size];
-			net.getInput().read(bytesImage);
-			booksRented.get(i).getRentedBook().setBytesImage(bytesImage);;
-		}
-		return booksRented;
-	}
-	
-	private Person obtainUser() throws JsonSyntaxException, IOException {
-		return net.getMyGson().fromJson(net.getInput().readUTF(), Person.class);
-	}
->>>>>>> a2192ed54464ff3d0161d7ccc5de901aa18db88f
 	
 	public static void main(String[] args) {
 		try {
